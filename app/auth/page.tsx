@@ -48,7 +48,7 @@ const Auth = () => {
                         </div>
                         <div className="d-flex flex-row justify-content-between align-items-center">
                             <a className="link-opacity-100-hover" onClick={() => setAuthType("login")}>Přihlášení</a>
-                            <button type="submit" className="btn btn-primary">Přihlásit</button>
+                            <button type="submit" className="btn btn-primary">Registrovat</button>
                         </div>
                     </form>
                 </div>
