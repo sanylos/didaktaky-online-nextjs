@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation';
-import styles from './Navbar.module.scss';
+import './Navbar.scss';
 
 const links = [
     { label: 'Procvičování', href: '/procvicovani' },
