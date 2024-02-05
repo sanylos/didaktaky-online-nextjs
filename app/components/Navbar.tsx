@@ -6,13 +6,14 @@ import { useRouter, usePathname } from 'next/navigation';
 import styles from './Navbar.module.scss';
 
 const links = [
-    { label: 'Procvičování', href: '/' },
-    { label: 'Generování testů', href: '/' },
+    { label: 'Procvičování', href: '/procvicovani' },
+    { label: 'Přehled', href: '/prehled' },
+    { label: 'Generování testů', href: '/test' },
 ];
 
 const Navbar = () => {
     const path = usePathname();
-    const isLinkActive = (href) => { // returns true if pathname is equal to passed href
+    const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
         return path === href;
     }
 
@@ -32,7 +33,7 @@ const Navbar = () => {
                         <ul className="navbar-nav">
                             {links.map(({ href, label }) => (
                                 <li className="nav-item mx-1" key={href}>
-                                    <Link className={`nav-link ${isLinkActive(href) ? 'bg-secondary rounded text-light' : ''}`} href={href}>
+                                    <Link className={`nav-link ${isLinkActive(href) ? 'bg-dark rounded text-light' : ''}`} href={href}>
                                         {label}
                                     </Link>
                                 </li>
