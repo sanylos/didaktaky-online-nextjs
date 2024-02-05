@@ -1,0 +1,13 @@
+.card {
+    width: 50%;
+}
+.background {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-image: url('../images/authBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
