@@ -39,7 +39,7 @@ const Navbar = () => {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul className="navbar-nav">
                             {links.map(({ href, label }) => (
                                 <li className="nav-item mx-1" key={href}>
@@ -49,11 +49,29 @@ const Navbar = () => {
                                 </li>
                             ))}
                         </ul>
-                        {userData && <div>{userData?.user?.email}</div>}
-                        <button onClick={handleLogout}>Logout</button>
+                        <div className="d-flex flex-row">
+                            <a className="bg-dark rounded rounded-pill btn btn-secondary btn-outline-secondary text-white px-3 mx-1"
+                                href="https://www.buymeacoffee.com/sanyl"><i className="bi bi-cup-hot-fill"></i> PODPORA PROJEKTU</a>
+
+                            {!userData &&
+                                <Link href="/auth" type="button" className="btn btn-light rounded-pill px-3 mx-1">Přihlásit se</Link>
+                            }
+                            {userData &&
+                                <div v-if="userStore.isLoggedIn" className="dropdown mx-1">
+                                    <button className="text-white bg-dark rounded rounded-pill btn-secondary btn btn-outline-secondary px-3"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span><i className="bi bi-person-check"></i> {userData?.user?.email}</span>
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li><a onClick={handleLogout} className="dropdown-item text-danger" href="#">Odhlásit se</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+
                     </div>
                 </div>
-            </nav>
+            </nav >
         </>
     )
 }
