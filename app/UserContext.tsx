@@ -2,6 +2,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/api';
+import { useRouter } from 'next/navigation'
 
 const UserContext = createContext({
     user: null,
@@ -13,6 +14,7 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
+    const router = useRouter();
 
     const fetchUserData = async () => {
         try {
@@ -41,6 +43,7 @@ export const UserProvider = ({ children }) => {
         if (!error) {
             setUserData(data);
             console.log('Login successful:', data);
+            router.push('/');
         } else {
             console.error('Login failed:', error.message);
         }
