@@ -14,22 +14,22 @@ export const useUser = () => useContext(UserContext);
 export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const { data, error } = await supabase.auth.getUser();
-                if (!error) {
-                    setUserData(data);
-                    console.log(data);
-                } else {
-                    setUserData(null);
-                    console.log(error);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error.message);
+    const fetchUserData = async () => {
+        try {
+            const { data, error } = await supabase.auth.getUser();
+            if (!error) {
+                setUserData(data);
+                console.log(data);
+            } else {
+                setUserData(null);
+                console.log(error);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
+        }
+    };
 
+    useEffect(() => {
         fetchUserData();
     }, []);
 
@@ -41,9 +41,9 @@ export const UserProvider = ({ children }) => {
         if (!error) {
             setUserData(data);
             console.log('Login successful:', data);
-          } else {
+        } else {
             console.error('Login failed:', error.message);
-          }
+        }
     };
 
     const handleLogout = async () => {
@@ -51,9 +51,9 @@ export const UserProvider = ({ children }) => {
         if (!error) {
             setUserData(null);
             console.log('Logout successful');
-          } else {
+        } else {
             console.error('Logout failed:', error.message);
-          }
+        }
     };
 
     return (
