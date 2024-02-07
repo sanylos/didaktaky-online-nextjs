@@ -1,9 +1,12 @@
+// @ts-nocheck
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./page.scss"
 import { supabase } from "@/api";
+import { useUser } from '../UserContext';
 
 const Auth = () => {
+    const { userData, login, logout } = useUser();
     const [authType, setAuthType] = useState("login");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,25 +15,9 @@ const Auth = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (authType == "register") {
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-            })
-            if (error) {
-                console.log(error);
-            } else {
-                console.log(data);
-            }
+            
         } else {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-            })
-            if (error) {
-                console.log(error);
-            } else {
-                console.log(data);
-            }
+            login(email, password);
         }
     }
 
