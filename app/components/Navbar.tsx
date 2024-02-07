@@ -1,9 +1,13 @@
+// @ts-nocheck
 'use client';
-import { useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation';
 import './Navbar.scss';
+import { useUser } from '../UserContext';
+import { supabase } from '@/api';
+import { stringify } from 'querystring';
 
 const links = [
     { label: 'Procvičování', href: '/procvicovani' },
@@ -12,9 +16,15 @@ const links = [
 ];
 
 const Navbar = () => {
+    const { userData, login, logout } = useUser();
+
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
         return path === href;
+    }
+
+    const handleLogout = () => {
+        logout();
     }
 
     useEffect(() => {
@@ -39,6 +49,8 @@ const Navbar = () => {
                                 </li>
                             ))}
                         </ul>
+                        {userData && <div>{userData?.user?.email}</div>}
+                        <button onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
             </nav>
