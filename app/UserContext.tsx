@@ -8,6 +8,7 @@ const UserContext = createContext({
     user: null,
     login: () => { },
     logout: () => { },
+    register: () => { },
 });
 
 export const useUser = () => useContext(UserContext);
@@ -49,6 +50,21 @@ export const UserProvider = ({ children }) => {
         }
     };
 
+    const handleRegister = async (email, password) => {
+        console.log(email);console.log(password);
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password
+        })
+        if (!error) {
+            setUserData(data);
+            console.log('Register successful:', data);
+            router.push('/');
+        } else {
+            console.error('Register failed:', error.message);
+        }
+    };
+
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (!error) {
@@ -60,7 +76,7 @@ export const UserProvider = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ userData, login: handleLogin, logout: handleLogout }}>
+        <UserContext.Provider value={{ userData, login: handleLogin, logout: handleLogout, register: handleRegister }}>
             {children}
         </UserContext.Provider>
     );
