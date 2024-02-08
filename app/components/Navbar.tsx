@@ -16,7 +16,7 @@ const links = [
 ];
 
 const Navbar = () => {
-    const { userData, login, logout } = useUser();
+    const { userData, logout } = useUser();
 
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
