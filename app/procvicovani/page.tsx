@@ -37,7 +37,7 @@ const Procvicovani = () => {
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
         let answerArray = [...answer];
         answerArray[index] = exerciseAnswer;
-        console.log("answer handled: "+answerArray);
+        console.log("answer handled: " + answerArray);
         setAnswer(answerArray);
         console.log(answer);
     }
@@ -47,12 +47,17 @@ const Procvicovani = () => {
         fetchNextQuestion();
     }, [])
 
-    return <div>
-        Procvicovani page
-        <h1>odpoved:</h1>
-        {JSON.stringify(answer)}
-        <hr />
-        <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer}/>
+    return <div className="d-flex justify-content-center">
+        <div>
+            Procvicovani page
+            <h1>odpoved:</h1>
+            <pre>{JSON.stringify(answer)}</pre>
+            <hr />
+            <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
+                <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} />
+                <button>Další</button>
+            </div>
+        </div>
     </div>
 }
 
