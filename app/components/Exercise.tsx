@@ -14,11 +14,10 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                 'bg-danger': index === userStore.exerciseAnswer[0] && index != exercises.correct_answer[0] && answered,
                         }" v-html="option"></label>
         </div>
-                </div >
+    </div >
             </div >*/
-        <div className="container rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
+        <div className="container">
             <h1>Exercise component OK</h1>
-            {JSON.stringify(exercise)}
             <div className="d-flex flex-column">
                 {
                     exercise?.text1imgPath &&
