@@ -1,7 +1,8 @@
-const Exercise = ({exercise}) => {
+//@ts-nocheck
+const Exercise = ({ exercise, answer, handleAnswer }) => {
 
-    /*return (
-        <div className="exercise-options" v-if="exercises.type == 'Výběr z možností'">
+    return (
+        /*<div className="exercise-options" v-if="exercises.type == 'Výběr z možností'">
             <div>
                 <div v-for="option, index in exercises.answers" :key="index"
                         className="question-option mb-1 d-flex flex-column align-content-start">
@@ -13,8 +14,33 @@ const Exercise = ({exercise}) => {
                         }" v-html="option"></label>
         </div>
                 </div >
-            </div >
-    )*/
+            </div >*/
+        <div>
+            <h1>Exercise component OK</h1>
+            {JSON.stringify(exercise)}
+            {
+                exercise?.type == "Výběr z možností" &&
+                <div>
+                    {JSON.stringify(exercise.answers)}
+                    {exercise.answers.map((option, index) => (
+                        <div key={index}>
+                            <input className="btn-check"
+                                id={"option" + index}
+                                type="radio"
+                                name="exerciseOptions"
+                                value={index}
+                                onChange={(e) => handleAnswer(0, e.target.value)}
+                            />
+                            <label className="btn text-start fw-normal"
+                                htmlFor={"option" + index}
+                                dangerouslySetInnerHTML={{ __html: option }}
+                            />
+                        </div>
+                    ))}
+                </div>
+            }
+        </div>
+    )
 }
 
 export default Exercise;
