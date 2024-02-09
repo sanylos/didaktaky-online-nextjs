@@ -1,6 +1,8 @@
+// @ts-nocheck
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
+import Exercise from "../components/Exercise";
 
 const Procvicovani = () => {
     const [exercise, setExercise] = useState(null);
@@ -39,9 +41,10 @@ const Procvicovani = () => {
 
     return <div>
         Procvicovani page
-        {JSON.stringify(exercise)}
         <h1>odpoved:</h1>
         {JSON.stringify(answer)}
+        <hr />
+        <Exercise exercise={exercise}/>
     </div>
 }
 
