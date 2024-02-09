@@ -1,4 +1,5 @@
 //@ts-nocheck
+import './Exercise.scss'
 const Exercise = ({ exercise, answer, handleAnswer }) => {
 
     return (
@@ -15,9 +16,28 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
         </div>
                 </div >
             </div >*/
-        <div>
+        <div className="container rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
             <h1>Exercise component OK</h1>
             {JSON.stringify(exercise)}
+            <div className="d-flex flex-column">
+                {
+                    exercise?.text1imgPath &&
+                    <div className="d-flex flex-column">
+                        <span className="fw-bold">TEXT 1</span>
+                        <img alt="TEXT1" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text1imgPath + ".PNG"} />
+                    </div>
+                }
+                {
+                    exercise?.text2imgPath &&
+                    <div className="d-flex flex-column">
+                        <span className="fw-bold">TEXT 2</span>
+                        <img alt="TEXT2" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text2imgPath + ".PNG"} />
+                    </div>
+                }
+            </div>
+
+
+
             {
                 exercise?.type == "Výběr z možností" &&
                 <div>
