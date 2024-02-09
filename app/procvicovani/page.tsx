@@ -33,7 +33,15 @@ const Procvicovani = () => {
             console.log(error);
         }
     }
-    console.log("log z page z cviceni");
+
+    const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
+        let answerArray = [...answer];
+        answerArray[index] = exerciseAnswer;
+        console.log("answer handled: "+answerArray);
+        setAnswer(answerArray);
+        console.log(answer);
+    }
+
     useEffect(() => {
         console.log("log z useEffectu z cviceni");
         fetchNextQuestion();
@@ -44,7 +52,7 @@ const Procvicovani = () => {
         <h1>odpoved:</h1>
         {JSON.stringify(answer)}
         <hr />
-        <Exercise exercise={exercise}/>
+        <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer}/>
     </div>
 }
 
