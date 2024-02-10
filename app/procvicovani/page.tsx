@@ -54,8 +54,12 @@ const Procvicovani = () => {
             <pre>{JSON.stringify(answer)}</pre>
             <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
-                <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} />
-                <button>Další</button>
+                {exercise ? <div>
+                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} />
+                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button></div>
+                    :
+                    <div>Loading...</div>
+                }
             </div>
         </div>
     </div>
