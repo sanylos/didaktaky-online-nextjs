@@ -48,6 +48,11 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                         <span className="fw-bold" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.title) }}></span>
                     </div>
                 }
+                {
+                    exercise.description && <div>
+                        (<span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.description) }}></span>)
+                    </div>
+                }
             </div>
 
 
