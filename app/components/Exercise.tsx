@@ -1,5 +1,6 @@
 //@ts-nocheck
 import './Exercise.scss'
+import DOMPurify from 'dompurify'
 const Exercise = ({ exercise, answer, handleAnswer }) => {
 
     return (
@@ -35,11 +36,11 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                 }
                 {
                     exercise.claims && <div>
-                        {exercise.claims.map((claim, index) => {
-                            <div>
-                                <span className="fw-bold">Tvrzení č. {index + 1}: </span><span dangerouslySetInnerHTML={}></span>
+                        {exercise.claims.map((claim, index) => (
+                            <div key={index}>
+                                <span className="fw-bold">Tvrzení č. {index + 1}: </span><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(claim) }}></span>
                             </div>
-                        })}
+                        ))}
                     </div>
                 }
             </div>
