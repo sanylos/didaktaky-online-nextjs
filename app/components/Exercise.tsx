@@ -78,6 +78,36 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                     ))}
                 </div>
             }
+            {
+                exercise.type == "Výběr mezi ANO/NE" && <div>
+                    <div className="row text-center">
+                        <div className="col-10"></div>
+                        <div className="col-1">ANO</div>
+                        <div className="col-1">NE</div>
+                    </div>
+                    <div>
+                        {exercise.answers.map((option, index) => (
+                            <div key={index} className="row align-items-center">
+                                <p className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></p>
+                                <input type="radio"
+                                    className="col radio-anone"
+                                    name={"input" + index}
+                                    id={"input" + index}
+                                    value="ANO"
+                                    onChange={(e) => handleAnswer(index, e.target.value)}
+                                />
+                                <input type="radio"
+                                    className="col radio-anone"
+                                    name={"input" + index}
+                                    id={"input" + index}
+                                    value="NE"
+                                    onChange={(e) => handleAnswer(index, e.target.value)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            }
         </div>
     )
 }
