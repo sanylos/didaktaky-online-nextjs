@@ -142,6 +142,18 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                     ))}
                 </div>
             }
+            {
+                exercise.type == "Textová odpověď" && <div className="d-flex flex-row flex-wrap">
+                    {exercise.correct_answer.map((correctAnswer, index) => (
+                        <div key={index} className="m-1">
+                            <input type="text"
+                                value={answer[index]}
+                                onChange={(e) => handleAnswer(index, e.target.value)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            }
         </div>
     )
 }
