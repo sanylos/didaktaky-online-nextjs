@@ -20,14 +20,14 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
             <h1>Exercise component OK</h1>
             <div className="d-flex flex-column">
                 {
-                    exercise?.text1imgPath &&
+                    exercise.text1imgPath &&
                     <div className="d-flex flex-column">
                         <span className="fw-bold">TEXT 1</span>
                         <img alt="TEXT1" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text1imgPath + ".PNG"} />
                     </div>
                 }
                 {
-                    exercise?.text2imgPath &&
+                    exercise.text2imgPath &&
                     <div className="d-flex flex-column">
                         <span className="fw-bold">TEXT 2</span>
                         <img alt="TEXT2" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text2imgPath + ".PNG"} />
@@ -38,7 +38,7 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
 
 
             {
-                exercise?.type == "Výběr z možností" &&
+                exercise.type == "Výběr z možností" &&
                 <div>
                     {JSON.stringify(exercise.answers)}
                     {exercise.answers.map((option, index) => (
