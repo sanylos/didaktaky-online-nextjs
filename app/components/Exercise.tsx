@@ -154,6 +154,27 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                     ))}
                 </div>
             }
+            {
+                exercise.type == "Seřazení" && <div>
+                    {exercise.answers.map((option, index) => (
+                        <div key={index}>
+                            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
+                        </div>
+                    ))}
+                    <div className="d-flex">
+                        {exercise.correct_answer.map((correctAnswer, index) => (
+                            <div key={index} className="mx-1">
+                                <input type="text"
+                                    className="text-center"
+                                    style={{ width: 30 }}
+                                    value={answer[index]}
+                                    onChange={(e) => handleAnswer(index, e.target.value.toUpperCase())}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            }
         </div>
     )
 }
