@@ -19,18 +19,27 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
         <div className="container">
             <h1>Exercise component OK</h1>
             <div className="d-flex flex-column">
-                {
+                { //TEXT 1 IMAGE
                     exercise.text1imgPath &&
                     <div className="d-flex flex-column">
                         <span className="fw-bold">TEXT 1</span>
                         <img alt="TEXT1" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text1imgPath + ".PNG"} />
                     </div>
                 }
-                {
+                { //TEXT 2 IMAGE
                     exercise.text2imgPath &&
                     <div className="d-flex flex-column">
                         <span className="fw-bold">TEXT 2</span>
                         <img alt="TEXT2" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text2imgPath + ".PNG"} />
+                    </div>
+                }
+                {
+                    exercise.claims && <div>
+                        {exercise.claims.map((claim, index) => {
+                            <div>
+                                <span className="fw-bold">Tvrzení č. {index + 1}: </span><span dangerouslySetInnerHTML={}></span>
+                            </div>
+                        })}
                     </div>
                 }
             </div>
