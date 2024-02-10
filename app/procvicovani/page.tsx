@@ -12,7 +12,7 @@ const Procvicovani = () => {
     const fetchNextQuestion = async () => {
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
-                in_years: ["2023"],
+                in_years: ["2022"],
                 in_subjects: ["CJL"],
                 in_variants: ["1"],
                 in_types: ["PZ"]
