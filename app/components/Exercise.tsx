@@ -62,7 +62,7 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                             />
                             <label className="btn text-start fw-normal"
                                 htmlFor={"option" + index}
-                                dangerouslySetInnerHTML={{ __html: option }}
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}
                             />
                         </div>
                     ))}
