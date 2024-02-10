@@ -129,6 +129,19 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                     ))}
                 </div>
             }
+            {
+                exercise.type == "Více textových odpovědí" && <div>
+                    {exercise.answers.map((option, index) => (
+                        <div key={index}>
+                            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
+                            <input type="text"
+                                value={answer[index]}
+                                onChange={(e) => handleAnswer(index, e.target.value)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            }
         </div>
     )
 }
