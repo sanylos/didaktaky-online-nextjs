@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import Exercise from "../components/Exercise";
+import { validateAnswer } from "../utils/answerValidation";
 
 const Procvicovani = () => {
     const [exercise, setExercise] = useState(null);
@@ -10,6 +11,7 @@ const Procvicovani = () => {
     const [isAnswered, setIsAnswered] = useState(false);
 
     const fetchNextQuestion = async () => {
+        if (exercise && answer) console.log(validateAnswer(exercise, answer));
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
                 in_years: ["2022"],
@@ -37,9 +39,9 @@ const Procvicovani = () => {
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
         let answerArray = [...answer];
         answerArray[index] = exerciseAnswer;
-        console.log("answer handled: " + answerArray);
+        //console.log("answer handled: " + answerArray);
         setAnswer(answerArray);
-        console.log(answer);
+        //console.log(answer);
     }
 
     useEffect(() => {
@@ -52,6 +54,7 @@ const Procvicovani = () => {
             Procvicovani page
             <h1>odpoved:</h1>
             <pre>{JSON.stringify(answer)}</pre>
+            {exercise?.correct_answer && <pre>{JSON.stringify(exercise.correct_answer)}</pre>}
             <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
                 {exercise ? <div>
