@@ -11,9 +11,8 @@ const Procvicovani = () => {
     const [isAnswered, setIsAnswered] = useState(false);
 
     const handleExerciseSubmit = () => {
-        setIsAnswered(true);
-        if (exercise && answer) console.log(validateAnswer(exercise, answer));
-        else alert("Error :(");
+        if (exercise && !answer.includes("")) { setIsAnswered(true); }
+        else alert("Cvičení nebylo zodpovězeno");
     }
 
     const fetchNextQuestion = async () => {
