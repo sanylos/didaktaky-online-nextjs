@@ -3,11 +3,17 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import Exercise from "../components/Exercise";
+import { validateAnswer } from "../utils/answerValidation";
 
 const Procvicovani = () => {
     const [exercise, setExercise] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [isAnswered, setIsAnswered] = useState(false);
+
+    const handleExerciseSubmit = () => {
+        if (exercise && !answer.includes("")) { setIsAnswered(true); }
+        else alert("Cvičení nebylo zodpovězeno");
+    }
 
     const fetchNextQuestion = async () => {
         try {
@@ -35,11 +41,13 @@ const Procvicovani = () => {
     }
 
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
-        let answerArray = [...answer];
-        answerArray[index] = exerciseAnswer;
-        console.log("answer handled: " + answerArray);
-        setAnswer(answerArray);
-        console.log(answer);
+        if (!isAnswered) {
+            let answerArray = [...answer];
+            answerArray[index] = exerciseAnswer;
+            //console.log("answer handled: " + answerArray);
+            setAnswer(answerArray);
+            //console.log(answer);
+        }
     }
 
     useEffect(() => {
@@ -52,11 +60,14 @@ const Procvicovani = () => {
             Procvicovani page
             <h1>odpoved:</h1>
             <pre>{JSON.stringify(answer)}</pre>
+            {exercise?.correct_answer && <pre>{JSON.stringify(exercise.correct_answer)}</pre>}
             <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
                 {exercise ? <div>
-                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} />
-                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button></div>
+                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
+                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button>
+                    <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
+                </div>
                     :
                     <div>Loading...</div>
                 }
