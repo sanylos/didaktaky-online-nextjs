@@ -1,7 +1,7 @@
 //@ts-nocheck
 import './Exercise.scss'
 import DOMPurify from 'dompurify'
-const Exercise = ({ exercise, answer, handleAnswer }) => {
+const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
 
     return (
         <div className="container">
@@ -54,7 +54,10 @@ const Exercise = ({ exercise, answer, handleAnswer }) => {
                                 value={index}
                                 onChange={(e) => handleAnswer(0, e.target.value)}
                             />
-                            <label className="btn text-start fw-normal"
+                            <label className={"btn text-start fw-normal "
+                                + (isAnswered && index == exercise.correct_answer[0] ? "bg-success":"")
+                                + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger":"")
+                            }
                                 htmlFor={"option" + index}
                                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}
                             />
