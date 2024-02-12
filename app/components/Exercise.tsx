@@ -22,6 +22,11 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     </div>
                 }
                 {
+                    exercise.points && <div className='text-end fw-bold'>
+                        <span>{exercise.points}{exercise.points == 1 ? " bod" : " body"}</span>
+                    </div>
+                }
+                {
                     exercise.claims && <div>
                         {exercise.claims.map((claim, index) => (
                             <div key={index}>
