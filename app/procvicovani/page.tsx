@@ -11,6 +11,7 @@ const Procvicovani = () => {
     const [isAnswered, setIsAnswered] = useState(false);
 
     const handleExerciseSubmit = () => {
+        setIsAnswered(true);
         if (exercise && answer) console.log(validateAnswer(exercise, answer));
         else alert("Error :(");
     }
@@ -62,7 +63,7 @@ const Procvicovani = () => {
             <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
                 {exercise ? <div>
-                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} />
+                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
                     <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button>
                     <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
                 </div>
