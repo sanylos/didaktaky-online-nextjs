@@ -105,6 +105,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                     id={"input" + index}
                                     value="ANO"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
+                                    disabled={isAnswered}
                                 />
                                 <input type="radio"
                                     className="col radio-anone"
@@ -112,6 +113,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                     id={"input" + index}
                                     value="NE"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
+                                    disabled={isAnswered}
                                 />
                             </div>
                         ))}
