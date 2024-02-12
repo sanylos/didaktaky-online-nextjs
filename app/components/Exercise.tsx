@@ -102,7 +102,11 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
             {
                 exercise.type == "Přiřazení" && <div>
                     {exercise.answers.map((option, index) => (
-                        <div key={index} className="d-flex flex-row align-content-start justify-content-between">
+                        <div key={index}
+                            className={"d-flex flex-row align-content-start justify-content-between "
+                                + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
+                                + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
+                            }>
                             <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
                             <input type="text"
                                 style={{ width: 30 }}
