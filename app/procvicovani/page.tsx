@@ -16,6 +16,7 @@ const Procvicovani = () => {
     }
 
     const fetchNextQuestion = async () => {
+        setExercise(null);
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
                 in_years: ["2022"],
@@ -63,13 +64,18 @@ const Procvicovani = () => {
             {exercise?.correct_answer && <pre>{JSON.stringify(exercise.correct_answer)}</pre>}
             <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
-                {exercise ? <div>
-                    <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
-                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button>
-                    <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
-                </div>
+                {exercise ?
+                    <div>
+                        <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
+                        {
+                            isAnswered ?
+                                <button className="btn btn-light float-end" onClick={fetchNextQuestion}>Další</button>
+                                :
+                                <button className="btn btn-light float-end" onClick={handleExerciseSubmit}>Zkontrolovat</button>
+                        }
+                    </div>
                     :
-                    <div>Loading...</div>
+                    <div>Načítání...</div>
                 }
             </div>
         </div>
