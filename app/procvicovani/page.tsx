@@ -67,15 +67,19 @@ const Procvicovani = () => {
                 {exercise ?
                     <div>
                         <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
-                        {
-                            isAnswered ?
-                                <button className="btn btn-light float-end" onClick={fetchNextQuestion}>Další</button>
-                                :
-                                <button className="btn btn-light float-end" onClick={handleExerciseSubmit}>Zkontrolovat</button>
-                        }
+                        <div className="d-flex justify-content-end">
+                            {
+
+                                isAnswered ?
+                                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button>
+                                    :
+                                    <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
+
+                            }
+                        </div>
                     </div>
                     :
-                    <div>Načítání...</div>
+                    <span>Načítání...</span>
                 }
             </div>
         </div>
