@@ -6,7 +6,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
     return (
         <div className="container">
             <h1>Exercise component OK</h1>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column align-items-center">
                 { //TEXT 1 IMAGE
                     exercise.text1imgPath &&
                     <div className="d-flex flex-column">
@@ -21,31 +21,32 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                         <img alt="TEXT2" src={"https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/" + exercise.text2imgPath + ".PNG"} />
                     </div>
                 }
-                {
-                    exercise.points && <div className='text-end fw-bold'>
-                        <span>{exercise.points}{exercise.points == 1 ? " bod" : " body"}</span>
-                    </div>
-                }
-                {
-                    exercise.claims && <div>
-                        {exercise.claims.map((claim, index) => (
-                            <div key={index}>
-                                <span className="fw-bold">Tvrzení č. {index + 1}: </span><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(claim) }}></span>
-                            </div>
-                        ))}
-                    </div>
-                }
-                {
-                    exercise.title && <div>
-                        <span className="fw-bold" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.title) }}></span>
-                    </div>
-                }
-                {
-                    exercise.description && <div>
-                        (<span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.description) }}></span>)
-                    </div>
-                }
             </div>
+            {
+                exercise.points && <div className='text-end fw-bold'>
+                    <span>{exercise.points}{exercise.points == 1 ? " bod" : " body"}</span>
+                </div>
+            }
+
+            {
+                exercise.claims && <div>
+                    {exercise.claims.map((claim, index) => (
+                        <div key={index}>
+                            <span className="fw-bold">Tvrzení č. {index + 1}: </span><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(claim) }}></span>
+                        </div>
+                    ))}
+                </div>
+            }
+            {
+                exercise.title && <div>
+                    <span className="fw-bold" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.title) }}></span>
+                </div>
+            }
+            {
+                exercise.description && <div>
+                    (<span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.description) }}></span>)
+                </div>
+            }
 
             {
                 exercise.type == "Výběr z možností" &&
