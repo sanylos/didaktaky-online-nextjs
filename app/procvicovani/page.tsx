@@ -41,11 +41,13 @@ const Procvicovani = () => {
     }
 
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
-        let answerArray = [...answer];
-        answerArray[index] = exerciseAnswer;
-        //console.log("answer handled: " + answerArray);
-        setAnswer(answerArray);
-        //console.log(answer);
+        if (!isAnswered) {
+            let answerArray = [...answer];
+            answerArray[index] = exerciseAnswer;
+            //console.log("answer handled: " + answerArray);
+            setAnswer(answerArray);
+            //console.log(answer);
+        }
     }
 
     useEffect(() => {
