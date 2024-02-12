@@ -165,7 +165,10 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     ))}
                     <div className="d-flex">
                         {exercise.correct_answer.map((correctAnswer, index) => (
-                            <div key={index} className="mx-1">
+                            <div key={index} className={"mx-1 p-1 "
+                                + ((isAnswered && exercise.correct_answer[index] == answer[index]) ? "bg-success" : "")
+                                + ((isAnswered && exercise.correct_answer[index] != answer[index]) ? "bg-danger" : "")
+                            }>
                                 <input type="text"
                                     className="text-center"
                                     style={{ width: 30 }}
