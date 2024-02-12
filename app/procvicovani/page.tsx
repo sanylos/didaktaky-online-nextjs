@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import Exercise from "../components/Exercise";
-import { validateAnswer } from "../utils/answerValidation";
+import { upsertExercise } from "../utils/exerciseInsertion";
 
 const Procvicovani = () => {
     const [exercise, setExercise] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [isAnswered, setIsAnswered] = useState(false);
+    const [userAnswerId, setUserAnswerId] = useState(null)
 
     const handleExerciseSubmit = () => {
         if (exercise && !answer.includes("")) { setIsAnswered(true); }
@@ -16,7 +17,15 @@ const Procvicovani = () => {
     }
 
     const fetchNextQuestion = async () => {
-        setExercise(null);
+        if (exercise) {
+            const { data, error } = await upsertExercise(exercise);
+            if (error) {
+                console.log(error);
+                return;
+            }
+            setExercise(null);
+            setUserAnswerId(data.id);
+        }
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
                 in_years: ["2022"],
