@@ -55,8 +55,8 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                 onChange={(e) => handleAnswer(0, e.target.value)}
                             />
                             <label className={"btn text-start fw-normal "
-                                + (isAnswered && index == exercise.correct_answer[0] ? "bg-success":"")
-                                + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger":"")
+                                + (isAnswered && index == exercise.correct_answer[0] ? "bg-success" : "")
+                                + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
                             }
                                 htmlFor={"option" + index}
                                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}
@@ -74,7 +74,11 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     </div>
                     <div>
                         {exercise.answers.map((option, index) => (
-                            <div key={index} className="row align-items-center">
+                            <div key={index}
+                                className={"row align-items-center "
+                                    + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
+                                    + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
+                                }>
                                 <p className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></p>
                                 <input type="radio"
                                     className="col radio-anone"
