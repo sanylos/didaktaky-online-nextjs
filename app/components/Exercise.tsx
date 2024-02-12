@@ -94,7 +94,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     <div>
                         {exercise.answers.map((option, index) => (
                             <div key={index}
-                                className={"row align-items-center "
+                                className={"row align-items-center mb-1 rounded "
                                     + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                     + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                                 }>
