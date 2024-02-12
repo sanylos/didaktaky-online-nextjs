@@ -144,7 +144,10 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
             {
                 exercise.type == "Textová odpověď" && <div className="d-flex flex-row flex-wrap">
                     {exercise.correct_answer.map((correctAnswer, index) => (
-                        <div key={index} className="m-1">
+                        <div key={index} className={"m-1 p-1 "
+                            + (isAnswered && exercise.correct_answer.includes(answer[index]) ? "bg-success" : "")
+                            + (isAnswered && !exercise.correct_answer.includes(answer[index]) ? "bg-danger" : "")
+                        }>
                             <input type="text"
                                 value={answer[index]}
                                 onChange={(e) => handleAnswer(index, e.target.value)}
