@@ -127,7 +127,11 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
             {
                 exercise.type == "Více textových odpovědí" && <div>
                     {exercise.answers.map((option, index) => (
-                        <div key={index}>
+                        <div key={index}
+                            className={" "
+                                + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
+                                + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
+                            }>
                             <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
                             <input type="text"
                                 value={answer[index]}
@@ -170,7 +174,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     </div>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 
