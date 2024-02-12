@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { validateAnswer } from '../utils/answerValidation'
 import './Exercise.scss'
 import DOMPurify from 'dompurify'
 const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
@@ -23,8 +24,20 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 }
             </div>
             {
-                exercise.points && <div className='text-end fw-bold'>
-                    <span>{exercise.points}{exercise.points == 1 ? " bod" : " body"}</span>
+                exercise.points && <div className='d-flex justify-content-end'>
+                    <span className={'fw-bold rounded p-1 '
+                        + (isAnswered && (validateAnswer(exercise, answer) == exercise.points ? "bg-success" : "bg-danger"))
+                    }>
+                        {
+                            isAnswered && <span>
+                                {validateAnswer(exercise, answer)} /
+                            </span>
+                        }
+                        {
+                            isAnswered ?
+                                <span> {exercise.points}{exercise.points == 1 ? " bodu" : " bodů"}</span> : <span> {exercise.points}{exercise.points == 1 ? " bod" : " body"}</span>
+                        }
+                    </span>
                 </div>
             }
 
