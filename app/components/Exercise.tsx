@@ -54,7 +54,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                 value={index}
                                 onChange={(e) => handleAnswer(0, e.target.value)}
                             />
-                            <label className={"btn text-start fw-normal "
+                            <label className={"btn text-start fw-normal mb-1 "
                                 + (isAnswered && index == exercise.correct_answer[0] ? "bg-success" : "")
                                 + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
                             }
@@ -128,7 +128,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 exercise.type == "Více textových odpovědí" && <div>
                     {exercise.answers.map((option, index) => (
                         <div key={index}
-                            className={" "
+                            className={"d-flex flex-column justify-content-between align-items-cemter rounded m-1 p-1 "
                                 + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                 + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                             }>
@@ -144,7 +144,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
             {
                 exercise.type == "Textová odpověď" && <div className="d-flex flex-row flex-wrap">
                     {exercise.correct_answer.map((correctAnswer, index) => (
-                        <div key={index} className={"m-1 p-1 "
+                        <div key={index} className={"m-1 p-1 rounded "
                             + (isAnswered && exercise.correct_answer.includes(answer[index]) ? "bg-success" : "")
                             + (isAnswered && !exercise.correct_answer.includes(answer[index]) ? "bg-danger" : "")
                         }>
