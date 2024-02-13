@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
 import "./page.scss"
@@ -5,8 +6,39 @@ import { FaArrowDown } from "react-icons/fa6";
 import { MdOutlineInsights, MdOutlineMemory } from "react-icons/md";
 import { PiExamDuotone } from "react-icons/pi";
 import { relative } from "path";
+import { useEffect, useState } from "react";
+import { supabase } from "@/api";
 
 export default function Home() {
+
+  const [answeredExerciseCount, setAnsweredExerciseCount] = useState(0);
+  const [submittedTestCount, setSubmittedTestCount] = useState(0);
+
+  const fetchCountOfAnsweredExercises = async () => {
+    const { count, error } = await supabase
+      .from('userAnswers')
+      .select('*', { count: 'exact', head: true });
+    if (error) console.log(error);
+    else {
+      if (count) setAnsweredExerciseCount(count);
+    }
+  }
+
+  const fetchCountOfSubmittedTests = async () => {
+    const { count, error } = await supabase
+      .from('userTests')
+      .select('*', { count: 'exact', head: true });
+    if (error) console.log(error);
+    else {
+      if (count) setSubmittedTestCount(count);
+    }
+  }
+
+  useEffect(() => {
+    fetchCountOfAnsweredExercises();
+    fetchCountOfSubmittedTests();
+  }, []);
+
   return (
     <div className="d-flex flex-column main align-items-center">
 
