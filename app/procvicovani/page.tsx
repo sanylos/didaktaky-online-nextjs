@@ -11,21 +11,19 @@ const Procvicovani = () => {
     const [isAnswered, setIsAnswered] = useState(false);
     const [userAnswerId, setUserAnswerId] = useState(null)
 
-    const handleExerciseSubmit = () => {
-        if (exercise && !answer.includes("")) { setIsAnswered(true); }
+    const handleExerciseSubmit = async () => {
+        if (exercise && !answer.includes("")) {
+            setIsAnswered(true);
+            const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
+            if (error) {
+                console.log(error);
+            }
+        }
         else alert("Cvičení nebylo zodpovězeno");
     }
 
     const fetchNextQuestion = async () => {
-        if (exercise) {
-            const { data, error } = await upsertExercise(exercise);
-            if (error) {
-                console.log(error);
-                return;
-            }
-            setExercise(null);
-            setUserAnswerId(data.id);
-        }
+        let filledArray; // Array filled with empty strings waiting to be answered
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
                 in_years: ["2022"],
@@ -41,13 +39,21 @@ const Procvicovani = () => {
                 console.log(data);
                 setExercise(data);
                 setIsAnswered(false);
-                const filledArray = Array(data.correct_answer.length).fill("");
+                filledArray = Array(data.correct_answer.length).fill("");
                 setAnswer(filledArray);
-
+            }
+            const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray, false);
+            if (upsertError) {
+                console.log(error);
+            }
+            if (upsertData) {
+                setUserAnswerId(upsertData.id);
             }
         } catch (error) {
             console.log(error);
         }
+
+
     }
 
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
