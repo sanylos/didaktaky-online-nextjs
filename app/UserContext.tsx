@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
                 console.log(data);
             } else {
                 setUserData(null);
-                console.log(error);
+                console.log("Not logged in!");
             }
         } catch (error) {
             console.error('Error fetching user data:', error.message);
