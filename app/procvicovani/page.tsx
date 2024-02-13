@@ -11,11 +11,14 @@ const Procvicovani = () => {
     const [exercise, setExercise] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [isAnswered, setIsAnswered] = useState(false);
-    const [userAnswerId, setUserAnswerId] = useState(null)
+    const [userAnswerId, setUserAnswerId] = useState(null);
+    const [exerciseHistory, setExerciseHistory] = useState([]);
+    const [exerciseHistoryIndex, setExerciseHistoryIndex] = useState(0);
 
-    const handleExerciseSubmit = async () => {
+    const handleExerciseSubmit = async () => { //
         if (exercise && !answer.includes("")) {
             setIsAnswered(true);
+            setExerciseHistory([exercise, ...exerciseHistory])
             if (userData) {
                 const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
                 if (error) {
@@ -72,6 +75,22 @@ const Procvicovani = () => {
         }
     }
 
+    const handlePreviousExercise = () => {
+        if (exerciseHistoryIndex + 1 < exerciseHistory.length) {
+            setExerciseHistoryIndex(exerciseHistoryIndex + 1);
+            setExercise(exerciseHistory[exerciseHistoryIndex + 1]);
+        }
+    }
+
+    const handleNextExercise = () => {
+        if (exerciseHistoryIndex >= 1) {
+            setExerciseHistoryIndex(exerciseHistoryIndex - 1);
+            setExercise(exerciseHistory[exerciseHistoryIndex - 1]);
+        } else {
+            fetchNextQuestion();
+        }
+    }
+
     useEffect(() => {
         console.log("log z useEffectu z cviceni");
         fetchNextQuestion();
@@ -79,6 +98,8 @@ const Procvicovani = () => {
 
     return <div className="d-flex justify-content-center">
         <div>
+            index:{exerciseHistoryIndex}<br />
+            {JSON.stringify(exerciseHistory)}
             Procvicovani page
             <h1>odpoved:</h1>
             <pre>{JSON.stringify(answer)}</pre>
@@ -88,11 +109,12 @@ const Procvicovani = () => {
                 {exercise ?
                     <div>
                         <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
-                        <div className="d-flex justify-content-end">
+                        <div className="d-flex justify-content-between">
+                            <button disabled={!isAnswered} className="btn btn-light" onClick={handlePreviousExercise}>Předchozí</button>
                             {
 
                                 isAnswered ?
-                                    <button className="btn btn-light" onClick={fetchNextQuestion}>Další</button>
+                                    <button className="btn btn-light" onClick={handleNextExercise}>Další</button>
                                     :
                                     <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
 
