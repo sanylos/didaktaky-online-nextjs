@@ -6,7 +6,6 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
 
     return (
         <div className="container">
-            <h1>Exercise component OK</h1>
             <div className="d-flex flex-column align-items-center">
                 { //TEXT 1 IMAGE
                     exercise.text1imgPath &&
