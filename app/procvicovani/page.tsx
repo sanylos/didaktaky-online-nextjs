@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import Exercise from "../components/Exercise";
 import { upsertExercise } from "../utils/exerciseInsertion";
+import { useUser } from "../UserContext";
 
 const Procvicovani = () => {
+    const { userData } = useUser();
     const [exercise, setExercise] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [isAnswered, setIsAnswered] = useState(false);
@@ -14,9 +16,11 @@ const Procvicovani = () => {
     const handleExerciseSubmit = async () => {
         if (exercise && !answer.includes("")) {
             setIsAnswered(true);
-            const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
-            if (error) {
-                console.log(error);
+            if (userData) {
+                const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
+                if (error) {
+                    console.log(error);
+                }
             }
         }
         else alert("Cvičení nebylo zodpovězeno");
@@ -42,12 +46,14 @@ const Procvicovani = () => {
                 filledArray = Array(data.correct_answer.length).fill("");
                 setAnswer(filledArray);
             }
-            const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray, false);
-            if (upsertError) {
-                console.log(error);
-            }
-            if (upsertData) {
-                setUserAnswerId(upsertData.id);
+            if (userData) {
+                const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray, false);
+                if (upsertError) {
+                    console.log(error);
+                }
+                if (upsertData) {
+                    setUserAnswerId(upsertData.id);
+                }
             }
         } catch (error) {
             console.log(error);
