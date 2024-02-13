@@ -1,6 +1,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import "./page.scss"
+import { FaArrowDown } from "react-icons/fa6";
+import { MdOutlineInsights, MdOutlineMemory } from "react-icons/md";
+import { PiExamDuotone } from "react-icons/pi";
 import { relative } from "path";
 
 export default function Home() {
@@ -14,9 +17,8 @@ export default function Home() {
             <div className="fw-bold">Moderní a efektivní příprava</div>
             <div>na přijímací zkoušky a maturitu</div>
             <div className="d-flex flex-row justify-content-start">
-              <button className="btn btn-dark bg-secondary-subtle shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</button>
-              <a className="btn btn-dark bg-secondary-subtle shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><i
-                className="bi bi-chevron-down"></i></a>
+              <button className="btn btn-light shadow-lg rounded-5 border-2 border-dark my-3 mx-1 p-2">Začít procvičovat</button>
+              <a className="btn btn-light shadow-lg rounded-5 border-2 border-dark my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
             </div>
           </div>
           <img src="/prijimacky-online-phone-mockup.png" className="desktop" />
@@ -41,7 +43,7 @@ export default function Home() {
               <div className="col-sm-4 mb-3 mb-sm-0">
                 <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
                   <div className="card-body">
-                    <i className="bi bi-hdd-fill fs-1"></i>
+                    <MdOutlineMemory className="fs-1" />
                     <div className="fs-3 mb-2 fw-medium">Rozsáhlá databáze testů</div>
                     <p className="card-text">Procvičujte si autentické testy z minulých let, rozdělené podle předmětů nebo
                       variant.</p>
@@ -52,7 +54,7 @@ export default function Home() {
               <div className="col-sm-4 mb-3 mb-sm-0">
                 <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
                   <div className="card-body">
-                    <i className="bi bi-file-earmark-text-fill fs-1"></i>
+                    <PiExamDuotone className="fs-1" />
                     <div className="fs-3 mb-2 fw-medium">Reálné zkouškové podmínky</div>
                     <p className="card-text">Naše cvičení simulují reálné zkoušky, abyste si osvojili potřebné znalosti a
                       dovednosti.</p>
@@ -63,7 +65,7 @@ export default function Home() {
               <div className="col-sm-4 mb-3 mb-sm-0">
                 <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
                   <div className="card-body">
-                    <i className="bi bi-speedometer2 fs-1"></i>
+                    <MdOutlineInsights className="fs-1" />
                     <div className="fs-3 mb-2 fw-medium">Přehled pokroku</div>
                     <p className="card-text">Sledujte svůj vývoj a motivujte se k dosažení vašich cílů.</p>
                     <a className="btn btn-dark">Zobrazit přehled</a>
