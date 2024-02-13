@@ -1,11 +1,81 @@
-
 import Image from "next/image";
 import styles from "./page.module.css";
+import "./page.scss"
+import { relative } from "path";
 
 export default function Home() {
   return (
-    <div>
-      HomePage
-    </div>
+    <div className="d-flex flex-column main align-items-center">
+
+      <section className="purpleAnimatedBackground">
+        <div className="d-flex flex-column justify-content-center mobileImageWrapper"
+          style={{ height: "100vh", position: "relative" }}>
+          <div className="main-title fs-1" style={{ position: "absolute" }}>
+            <div className="fw-bold">Moderní a efektivní příprava</div>
+            <div>na přijímací zkoušky a maturitu</div>
+            <div className="d-flex flex-row justify-content-start">
+              <button className="btn btn-dark bg-secondary-subtle shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</button>
+              <a className="btn btn-dark bg-secondary-subtle shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><i
+                className="bi bi-chevron-down"></i></a>
+            </div>
+          </div>
+          <img src="/prijimacky-online-phone-mockup.png" className="desktop" />
+          <div style={{ position: "absolute", bottom: "10vh" }}
+            className="container-fluid d-flex align-items-center justify-content-start">
+            <div className="mx-5" v-if="answeredExerciseCount">
+              <span className="fs-1 fw-bold">9999</span><span className="fs-6"> vyplněných cvičení</span>
+            </div>
+            <div className="mx-5" v-if="submittedTestCount">
+              <span className="fs-1 fw-bold">99</span><span className="fs-6"> vyplněných testů</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="mt-5 mb-5" id="about">
+          <div className="text-center mx-2">
+            <div className="text-white fs-2 fw-normal mb-5">Připravte se na zkoušky s jistotou a zvládněte je s přehledem!</div>
+            <div className="row d-flex align-items-center mx-1">
+
+              <div className="col-sm-4 mb-3 mb-sm-0">
+                <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
+                  <div className="card-body">
+                    <i className="bi bi-hdd-fill fs-1"></i>
+                    <div className="fs-3 mb-2 fw-medium">Rozsáhlá databáze testů</div>
+                    <p className="card-text">Procvičujte si autentické testy z minulých let, rozdělené podle předmětů nebo
+                      variant.</p>
+                    <a className="btn btn-dark">Zkusit test</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-4 mb-3 mb-sm-0">
+                <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
+                  <div className="card-body">
+                    <i className="bi bi-file-earmark-text-fill fs-1"></i>
+                    <div className="fs-3 mb-2 fw-medium">Reálné zkouškové podmínky</div>
+                    <p className="card-text">Naše cvičení simulují reálné zkoušky, abyste si osvojili potřebné znalosti a
+                      dovednosti.</p>
+                    <a className="btn btn-dark">Začít procvičovat</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-4 mb-3 mb-sm-0">
+                <div className="card bg-secondary-subtle shadow-lg border-23 border-dark rounded-4">
+                  <div className="card-body">
+                    <i className="bi bi-speedometer2 fs-1"></i>
+                    <div className="fs-3 mb-2 fw-medium">Přehled pokroku</div>
+                    <p className="card-text">Sledujte svůj vývoj a motivujte se k dosažení vašich cílů.</p>
+                    <a className="btn btn-dark">Zobrazit přehled</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div >
+        </div >
+      </section >
+
+    </div >
   );
 }
