@@ -17,8 +17,8 @@ export default function Home() {
             <div className="fw-bold">Moderní a efektivní příprava</div>
             <div>na přijímací zkoušky a maturitu</div>
             <div className="d-flex flex-row justify-content-start">
-              <button className="btn btn-light shadow-lg rounded-5 border-2 border-dark my-3 mx-1 p-2">Začít procvičovat</button>
-              <a className="btn btn-light shadow-lg rounded-5 border-2 border-dark my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
+              <button className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</button>
+              <a className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
             </div>
           </div>
           <img src="/prijimacky-online-phone-mockup.png" className="desktop" />
