@@ -57,10 +57,10 @@ export default function Home() {
           <div style={{ position: "absolute", bottom: "10vh" }}
             className="container-fluid d-flex align-items-center justify-content-start">
             <div className="mx-5" v-if="answeredExerciseCount">
-              <span className="fs-1 fw-bold">9999</span><span className="fs-6"> vyplněných cvičení</span>
+              <span className="fs-1 fw-bold">{answeredExerciseCount}</span><span className="fs-6"> vyplněných cvičení</span>
             </div>
             <div className="mx-5" v-if="submittedTestCount">
-              <span className="fs-1 fw-bold">99</span><span className="fs-6"> vyplněných testů</span>
+              <span className="fs-1 fw-bold">{submittedTestCount}</span><span className="fs-6"> vyplněných testů</span>
             </div>
           </div>
         </div>
