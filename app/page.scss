@@ -4,6 +4,10 @@
     scroll-behavior: smooth;
 }
 
+.main {
+    overflow: hidden;
+}
+
 section {
     width: 100vw;
 }
@@ -53,9 +57,9 @@ section {
         width: 13rem;
         margin-right: 1rem;
 
-        &:hover {
+        /*&:hover {
             color: darken($color: gray, $amount: 0);
-        }
+        }*/
     }
 }
 
