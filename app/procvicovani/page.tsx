@@ -13,12 +13,14 @@ const Procvicovani = () => {
     const [isAnswered, setIsAnswered] = useState(false);
     const [userAnswerId, setUserAnswerId] = useState(null);
     const [exerciseHistory, setExerciseHistory] = useState([]);
+    const [answerHistory, setAnswerHistory] = useState([]);
     const [exerciseHistoryIndex, setExerciseHistoryIndex] = useState(0);
 
     const handleExerciseSubmit = async () => { //
         if (exercise && !answer.includes("")) {
             setIsAnswered(true);
-            setExerciseHistory([exercise, ...exerciseHistory])
+            setAnswerHistory([answer, ...answerHistory]);
+            setExerciseHistory([exercise, ...exerciseHistory]);
             if (userData) {
                 const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
                 if (error) {
@@ -79,6 +81,7 @@ const Procvicovani = () => {
         if (exerciseHistoryIndex + 1 < exerciseHistory.length) {
             setExerciseHistoryIndex(exerciseHistoryIndex + 1);
             setExercise(exerciseHistory[exerciseHistoryIndex + 1]);
+            setAnswer(answerHistory[exerciseHistoryIndex + 1]);
         }
     }
 
@@ -86,6 +89,7 @@ const Procvicovani = () => {
         if (exerciseHistoryIndex >= 1) {
             setExerciseHistoryIndex(exerciseHistoryIndex - 1);
             setExercise(exerciseHistory[exerciseHistoryIndex - 1]);
+            setAnswer(answerHistory[exerciseHistoryIndex - 1]);
         } else {
             fetchNextQuestion();
         }
@@ -98,13 +102,6 @@ const Procvicovani = () => {
 
     return <div className="d-flex justify-content-center">
         <div>
-            index:{exerciseHistoryIndex}<br />
-            {JSON.stringify(exerciseHistory)}
-            Procvicovani page
-            <h1>odpoved:</h1>
-            <pre>{JSON.stringify(answer)}</pre>
-            {exercise?.correct_answer && <pre>{JSON.stringify(exercise.correct_answer)}</pre>}
-            <hr />
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
                 {exercise ?
                     <div>
