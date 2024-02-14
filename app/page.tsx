@@ -5,6 +5,7 @@ import "./page.scss"
 import { FaArrowDown } from "react-icons/fa6";
 import { MdOutlineInsights, MdOutlineMemory } from "react-icons/md";
 import { PiExamDuotone } from "react-icons/pi";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { relative } from "path";
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
@@ -14,6 +15,71 @@ export default function Home() {
 
   const [answeredExerciseCount, setAnsweredExerciseCount] = useState(0);
   const [submittedTestCount, setSubmittedTestCount] = useState(0);
+  const [reference] = useState([
+    {
+      id: 1,
+      comment: "Nabídka maturitní četby na této stránce je velmi široká a pestrá. Najdete zde všechny povinné knihy pro maturitu, ale i mnoho dalších zajímavých titulů. Oceňuji, že knihy jsou dostupné v elektronické i tištěné podobě, takže si každý může vybrat tu variantu, která mu více vyhovuje. Ceny knih jsou také velmi příznivé.",
+      userName: "Šimon Němec",
+      rating: 5,
+      school: "Střední škola",
+    },
+    {
+      id: 2,
+      comment: "Aplikaci jsem začal používat, abych se připravil na přijímačky na střední školu. Nabízí širokou škálu testů z předchozích let, takže jsem si mohl vybrat ty, které jsem potřeboval. Stránka je přehledná a snadno se používá. Velmi oceňuji i možnost procvičovat si jednotlivé typy úloh i celé testy. Díky této aplikaci jsem se na přijímačky cítil skvěle připravený a byl jsem úspěšný.",
+      userName: "Michael Pokorný",
+      rating: 5,
+      school: "Základní škola"
+    },
+    {
+      id: 3,
+      comment: "Tuto stránku používám pro procvičování maturitní četby. Líbí se mi, že si můžu texty zakoupit přímo v aplikaci a nemusím je hledat jinde. Jsou zde i různé typy cvičení, takže si můžu procvičit všechny aspekty maturitní zkoušky. Jediné, co bych vytkla, je absence funkce pro dělání poznámek.",
+      userName: "Elena Poláková",
+      rating: 4,
+      school: "Střední škola",
+    },
+    {
+      id: 4,
+      comment: "Vadí mi, že aplikace nefunguje offline. To je nepraktické, když se chci učit někde, kde není internetové připojení.",
+      userName: "Patrik Kratochvíl",
+      rating: 2,
+      school: "Střední škola",
+    },
+    {
+      id: 5,
+      comment: "Tento web je naprosto úžasný! Pomohl mi se skvěle připravit na maturitu z matematiky. Díky němu jsem si procvičila všechny typy příkladů a naučila se je řešit rychle a správně. Web je navíc moc přehledný a snadno se používá. Vřele doporučuji všem studentům, kteří se chtějí na maturitu zodpovědně připravit.",
+      userName: "Jasmína Kučerová",
+      rating: 5,
+      school: "Střední škola",
+    },
+    {
+      id: 6,
+      comment: "Aplikace je užitečná pro procvičování didaktických testů, ale má i své chyby. Někdy se mi stane, že se web zasekne a nevyhodnotí moji odpověď. Také mi vadí, že pro používání je potřeba internetové připojení. To je nepraktické, když se chci učit někde, kde není internet.",
+      userName: "Nikola Soukupová",
+      rating: 3,
+      school: "Základní škola",
+    },
+    {
+      id: 7,
+      comment: "Oceňuji, že si můžu vybrat testy z různých předmětů. Také se mi líbí, že stránka sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat svůj pokrok a motivovat se k dalšímu studiu. Jediné, co bych stránce vytknul, je rychlost, se slabším internetem na vesnici se zasekává.",
+      userName: "Kryštof Kříž",
+      rating: 4,
+      school: "Základní škola",
+    },
+    {
+      id: 8,
+      comment: "Oceňuji, že si můžu vybrat testy z různých předmětů. Také se mi líbí, že stránka sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat svůj pokrok a motivovat se k dalšímu studiu. Jediné, co bych stránce vytknul, je rychlost, se slabším internetem na vesnici se zasekává.",
+      userName: "Kryštof Kříž",
+      rating: 4,
+      school: "Základní škola",
+    },
+    {
+      id: 9,
+      comment: "Tento web je skvělý nástroj pro procvičování didaktických testů. Oceňuji, že si můžu vybrat testy z různých předmětů a ročníků. Také se mi líbí, že web sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat můj pokrok a motivovat se k dalšímu učení.",
+      userName: "Samuel Musil",
+      rating: 4,
+      school: "Střední škola",
+    },
+  ]);
 
   const fetchCountOfAnsweredExercises = async () => {
     const { count, error } = await supabase
@@ -116,22 +182,22 @@ export default function Home() {
           <div id="carouselExample" className="carousel carousel-dark slide w-100">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
-                  <div className="card w-auto">
-                    <div className="card-header">
-                      Quote
+                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
+                  <div className="card">
+                    <div className="card-header d-flex justify-content-between align-items-center">
+                      <span>Reference</span><span><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></span>
                     </div>
                     <div className="card-body">
                       <blockquote className="blockquote mb-0">
-                        <p>A well-known quote, contained in a blockqfsdfsduote element.</p>
-                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        <p>Celkově je tato aplikace skvělým nástrojem pro všechny, kteří se chtějí efektivně připravit na maturitní zkoušky, přijímačky na vysokou školu nebo procvičit maturitní četbu. Aplikace je snadno použitelná, nabízí širokou škálu testů a funkcí a je dostupná na mobilních zařízeních i počítačích.</p>
+                        <footer className="blockquote-footer">Samuel Musil, <cite title="Source Title">Základní škola</cite></footer>
                       </blockquote>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="carousel-item">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
+                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
                   <div className="card w-auto">
                     <div className="card-header">
                       Quote
@@ -146,7 +212,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="carousel-item">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
+                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
                   <div className="card">
                     <div className="card-header">
                       Quote
