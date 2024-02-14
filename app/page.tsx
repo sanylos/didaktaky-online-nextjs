@@ -70,7 +70,7 @@ export default function Home() {
       <section>
         <div className="mt-5 mb-5" id="about">
           <div className="text-center mx-2">
-            <div className="text-white fs-2 fw-normal mb-5">Připravte se na zkoušky s jistotou a zvládněte je s přehledem!</div>
+            <div className="text-dark fs-2 fw-normal mb-5">Připravte se na zkoušky s jistotou a zvládněte je s přehledem!</div>
             <div className="row d-flex align-items-center mx-1">
 
               <div className="col-sm-4 mb-3 mb-sm-0">
@@ -110,7 +110,68 @@ export default function Home() {
           </div >
         </div >
       </section >
-
+      <hr className="text-dark w-100" />
+      <section style={{ height: "50vh" }}>
+        <div className="h-100 d-flex align-items-center justify-content-center">
+          <div id="carouselExample" className="carousel carousel-dark slide w-100">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
+                  <div className="card w-auto">
+                    <div className="card-header">
+                      Quote
+                    </div>
+                    <div className="card-body">
+                      <blockquote className="blockquote mb-0">
+                        <p>A well-known quote, contained in a blockqfsdfsduote element.</p>
+                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="carousel-item">
+                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
+                  <div className="card w-auto">
+                    <div className="card-header">
+                      Quote
+                    </div>
+                    <div className="card-body">
+                      <blockquote className="blockquote mb-0">
+                        <p>A well-known quote, contained in a blockquote element.</p>
+                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="carousel-item">
+                <div className="container-fluid d-flex justify-content-center align-items-center w-auto">
+                  <div className="card">
+                    <div className="card-header">
+                      Quote
+                    </div>
+                    <div className="card-body">
+                      <blockquote className="blockquote mb-0">
+                        <p>A well-known quote, contained in a blockquote element.</p>
+                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
     </div >
   );
 }
