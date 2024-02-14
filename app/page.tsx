@@ -188,7 +188,7 @@ export default function Home() {
                   {reviews.map((review) => (
                     <div className={"carousel-item " + (review.id == 1 && "active")} key={review.id}>
                       <div className="container-fluid d-flex justify-content-center align-items-center w-75">
-                        <div className="card shadow-lg">
+                        <div className="card shadow-lg bg-secondary-subtle">
                           <div className="card-header d-flex justify-content-between align-items-center">
                             <span>Recenze</span>
                             <span>
