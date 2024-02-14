@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="d-flex flex-column main align-items-center">
 
-      <section className="purpleAnimatedBackground">
+      <section className="purpleAnimatedBackground shadow-lg">
         <div className="d-flex flex-column justify-content-center mobileImageWrapper"
           style={{ height: "100vh", position: "relative" }}>
           <div className="main-title fs-1" style={{ position: "absolute" }}>
