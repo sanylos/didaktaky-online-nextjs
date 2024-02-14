@@ -15,7 +15,7 @@ export default function Home() {
 
   const [answeredExerciseCount, setAnsweredExerciseCount] = useState(0);
   const [submittedTestCount, setSubmittedTestCount] = useState(0);
-  const [reference] = useState([
+  const [references] = useState([
     {
       id: 1,
       comment: "Nabídka maturitní četby na této stránce je velmi široká a pestrá. Najdete zde všechny povinné knihy pro maturitu, ale i mnoho dalších zajímavých titulů. Oceňuji, že knihy jsou dostupné v elektronické i tištěné podobě, takže si každý může vybrat tu variantu, která mu více vyhovuje. Ceny knih jsou také velmi příznivé.",
@@ -196,36 +196,31 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="carousel-item">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
-                  <div className="card w-auto">
-                    <div className="card-header">
-                      Quote
-                    </div>
-                    <div className="card-body">
-                      <blockquote className="blockquote mb-0">
-                        <p>A well-known quote, contained in a blockquote element.</p>
-                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="carousel-item">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
-                  <div className="card">
-                    <div className="card-header">
-                      Quote
-                    </div>
-                    <div className="card-body">
-                      <blockquote className="blockquote mb-0">
-                        <p>A well-known quote, contained in a blockquote element.</p>
-                        <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                      </blockquote>
+              {references.map((reference) => (
+                <div className="carousel-item" key={reference.id}>
+                  <div className="container-fluid d-flex justify-content-center align-items-center w-75">
+                    <div className="card">
+                      <div className="card-header d-flex justify-content-between align-items-center">
+                        <span>Reference</span>
+                        <span>
+                          {Array.from({ length: reference.rating }, (_, i) => (
+                            <FaStar key={i} />
+                          ))}
+                          {Array.from({ length: 5 - reference.rating }, (_, i) => (
+                            <FaRegStar key={i} />
+                          ))}
+                        </span>
+                      </div>
+                      <div className="card-body">
+                        <blockquote className="blockquote mb-0">
+                          <p>{reference.comment}</p>
+                          <footer className="blockquote-footer">{reference.userName}, <cite title="Source Title">{reference.school}</cite></footer>
+                        </blockquote>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
