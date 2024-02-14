@@ -10,6 +10,7 @@ import { relative } from "path";
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import CountUp from 'react-countup';
+import Link from "next/link";
 
 export default function Home() {
 
@@ -116,7 +117,7 @@ export default function Home() {
             <div className="fw-bold">Moderní a efektivní příprava</div>
             <div>na přijímací zkoušky a maturitu</div>
             <div className="d-flex flex-row justify-content-start">
-              <button className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</button>
+              <Link href="/procvicovani" className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</Link>
               <a className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
             </div>
           </div>
@@ -146,7 +147,7 @@ export default function Home() {
                     <div className="fs-3 mb-2 fw-medium">Rozsáhlá databáze testů</div>
                     <p className="card-text">Procvičujte si autentické testy z minulých let, rozdělené podle předmětů nebo
                       variant.</p>
-                    <a className="btn btn-dark">Zkusit test</a>
+                    <Link href="/test" className="btn btn-dark">Zkusit test</Link>
                   </div>
                 </div>
               </div>
@@ -157,7 +158,7 @@ export default function Home() {
                     <div className="fs-3 mb-2 fw-medium">Reálné zkouškové podmínky</div>
                     <p className="card-text">Naše cvičení simulují reálné zkoušky, abyste si osvojili potřebné znalosti a
                       dovednosti.</p>
-                    <a className="btn btn-dark">Začít procvičovat</a>
+                    <Link href="/procvicovani" className="btn btn-dark">Začít procvičovat</Link>
                   </div>
                 </div>
               </div>
@@ -167,7 +168,7 @@ export default function Home() {
                     <MdOutlineInsights className="fs-1" />
                     <div className="fs-3 mb-2 fw-medium">Přehled pokroku</div>
                     <p className="card-text">Sledujte svůj vývoj a motivujte se k dosažení vašich cílů.</p>
-                    <a className="btn btn-dark">Zobrazit přehled</a>
+                    <Link href="/prehled" className="btn btn-dark">Zobrazit přehled</Link>
                   </div>
                 </div>
               </div>
