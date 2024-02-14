@@ -15,7 +15,7 @@ export default function Home() {
 
   const [answeredExerciseCount, setAnsweredExerciseCount] = useState(0);
   const [submittedTestCount, setSubmittedTestCount] = useState(0);
-  const [references] = useState([
+  const [reviews] = useState([
     {
       id: 1,
       comment: "Nabídka maturitní četby na této stránce je velmi široká a pestrá. Najdete zde všechny povinné knihy pro maturitu, ale i mnoho dalších zajímavých titulů. Oceňuji, že knihy jsou dostupné v elektronické i tištěné podobě, takže si každý může vybrat tu variantu, která mu více vyhovuje. Ceny knih jsou také velmi příznivé.",
@@ -177,59 +177,49 @@ export default function Home() {
         </div >
       </section >
       <hr className="text-dark w-100" />
-      <section style={{ height: "50vh" }}>
-        <div className="h-100 d-flex align-items-center justify-content-center">
-          <div id="carouselExample" className="carousel carousel-dark slide w-100">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <div className="container-fluid d-flex justify-content-center align-items-center w-75">
-                  <div className="card">
-                    <div className="card-header d-flex justify-content-between align-items-center">
-                      <span>Reference</span><span><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></span>
+      <section style={{ height: "80vh" }}>
+        <div className="mt-5 mb-5" id="reviews">
+          <div className="text-center mx-2">
+            <div className="text-dark fs-2 fw-normal mb-5">Recenze</div>
+            <div className="h-100 d-flex align-items-center justify-content-center">
+              <div id="carouselExample" className="carousel carousel-dark slide w-100">
+                <div className="carousel-inner">
+                  {reviews.map((review) => (
+                    <div className={"carousel-item " + (review.id == 1 && "active")} key={review.id}>
+                      <div className="container-fluid d-flex justify-content-center align-items-center w-75">
+                        <div className="card shadow-lg">
+                          <div className="card-header d-flex justify-content-between align-items-center">
+                            <span>Recenze</span>
+                            <span>
+                              {Array.from({ length: review.rating }, (_, i) => (
+                                <FaStar key={i} />
+                              ))}
+                              {Array.from({ length: 5 - review.rating }, (_, i) => (
+                                <FaRegStar key={i} />
+                              ))}
+                            </span>
+                          </div>
+                          <div className="card-body">
+                            <blockquote className="blockquote mb-0">
+                              <p>{review.comment}</p>
+                              <footer className="blockquote-footer">{review.userName}, <cite title="Source Title">{review.school}</cite></footer>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="card-body">
-                      <blockquote className="blockquote mb-0">
-                        <p>Celkově je tato aplikace skvělým nástrojem pro všechny, kteří se chtějí efektivně připravit na maturitní zkoušky, přijímačky na vysokou školu nebo procvičit maturitní četbu. Aplikace je snadno použitelná, nabízí širokou škálu testů a funkcí a je dostupná na mobilních zařízeních i počítačích.</p>
-                        <footer className="blockquote-footer">Samuel Musil, <cite title="Source Title">Základní škola</cite></footer>
-                      </blockquote>
-                    </div>
-                  </div>
+                  ))}
                 </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span className="visually-hidden">Next</span>
+                </button>
               </div>
-              {references.map((reference) => (
-                <div className="carousel-item" key={reference.id}>
-                  <div className="container-fluid d-flex justify-content-center align-items-center w-75">
-                    <div className="card">
-                      <div className="card-header d-flex justify-content-between align-items-center">
-                        <span>Reference</span>
-                        <span>
-                          {Array.from({ length: reference.rating }, (_, i) => (
-                            <FaStar key={i} />
-                          ))}
-                          {Array.from({ length: 5 - reference.rating }, (_, i) => (
-                            <FaRegStar key={i} />
-                          ))}
-                        </span>
-                      </div>
-                      <div className="card-body">
-                        <blockquote className="blockquote mb-0">
-                          <p>{reference.comment}</p>
-                          <footer className="blockquote-footer">{reference.userName}, <cite title="Source Title">{reference.school}</cite></footer>
-                        </blockquote>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
       </section>
