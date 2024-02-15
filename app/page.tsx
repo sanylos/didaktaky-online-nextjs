@@ -68,13 +68,6 @@ export default function Home() {
     },
     {
       id: 8,
-      comment: "Oceňuji, že si můžu vybrat testy z různých předmětů. Také se mi líbí, že stránka sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat svůj pokrok a motivovat se k dalšímu studiu. Jediné, co bych stránce vytknul, je rychlost, se slabším internetem na vesnici se zasekává.",
-      userName: "Kryštof Kříž",
-      rating: 4,
-      school: "Základní škola",
-    },
-    {
-      id: 9,
       comment: "Tento web je skvělý nástroj pro procvičování didaktických testů. Oceňuji, že si můžu vybrat testy z různých předmětů a ročníků. Také se mi líbí, že web sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat můj pokrok a motivovat se k dalšímu učení.",
       userName: "Samuel Musil",
       rating: 4,
