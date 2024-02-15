@@ -1,3 +1,23 @@
 .navbar {
     z-index: 999;
 }
+
+.nav-link {
+    &:hover {
+        &:not(.active) {
+            background-color: gray;
+            color: lightgray;
+        }
+    }
+
+    transition: all 0.1s ease-out;
+}
+
+.active {
+    background-color: rgb(37, 35, 35);
+    color: white;
+
+    * {
+        color: white;
+    }
+}
