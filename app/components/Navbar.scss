@@ -10,14 +10,14 @@
         }
     }
 
-    transition: all 0.1s ease-out;
-}
-
-.active {
-    background-color: rgb(37, 35, 35);
-    color: white;
-
-    * {
+    &.active {
+        background-color: rgb(37, 35, 35);
         color: white;
+
+        * {
+            color: white;
+        }
     }
+
+    transition: all 0.3s ease-in-out;
 }
