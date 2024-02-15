@@ -45,8 +45,8 @@ const Navbar = () => {
                         <ul className="navbar-nav">
                             {links.map(({ href, label }) => (
                                 <li className="nav-item mx-1" key={href}>
-                                    <Link className={`nav-link ${isLinkActive(href) ? 'bg-dark rounded text-light' : ''}`} href={href}>
-                                        {label}
+                                    <Link className={`nav-link rounded ${isLinkActive(href) ? 'active' : ''}`} href={href}>
+                                        <span>{label}</span>
                                     </Link>
                                 </li>
                             ))}
