@@ -44,8 +44,8 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul className="navbar-nav">
                             {links.map(({ href, label }) => (
-                                <li className="nav-item mx-1" key={href}>
-                                    <Link className={`nav-link rounded ${isLinkActive(href) ? 'active' : ''}`} href={href}>
+                                <li className="nav-item m-1" key={href}>
+                                    <Link className={`nav-link p-1 rounded ${isLinkActive(href) ? 'active' : ''}`} href={href}>
                                         <span>{label}</span>
                                     </Link>
                                 </li>
