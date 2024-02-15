@@ -45,6 +45,7 @@ export default function Test() {
                 years.push(test.year);
             }
         })
+        console.log(types);
         return { types, subjects, years }
     }
 
@@ -54,15 +55,9 @@ export default function Test() {
 
     return <>
         <div className="">
-            <div>
-                Test 1
-                {/*getFilteredTests("PZ", "CJL", "2022").map((test: Test, index: number) => (
-                    <div key={index}>
-                        {test.variant}
-                    </div>
-                ))*/}
-                {getTestsGroups().subjects.map((subject, index) => (
-                    <div key={index}><a>{subject}</a></div>
+            <div className="">
+                {getTestsGroups().types.map((type, index) => (
+                    <div key={index} className="mb-1 rounded bg-secondary">{type}</div>
                 ))}
             </div>
         </div>
