@@ -52,11 +52,13 @@ export default function Test() {
     }
 
     const getNameByShortcut = (shortcut: string) => {
-        const shortcuts = {
-            PZ: { name: "Přijímací zkouška" },
-            MZ: { name: "Maturitní zkouška" },
+        switch (shortcut) {
+            case "PZ": return "Přijímací zkouška"
+            case "MZ": return "Maturitní zkouška"
+            case "CJL": return "Český jazyk a literatura"
+            case "MAT": return "Matematika"
+            case "ANJ": return "Anglický jazyk"
         }
-        return shortcuts;
     }
 
     useEffect(() => {
@@ -67,16 +69,20 @@ export default function Test() {
     }, [])
 
     return <>
-        <div className="">
+        <div className="container mt-1">
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
-                    <div className="bg-success" key={type}>
-                        <div>{type}</div>
+
+                    <div className="bg-secondary-subtle rounded p-1 m-1" key={type}>
+                        <div>{getNameByShortcut(type)}</div>
+
                         {Object.keys(groupedTests[type]).map(subject => (
-                            <div key={subject}>
-                                <h3>{subject}</h3>
+
+                            <div key={subject} className="bg-light rounded p-1 m-1">
+                                <div>{getNameByShortcut(subject)}</div>
+
                                 {groupedTests[type][subject].map(year => (
-                                    <div key={year} className="mb-1 rounded bg-secondary">{year}</div>
+                                    <div key={year} className="rounded bg-secondary p-1 m-1">{year}</div>
                                 ))}
                             </div>
                         ))}
