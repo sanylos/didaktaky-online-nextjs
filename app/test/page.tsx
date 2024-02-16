@@ -12,6 +12,7 @@ interface Test {
 
 export default function Test() {
     const [availableTests, setAvailableTests] = useState<Array<Test>>([]);
+    const [groupedTests, setGroupedTests] = useState<any>(null);
 
     const fetchAvailableTests = async () => {
         const { data, error } = await supabase
@@ -30,35 +31,56 @@ export default function Test() {
         return filteredTests;
     }
 
-    const getTestsGroups = () => {
-        let types: string[] = [];
-        let subjects: string[] = [];
-        let years: string[] = [];
-        availableTests.forEach((test) => {
-            if (!types.includes(test.type)) {
-                types.push(test.type);
-            }
-            if (!subjects.includes(test.subject)) {
-                subjects.push(test.subject);
-            }
-            if (!years.includes(test.year)) {
-                years.push(test.year);
-            }
-        })
-        console.log(types);
-        return { types, subjects, years }
-    }
+    const groupByTypeSubjectYear = () => {
+        let groupedData: any = {};
 
+        availableTests.forEach(item => {
+            const { type, subject, year } = item;
+            if (!groupedData[type]) {
+                groupedData[type] = {};
+            }
+            if (!groupedData[type][subject]) {
+                groupedData[type][subject] = [];
+            }
+            if (!groupedData[type][subject].includes(year)) {
+                groupedData[type][subject].push(year);
+            }
+        });
+        console.log(groupedData);
+        console.log(groupedData['PZ'])
+        return groupedData;
+    }
+    useEffect(() => {
+        setGroupedTests(groupByTypeSubjectYear());
+    }, [availableTests])
     useEffect(() => {
         fetchAvailableTests();
+        //getFilteredTest();
     }, [])
 
     return <>
         <div className="">
             <div className="">
-                {getTestsGroups().types.map((type, index) => (
-                    <div key={index} className="mb-1 rounded bg-secondary">{type}</div>
+                {groupedTests && Object.keys(groupedTests).map(type => (
+                    <div className="bg-success" key={type}>
+                        <h2>{type}</h2>
+                        {Object.keys(groupedTests[type]).map(subject => (
+                            <div key={subject}>
+                                <h3>{subject}</h3>
+                                {groupedTests[type][subject].map(year => (
+                                    <div key={year} className="mb-1 rounded bg-secondary">{year}</div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
                 ))}
+
+                {/*getFilteredTests("PZ", "CJL", "2023").map((test, index) => (
+                    <div key={index} className="mb-1 rounded bg-secondary">{test.year}|{test.variant}</div>
+                ))}
+                {getFilteredTests("PZ", "CJL", "2022").map((test, index) => (
+                    <div key={index} className="mb-1 rounded bg-secondary">{test.year}|{test.variant}</div>
+                ))*/}
             </div>
         </div>
     </>
