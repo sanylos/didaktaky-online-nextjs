@@ -1,5 +1,6 @@
 "use client"
 import { supabase } from "@/api";
+import { FaArrowRight } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 interface Test {
@@ -89,8 +90,11 @@ export default function Test() {
                                         <div>{year}</div>
 
                                         {getFilteredTests(type, subject, year).map(test => (
-                                            <div key={test.id} className="bg-light rounded p-1 m-1">
+                                            <div key={test.id} className="bg-light rounded p-1 m-1 d-flex justify-content-between align-items-center">
                                                 <span>{getNameByShortcut('testVariant-' + test.variant)} termín</span>
+                                                <div>
+                                                    <button className="btn btn-secondary btn-sm"><FaArrowRight /></button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
