@@ -99,13 +99,6 @@ export default function Test() {
                         ))}
                     </div>
                 ))}
-
-                {/*getFilteredTests("PZ", "CJL", "2023").map((test, index) => (
-                    <div key={index} className="mb-1 rounded bg-secondary">{test.year}|{test.variant}</div>
-                ))}
-                {getFilteredTests("PZ", "CJL", "2022").map((test, index) => (
-                    <div key={index} className="mb-1 rounded bg-secondary">{test.year}|{test.variant}</div>
-                ))*/}
             </div>
         </div>
     </>
