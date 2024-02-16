@@ -58,6 +58,11 @@ export default function Test() {
             case "CJL": return "Český jazyk a literatura"
             case "MAT": return "Matematika"
             case "ANJ": return "Anglický jazyk"
+            case "testVariant-1": return "1. řádný"
+            case "testVariant-2": return "2. řádný"
+            case "testVariant-3": return "1. náhradní"
+            case "testVariant-4": return "2. náhradní"
+            case "testVariant-5": return "Ilustrační"
         }
     }
 
@@ -82,7 +87,14 @@ export default function Test() {
                                 <div>{getNameByShortcut(subject)}</div>
 
                                 {groupedTests[type][subject].map(year => (
-                                    <div key={year} className="rounded bg-secondary p-1 m-1">{year}</div>
+                                    <div key={year}>
+                                        <div className="rounded bg-secondary p-1 m-1">{year}</div>
+                                        {getFilteredTests(type, subject, year).map(test => (
+                                            <div key={test.id}>
+                                                <span>{getNameByShortcut('testVariant-' + test.variant)} termín</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 ))}
                             </div>
                         ))}
