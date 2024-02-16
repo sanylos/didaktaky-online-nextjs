@@ -50,12 +50,20 @@ export default function Test() {
         console.log(groupedData['PZ'])
         return groupedData;
     }
+
+    const getNameByShortcut = (shortcut: string) => {
+        const shortcuts = {
+            PZ: { name: "Přijímací zkouška" },
+            MZ: { name: "Maturitní zkouška" },
+        }
+        return shortcuts;
+    }
+
     useEffect(() => {
         setGroupedTests(groupByTypeSubjectYear());
     }, [availableTests])
     useEffect(() => {
         fetchAvailableTests();
-        //getFilteredTest();
     }, [])
 
     return <>
@@ -63,7 +71,7 @@ export default function Test() {
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
                     <div className="bg-success" key={type}>
-                        <h2>{type}</h2>
+                        <div>{type}</div>
                         {Object.keys(groupedTests[type]).map(subject => (
                             <div key={subject}>
                                 <h3>{subject}</h3>
