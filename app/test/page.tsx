@@ -77,20 +77,19 @@ export default function Test() {
         <div className="container mt-1">
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
-
                     <div className="bg-secondary-subtle rounded p-1 m-1" key={type}>
                         <div>{getNameByShortcut(type)}</div>
 
                         {Object.keys(groupedTests[type]).map(subject => (
-
                             <div key={subject} className="bg-light rounded p-1 m-1">
                                 <div>{getNameByShortcut(subject)}</div>
 
                                 {groupedTests[type][subject].map(year => (
-                                    <div key={year}>
-                                        <div className="rounded bg-secondary p-1 m-1">{year}</div>
+                                    <div key={year} className="rounded bg-secondary-subtle p-1 m-1">
+                                        <div>{year}</div>
+
                                         {getFilteredTests(type, subject, year).map(test => (
-                                            <div key={test.id}>
+                                            <div key={test.id} className="bg-light rounded p-1 m-1">
                                                 <span>{getNameByShortcut('testVariant-' + test.variant)} termín</span>
                                             </div>
                                         ))}
