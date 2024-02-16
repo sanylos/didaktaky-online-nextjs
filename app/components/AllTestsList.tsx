@@ -1,6 +1,7 @@
 "use client"
 import { supabase } from "@/api";
 import { FaArrowRight } from "react-icons/fa";
+import { LiaHourglassStartSolid } from "react-icons/lia";
 import { useEffect, useState } from "react";
 
 interface Test {
@@ -92,7 +93,11 @@ export default function Test() {
                                         {getFilteredTests(type, subject, year).map(test => (
                                             <div key={test.id} className="bg-light rounded p-1 m-1 d-flex justify-content-between align-items-center">
                                                 <span>{getNameByShortcut('testVariant-' + test.variant)} termín</span>
-                                                <div>
+                                                <div className="d-flex flex-row align-items-center">
+                                                    <div className="bg-secondary-subtle rounded mx-1 px-2">
+                                                        <LiaHourglassStartSolid className="fs-3"/>
+                                                        <span>{test.duration ? test.duration : "?"} min</span>
+                                                    </div>
                                                     <button className="btn btn-secondary btn-sm"><FaArrowRight /></button>
                                                 </div>
                                             </div>
