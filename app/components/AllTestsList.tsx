@@ -2,6 +2,7 @@
 import { supabase } from "@/api";
 import { FaArrowRight } from "react-icons/fa";
 import { LiaHourglassStartSolid } from "react-icons/lia";
+import { FaCubes } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 interface Test {
@@ -95,7 +96,11 @@ export default function Test() {
                                                 <span>{getNameByShortcut('testVariant-' + test.variant)} termín</span>
                                                 <div className="d-flex flex-row align-items-center">
                                                     <div className="bg-secondary-subtle rounded mx-1 px-2">
-                                                        <LiaHourglassStartSolid className="fs-3"/>
+                                                        <FaCubes className="fs-3 p-1" />
+                                                        <span>{test.exerciseCount ? test.exerciseCount : "?"} cvičení</span>
+                                                    </div>
+                                                    <div className="bg-secondary-subtle rounded mx-1 px-2">
+                                                        <LiaHourglassStartSolid className="fs-3" />
                                                         <span>{test.duration ? test.duration : "?"} min</span>
                                                     </div>
                                                     <button className="btn btn-secondary btn-sm"><FaArrowRight /></button>
