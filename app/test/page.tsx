@@ -67,7 +67,7 @@ const TestPage = () => {
                         </div>
                         <div className="modal-footer d-flex justify-content-between">
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Zrušit</button>
-                            <button type="button" className="btn btn-success">Začít</button>
+                            <button type="button" className="btn btn-success" disabled={!test?.exerciseCount || (loadedExercises < test?.exerciseCount)}>Začít</button>
                         </div>
                     </div>
                 </div>
