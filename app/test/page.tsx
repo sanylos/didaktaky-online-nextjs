@@ -60,7 +60,7 @@ const TestPage = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            Test se připravuje ({loadedExercises}/{test?.exerciseCount})
+                            Test se připravuje ({loadedExercises}/{test?.exerciseCount ? test.exerciseCount : "0"})
                             <div className="progress" role="progressbar" aria-label="testWaitingProgressBar">
                                 <div className="progress-bar" style={{ width: `${(exercises.length / test?.exerciseCount) * 100}%` }}></div>
                             </div>
