@@ -28,6 +28,7 @@ const TestPage = () => {
             if (error) {
                 console.log(error);
                 setError("Tento test se nepodařilo načíst, zkuste to znovu nebo zvolte jiný!");
+                return;
             }
             if (data) {
                 let allExercises = exercises;
@@ -36,7 +37,6 @@ const TestPage = () => {
                 setLoadedExercises(exercises.length);
             }
         }
-        console.log(exercises.length);
     }
 
     return (
