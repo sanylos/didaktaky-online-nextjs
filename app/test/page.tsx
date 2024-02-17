@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllTestsList from "../components/AllTestsList"
 import Test from "../components/Test";
 import { supabase } from "@/api";
@@ -11,6 +11,7 @@ const TestPage = () => {
     const [exercises, setExercises] = useState([]);
     const [error, setError] = useState("");
     const [test, setTest] = useState(null);
+    const [loadedExercises, setLoadedExercises] = useState(0);
 
     const createTestSession = async (test) => {
         setTest(test);
@@ -29,9 +30,10 @@ const TestPage = () => {
                 let allExercises = exercises;
                 allExercises.push(data);
                 setExercises(allExercises);
+                setLoadedExercises(exercises.length);
             }
         }
-        console.log(exercises);
+        console.log(exercises.length);
     }
 
     return (
@@ -47,19 +49,22 @@ const TestPage = () => {
                 </div>
             }
 
-            <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="loadingModalLabel">Příprava testu</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div className="modal fade" id="loadingModal" tabIndex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="loadingModalLabel">Příprava testu</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            Test se připravuje ({exercises.length}/{test?.exerciseCount})
+                        <div className="modal-body">
+                            Test se připravuje ({loadedExercises}/{test?.exerciseCount})
+                            <div className="progress" role="progressbar" aria-label="testWaitingProgressBar">
+                                <div className="progress-bar" style={{ width: `${(exercises.length / test?.exerciseCount) * 100}%` }}></div>
+                            </div>
                         </div>
-                        <div class="modal-footer d-flex justify-content-between">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Zrušit</button>
-                            <button type="button" class="btn btn-success">Začít</button>
+                        <div className="modal-footer d-flex justify-content-between">
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Zrušit</button>
+                            <button type="button" className="btn btn-success">Začít</button>
                         </div>
                     </div>
                 </div>
