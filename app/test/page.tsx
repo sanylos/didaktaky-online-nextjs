@@ -14,7 +14,6 @@ const TestPage = () => {
 
     const createTestSession = async (test) => {
         setTest(test);
-        console.log(test);
         for (let i = 1; i <= test.exerciseCount; i++) {
             const { data, error } = await supabase
                 .from('exercises')
@@ -27,8 +26,6 @@ const TestPage = () => {
                 setError("Tento test se nepodařilo načíst, zkuste to znovu nebo zvolte jiný!");
             }
             if (data) {
-                console.log(i);
-                console.log(data);
                 let allExercises = exercises;
                 allExercises.push(data);
                 setExercises(allExercises);
@@ -46,7 +43,7 @@ const TestPage = () => {
             }
             {testState == "running" &&
                 <div>
-                    <Test />
+                    <Test exercises={exercises} />
                 </div>
             }
         </div>
