@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client"
 import { supabase } from "@/api";
 import { FaArrowRight, FaCube } from "react-icons/fa";
@@ -14,7 +15,7 @@ interface Test {
     duration: number
 }
 
-export default function Test() {
+export default function Test({ createTestSession }) {
     const [availableTests, setAvailableTests] = useState<Array<Test>>([]);
     const [groupedTests, setGroupedTests] = useState<any>(null);
 
@@ -104,7 +105,7 @@ export default function Test() {
                                                         <LiaHourglassStartSolid className="fs-3" />
                                                         <span>{test.duration ? test.duration : "?"} min</span>
                                                     </div>
-                                                    <button className="btn btn-secondary btn-sm"><FaArrowRight /></button>
+                                                    <button className="btn btn-secondary btn-sm" onClick={e => createTestSession(test)}><FaArrowRight /></button>
                                                 </div>
                                             </div>
                                         ))}
