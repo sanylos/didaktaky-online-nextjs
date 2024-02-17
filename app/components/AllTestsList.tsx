@@ -105,7 +105,7 @@ export default function Test({ createTestSession }) {
                                                         <LiaHourglassStartSolid className="fs-3" />
                                                         <span>{test.duration ? test.duration : "?"} min</span>
                                                     </div>
-                                                    <button className="btn btn-secondary btn-sm" onClick={e => createTestSession(test)}><FaArrowRight /></button>
+                                                    <button className="btn btn-secondary btn-sm" onClick={e => createTestSession(test)} data-bs-toggle="modal" data-bs-target="#loadingModal"><FaArrowRight /></button>
                                                 </div>
                                             </div>
                                         ))}
