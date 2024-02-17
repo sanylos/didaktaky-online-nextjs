@@ -13,11 +13,14 @@ const TestPage = () => {
     const [test, setTest] = useState(null);
     const [loadedExercises, setLoadedExercises] = useState(0);
 
-    const createTestSession = async (test) => {
-        setTest(test);
+    const cancelTestSession = () => {
         setError("");
         setLoadedExercises(0);
         setExercises([]);
+    }
+
+    const createTestSession = async (test) => {
+        setTest(test);
         for (let i = 1; i <= test.exerciseCount; i++) {
             const { data, error } = await supabase
                 .from('exercises')
@@ -57,7 +60,6 @@ const TestPage = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="loadingModalLabel">Příprava testu</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             Test se připravuje ({loadedExercises}/{test?.exerciseCount ? test.exerciseCount : "0"})
@@ -66,8 +68,8 @@ const TestPage = () => {
                             </div>
                         </div>
                         <div className="modal-footer d-flex justify-content-between">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Zrušit</button>
-                            <button type="button" className="btn btn-success" disabled={!test?.exerciseCount || (loadedExercises < test?.exerciseCount)}>Začít</button>
+                            <button type="button" className="btn btn-danger" onClick={cancelTestSession} disabled={!error && (!test?.exerciseCount || (loadedExercises < test?.exerciseCount))} data-bs-dismiss="modal">Zrušit</button>
+                            <button type="button" className="btn btn-success" onClick={e => setTestState("running")} disabled={!test?.exerciseCount || (loadedExercises < test?.exerciseCount)}>Začít</button>
                         </div>
                     </div>
                 </div>
