@@ -15,6 +15,9 @@ const TestPage = () => {
 
     const createTestSession = async (test) => {
         setTest(test);
+        setError("");
+        setLoadedExercises(0);
+        setExercises([]);
         for (let i = 1; i <= test.exerciseCount; i++) {
             const { data, error } = await supabase
                 .from('exercises')
