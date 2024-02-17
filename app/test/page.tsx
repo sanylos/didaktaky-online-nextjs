@@ -46,6 +46,24 @@ const TestPage = () => {
                     <Test exercises={exercises} />
                 </div>
             }
+
+            <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="loadingModalLabel">Příprava testu</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Test se připravuje ({exercises.length}/{test?.exerciseCount})
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Zrušit</button>
+                            <button type="button" class="btn btn-success">Začít</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
