@@ -4,14 +4,37 @@
 import { useState } from "react";
 import AllTestsList from "../components/AllTestsList"
 import Test from "../components/Test";
+import { supabase } from "@/api";
 
-const Test = () => {
+const TestPage = () => {
     const [testState, setTestState] = useState("selection");
     const [exercises, setExercises] = useState([]);
+    const [error, setError] = useState("");
+    const [test, setTest] = useState(null);
 
-    const createTestSession = (test) => {
+    const createTestSession = async (test) => {
+        setTest(test);
         console.log(test);
-        
+        for (let i = 1; i <= test.exerciseCount; i++) {
+            const { data, error } = await supabase
+                .from('exercises')
+                .select('*')
+                .eq('test_id', test.id)
+                .eq('number', i)
+                .single();
+            if (error) {
+                console.log(error);
+                setError("Tento test se nepodařilo načíst, zkuste to znovu nebo zvolte jiný!");
+            }
+            if (data) {
+                console.log(i);
+                console.log(data);
+                let allExercises = exercises;
+                allExercises.push(data);
+                setExercises(allExercises);
+            }
+        }
+        console.log(exercises);
     }
 
     return (
@@ -29,4 +52,4 @@ const Test = () => {
         </div>
     )
 }
-export default Test;
+export default TestPage;
