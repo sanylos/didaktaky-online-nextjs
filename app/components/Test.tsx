@@ -13,7 +13,6 @@ const Test = ({ exercises }) => {
         }
         setAnswers(answersArray);
     }
-    console.log(answers);
     useEffect(() => {
         initializeAnswers();
     }, [])
@@ -25,15 +24,17 @@ const Test = ({ exercises }) => {
     }
     return (
         <div>
-            <div className="d-flex justify-content-between bg-secondary w-auto" style={{ overflowX: "auto" }}>
+            <div className="d-flex justify-content-between bg-secondary w-auto m-2 rounded" style={{ overflowX: "auto" }}>
                 {Array.from({ length: exercises.length }, (_, i) => (
                     <div key={i} className="m-1 btn bg-secondary-subtle w-100 text-center">
                         <span onClick={e => setCurrentExerciseIndex(i)}>{i + 1}</span>
                     </div>
                 ))}
             </div>
-            <div>
-                <Exercise exercise={exercises[currentExerciseIndex]} answer={answers[currentExerciseIndex]} handleAnswer={handleAnswer} isAnswered={false} />
+            <div className="container">
+                <div className="bg-secondary text-light m-1 d-flex justify-content-center rounded">
+                    <Exercise exercise={exercises[currentExerciseIndex]} answer={answers[currentExerciseIndex]} handleAnswer={handleAnswer} isAnswered={false} />
+                </div>
             </div>
         </div>
     )
