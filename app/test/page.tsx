@@ -12,12 +12,39 @@ const TestPage = () => {
     const [error, setError] = useState("");
     const [test, setTest] = useState(null);
     const [loadedExercises, setLoadedExercises] = useState(0);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     const cancelTestSession = () => {
         setError("");
         setLoadedExercises(0);
         setExercises([]);
     }
+
+    const startTest = () => {
+        setTimeLeft(test.duration * 60);
+        setTestState("running");
+    }
+
+    const stopTest = () => {
+        setTestState("ended");
+    }
+
+    useEffect(() => {
+        let timer;
+        if (testState == "running") {
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    setTimeLeft(timeLeft - 1);
+                }
+                else {
+                    clearInterval(timer);
+                    stopTest();
+                }
+            }, 1000);
+        }
+
+        return () => clearInterval(timer);
+    }, [testState]);
 
     const createTestSession = async (test) => {
         setTest(test);
@@ -69,7 +96,7 @@ const TestPage = () => {
                         </div>
                         <div className="modal-footer d-flex justify-content-between">
                             <button type="button" className="btn btn-danger" onClick={cancelTestSession} disabled={!error && (!test?.exerciseCount || (loadedExercises < test?.exerciseCount))} data-bs-dismiss="modal">Zrušit</button>
-                            <button type="button" className="btn btn-success" onClick={e => setTestState("running")} disabled={!test?.exerciseCount || (loadedExercises < test?.exerciseCount)} data-bs-dismiss="modal">Začít</button>
+                            <button type="button" className="btn btn-success" onClick={startTest} disabled={!test?.exerciseCount || (loadedExercises < test?.exerciseCount)} data-bs-dismiss="modal">Začít</button>
                         </div>
                     </div>
                 </div>
