@@ -2,7 +2,7 @@
 import Exercise from "./Exercise";
 import { useEffect, useState } from "react";
 
-const Test = ({ exercises, setAnswers, answers }) => {
+const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     /*const [answers, setAnswers] = useState([]);
     const initializeAnswers = () => {
@@ -33,7 +33,8 @@ const Test = ({ exercises, setAnswers, answers }) => {
                 ))}
             </div>
             <div className="container">
-                <div className="bg-secondary text-light m-1 d-flex justify-content-center rounded">
+                <div className="bg-secondary text-light m-1 rounded">
+                    <div className="bg-danger text-end w-auto container rounded-5" style={{position: "absolute", right: "1rem"}}>{timeLeft}</div>
                     <Exercise exercise={exercises[currentExerciseIndex]} answer={answers[currentExerciseIndex]} handleAnswer={handleAnswer} isAnswered={false} />
                 </div>
             </div>
