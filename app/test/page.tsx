@@ -13,6 +13,7 @@ const TestPage = () => {
     const [test, setTest] = useState(null);
     const [loadedExercises, setLoadedExercises] = useState(0);
     const [timeLeft, setTimeLeft] = useState(0);
+    const [answers, setAnswers] = useState([]);
 
     const cancelTestSession = () => {
         setError("");
@@ -48,12 +49,12 @@ const TestPage = () => {
 
     const createTestSession = async (test) => {
         setTest(test);
-        for (let i = 1; i <= test.exerciseCount; i++) {
+        for (let i = 0; i < test.exerciseCount; i++) {
             const { data, error } = await supabase
                 .from('exercises')
                 .select('*')
                 .eq('test_id', test.id)
-                .eq('number', i)
+                .eq('number', i + 1)
                 .single();
             if (error) {
                 console.log(error);
@@ -65,10 +66,16 @@ const TestPage = () => {
                 allExercises.push(data);
                 setExercises(allExercises);
                 setLoadedExercises(exercises.length);
+
+                //initialize answers array
+                let answersArray = answers;
+                let filledArray = Array(data.correct_answer.length).fill("");
+                answersArray[i] = filledArray;
+                setAnswers(answersArray);
             }
         }
     }
-
+    
     return (
         <div>
             {testState == "selection" &&
@@ -78,7 +85,7 @@ const TestPage = () => {
             }
             {testState == "running" &&
                 <div>
-                    <Test exercises={exercises} />
+                    <Test exercises={exercises} setAnswers={setAnswers} answers={answers} />
                 </div>
             }
 

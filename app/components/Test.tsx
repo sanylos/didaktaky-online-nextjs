@@ -2,9 +2,9 @@
 import Exercise from "./Exercise";
 import { useEffect, useState } from "react";
 
-const Test = ({ exercises }) => {
+const Test = ({ exercises, setAnswers, answers }) => {
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-    const [answers, setAnswers] = useState([]);
+    /*const [answers, setAnswers] = useState([]);
     const initializeAnswers = () => {
         let answersArray = [];
         for (let i = 0; i < exercises.length; i++) {
@@ -16,11 +16,12 @@ const Test = ({ exercises }) => {
     useEffect(() => {
         initializeAnswers();
     }, [])
-
+*/
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
         let answerArray = [...answers];
         answerArray[currentExerciseIndex][index] = exerciseAnswer;
         setAnswers(answerArray);
+        console.log(answerArray);
     }
     return (
         <div>
