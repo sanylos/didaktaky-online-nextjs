@@ -1,6 +1,7 @@
 //@ts-nocheck
 import Exercise from "./Exercise";
 import { useEffect, useState } from "react";
+import { MdAccessAlarms } from "react-icons/md";
 
 const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -35,8 +36,12 @@ const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
             </div>
             <div className="container-fluid">
                 <div className="bg-secondary text-light rounded">
-                    <div className="bg-danger text-end w-auto container rounded-5 px-2 py-1" style={{ position: "absolute", right: "0.25rem" }}>
-                        {(Math.floor(timeLeft / 60))}m {timeLeft % 60}s
+                    <div onClick={e => setIsTimerVisible(!isTimerVisible)} className="bg-danger text-end w-auto container rounded-5 px-2 py-1 d-flex align-items-center" style={{ position: "absolute", right: "0.25rem" }}>
+                        {isTimerVisible ?
+                            <span style={{cursor: "pointer"}}>{(Math.floor(timeLeft / 60))}m {timeLeft % 60}s</span>
+                            :
+                            <MdAccessAlarms style={{cursor: "pointer"}} />
+                        }
                     </div>
                     <Exercise exercise={exercises[currentExerciseIndex]} answer={answers[currentExerciseIndex]} handleAnswer={handleAnswer} isAnswered={false} />
                 </div>
