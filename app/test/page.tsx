@@ -34,8 +34,9 @@ const TestPage = () => {
         let timer;
         if (testState == "running") {
             timer = setInterval(() => {
+                let currentTimeLeft = timeLeft;
                 if (timeLeft > 0) {
-                    setTimeLeft(timeLeft - 1);
+                    setTimeLeft(currentTimeLeft - 1);
                 }
                 else {
                     clearInterval(timer);
@@ -45,7 +46,7 @@ const TestPage = () => {
         }
 
         return () => clearInterval(timer);
-    }, [testState]);
+    }, [testState, timeLeft]);
 
     const createTestSession = async (test) => {
         setTest(test);
@@ -75,7 +76,7 @@ const TestPage = () => {
             }
         }
     }
-    
+
     return (
         <div>
             {testState == "selection" &&
