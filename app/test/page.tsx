@@ -86,7 +86,7 @@ const TestPage = () => {
             }
             {testState == "running" &&
                 <div>
-                    <Test exercises={exercises} setAnswers={setAnswers} answers={answers} />
+                    <Test exercises={exercises} setAnswers={setAnswers} answers={answers} timeLeft={timeLeft} />
                 </div>
             }
 
