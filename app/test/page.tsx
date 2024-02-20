@@ -124,12 +124,13 @@ const TestPage = () => {
     const createTestSession = async (test) => {
         setTest(test);
         for (let i = 0; i < test.exerciseCount; i++) {
-            const { data, error } = await supabase
-                .from('exercises')
-                .select('*')
-                .eq('test_id', test.id)
-                .eq('number', i + 1)
-                .single();
+            const { data, error } = await supabase.rpc('getrandomexercisebyexercisenumber', {
+                in_years: [test.year],
+                in_subjects: [test.subject],
+                in_variants: [test.variant],
+                in_types: [test.type],
+                in_number: i + 1,
+            }).single();
             if (error) {
                 console.log(error);
                 setError("Tento test se nepodařilo načíst, zkuste to znovu nebo zvolte jiný!");
