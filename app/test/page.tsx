@@ -77,7 +77,8 @@ const TestPage = () => {
                     'exerciseType': exercises[i].type,
                     'exerciseGroup': exercises[i].group,
                     'isCorrect': validateAnswer(exercises[i], answers[i]) === exercises[i].points,
-                    'userTest_id': userTestId
+                    'userTest_id': userTestId,
+                    'points': [validateAnswer(exercises[i], answers[i]), exercises[i].points],
                 }).select().single();
             if (data) {
                 let submittedArray = submittedExercises;
