@@ -6,8 +6,11 @@ import AllTestsList from "../components/AllTestsList"
 import Test from "../components/Test";
 import { supabase } from "@/api";
 import TestOverview from "../components/TestOverview";
+import { validateAnswer } from "../utils/answerValidation";
+import { useUser } from "../UserContext";
 
 const TestPage = () => {
+    const { userData } = useUser();
     const [testState, setTestState] = useState("selection");
     const [exercises, setExercises] = useState([]);
     const [error, setError] = useState("");
@@ -16,6 +19,74 @@ const TestPage = () => {
     const [timeLeft, setTimeLeft] = useState(0);
     const [answers, setAnswers] = useState([]);
 
+    const [userDBTest, setUserDBTest] = useState(null);
+    const [submittedExercises, setSubmittedExercises] = useState([]);
+
+    const getTestStartTime = () => {
+        const currentTime = new Date().getTime();
+        const timeLeftInMilliseconds = timeLeft * 1000;
+        const startTime = new Date(currentTime - ((test.duration * 1000) - timeLeftInMilliseconds));
+        console.log(startTime);
+        return startTime;
+    }
+
+    const insertTestToDB = async () => {
+        const { data, error } = await supabase
+            .from('userTests')
+            .insert({
+                'created_at': getTestStartTime(),
+                'submitted_at': new Date(),
+                'points': getTestTotalPoints(),
+                'maxPoints': getTestMaxPoints(),
+                'type': exercises[0].test_type,
+                'subject': exercises[0].test_subject,
+                'user_id': userData.user.id
+            }).select().single();
+        if (error) console.log(error);
+        if (data) {
+            console.log(data);
+            validateTestAnswers(data.id);
+        }
+    }
+
+    const getTestMaxPoints = () => {
+        let maxPoints = 0;
+        for (let i = 0; i < test.exerciseCount; i++) {
+            maxPoints += exercises[i].points;
+        }
+        return maxPoints;
+    }
+
+    const getTestTotalPoints = () => {
+        let totalPoints = 0;
+        for (let i = 0; i < test.exerciseCount; i++) {
+            totalPoints += validateAnswer(exercises[i], answers[i]);
+        }
+        return totalPoints;
+    }
+
+    const validateTestAnswers = async (userTestId) => {
+        for (let i = 0; i < test.exerciseCount; i++) {
+            const { data, error } = await supabase
+                .from('userAnswers')
+                .insert({
+                    'exercise_id': exercises[i].exercise_id,
+                    'answer': answers[i],
+                    'examType': exercises[i].test_type,
+                    'examSubject': exercises[i].test_subject,
+                    'exerciseType': exercises[i].type,
+                    'exerciseGroup': exercises[i].group,
+                    'isCorrect': validateAnswer(exercises[i], answers[i]) === exercises[i].points,
+                    'userTest_id': userTestId
+                }).select().single();
+            if (data) {
+                let submittedArray = submittedExercises;
+                submittedArray.push(data);
+                setSubmittedExercises(submittedArray);
+            }
+        }
+    }
+
     const cancelTestSession = () => {
         setError("");
         setLoadedExercises(0);
@@ -23,12 +94,13 @@ const TestPage = () => {
     }
 
     const startTest = () => {
-        setTimeLeft(test.duration * 60);
+        setTimeLeft(/*test.duration * 60*/10);
         setTestState("running");
     }
 
     const stopTest = () => {
         setTestState("ended");
+        insertTestToDB();
     }
 
     useEffect(() => {
@@ -82,7 +154,7 @@ const TestPage = () => {
         <div>
             {testState == "ended" &&
                 <div>
-                    <TestOverview />
+                    <TestOverview test={test} />
                 </div>
             }
             {testState == "selection" &&
