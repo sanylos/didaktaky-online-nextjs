@@ -25,8 +25,9 @@ const TestPage = () => {
     const getTestStartTime = () => {
         const currentTime = new Date().getTime();
         const timeLeftInMilliseconds = timeLeft * 1000;
-        const startTime = new Date(currentTime - ((test.duration * 1000) - timeLeftInMilliseconds));
+        const startTime = new Date(currentTime - ((test.duration * 60000) - timeLeftInMilliseconds));
         console.log(startTime);
+        console.log(new Date(currentTime));
         return startTime;
     }
 
@@ -95,7 +96,7 @@ const TestPage = () => {
     }
 
     const startTest = () => {
-        setTimeLeft(/*test.duration * 60*/10);
+        setTimeLeft(test.duration * 60);
         setTestState("running");
     }
 
