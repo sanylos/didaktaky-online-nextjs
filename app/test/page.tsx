@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import AllTestsList from "../components/AllTestsList"
 import Test from "../components/Test";
 import { supabase } from "@/api";
+import TestOverview from "../components/TestOverview";
 
 const TestPage = () => {
     const [testState, setTestState] = useState("selection");
@@ -79,6 +80,11 @@ const TestPage = () => {
 
     return (
         <div>
+            {testState == "ended" &&
+                <div>
+                    <TestOverview />
+                </div>
+            }
             {testState == "selection" &&
                 <div>
                     <AllTestsList createTestSession={createTestSession} />
