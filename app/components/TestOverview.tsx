@@ -1,7 +1,12 @@
 //@ts-nocheck
 const TestOverview = ({ submittedExercises, userDBTest }) => {
-    console.log(submittedExercises);
-    console.log(userDBTest);
+    const getEarnedPointsCount = () => {
+        let points = 0;
+        for(let i=0;i<submittedExercises.length;i++) {
+            points+=submittedExercises[i].points[0];
+        }
+        return points;
+    }
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center">
@@ -15,8 +20,8 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
                     <div className="me-1">Čas </div>
                 </div>
                 <div className="text-start col">
-                    <div>{/*((getEarnedPointsCount() / getMaxPointsCount()) * 100).toFixed(1)*/} %</div>
-                    <div>{/*getEarnedPointsCount()*/} bodů</div>
+                    <div>{/*((getEarnedPointsCount()/* / getMaxPointsCount()) * 100).toFixed(1)*/} %</div>
+                    <div>{getEarnedPointsCount()} bodů</div>
                     <div>{/*getMaxPointsCount()*/} bodů</div>
                     <div>{/*getAnswerCountByCorrectness.correct*/} odpovědí</div>
                     <div>{/*getAnswerCountByCorrectness.incorrect*/} odpovědí</div>
