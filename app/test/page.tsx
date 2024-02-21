@@ -145,7 +145,7 @@ const TestPage = () => {
         <div>
             {testState == "ended" &&
                 <div>
-                    <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} />
+                    <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} test={test} />
                 </div>
             }
             {testState == "selection" &&

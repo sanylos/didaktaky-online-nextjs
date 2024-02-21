@@ -1,5 +1,5 @@
 //@ts-nocheck
-const TestOverview = ({ submittedExercises, userDBTest }) => {
+const TestOverview = ({ submittedExercises, userDBTest, test }) => {
     const getEarnedPointsCount = () => {
         let points = 0;
         for (let i = 0; i < submittedExercises.length; i++) {
@@ -45,7 +45,7 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
                     <div>{getMaxPointsCount()} bodů</div>
                     <div>{getAnswerCountByCorrectness().correctAnswers} odpovědí</div>
                     <div>{getAnswerCountByCorrectness().incorrectAnswers} odpovědí</div>
-                    <div>{/*getTestDurationInMinutesBySubject(selectedFilter.examSubject[0])*/}m</div>
+                    <div>{test.duration}m</div>
                     <div>
                         <span v-if="getTimeDurationOfTest().hours > 0">{/*getTimeDurationOfTest().hours*/}h</span>
                         <span v-if="getTimeDurationOfTest().minutes > 0">{/*getTimeDurationOfTest().minutes*/}m </span>
