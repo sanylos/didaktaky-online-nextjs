@@ -47,7 +47,7 @@ const TestPage = () => {
         if (data) {
             console.log(data);
             setUserDBTest(data);
-            validateTestAnswers(data.id);
+            await validateTestAnswers(data.id);
         }
     }
 
@@ -88,9 +88,10 @@ const TestPage = () => {
         setTestState("running");
     }
 
-    const stopTest = () => {
+    const stopTest = async () => {
+        setTestState("ended-loading");
+        await insertTestToDB();
         setTestState("ended");
-        insertTestToDB();
     }
 
     useEffect(() => {
@@ -146,6 +147,11 @@ const TestPage = () => {
             {testState == "ended" &&
                 <div>
                     <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} test={test} />
+                </div>
+            }
+            {testState == "ended-loading" &&
+                <div>
+                    <span>Vyhodnocování testu...</span>
                 </div>
             }
             {testState == "selection" &&
