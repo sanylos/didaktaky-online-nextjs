@@ -2,17 +2,30 @@
 const TestOverview = ({ submittedExercises, userDBTest }) => {
     const getEarnedPointsCount = () => {
         let points = 0;
-        for(let i=0;i<submittedExercises.length;i++) {
-            points+=submittedExercises[i].points[0];
+        for (let i = 0; i < submittedExercises.length; i++) {
+            points += submittedExercises[i].points[0];
         }
         return points;
     }
     const getMaxPointsCount = () => {
         let points = 0;
-        for(let i=0;i<submittedExercises.length;i++) {
-            points+=submittedExercises[i].points[1];
+        for (let i = 0; i < submittedExercises.length; i++) {
+            points += submittedExercises[i].points[1];
         }
         return points;
+    }
+    const getAnswerCountByCorrectness = () => {
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        for (let i = 0; i < submittedExercises.length; i++) {
+            if (submittedExercises[i].isCorrect) {
+                correctAnswers++;
+            }
+            if (!submittedExercises[i].isCorrect) {
+                incorrectAnswers++;
+            }
+        }
+        return { correctAnswers, incorrectAnswers }
     }
     return (
         <div className="container-fluid">
@@ -30,8 +43,8 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
                     <div>{/*((getEarnedPointsCount()/* / getMaxPointsCount()) * 100).toFixed(1)*/} %</div>
                     <div>{getEarnedPointsCount()} bodů</div>
                     <div>{getMaxPointsCount()} bodů</div>
-                    <div>{/*getAnswerCountByCorrectness.correct*/} odpovědí</div>
-                    <div>{/*getAnswerCountByCorrectness.incorrect*/} odpovědí</div>
+                    <div>{getAnswerCountByCorrectness().correctAnswers} odpovědí</div>
+                    <div>{getAnswerCountByCorrectness().incorrectAnswers} odpovědí</div>
                     <div>{/*getTestDurationInMinutesBySubject(selectedFilter.examSubject[0])*/}m</div>
                     <div>
                         <span v-if="getTimeDurationOfTest().hours > 0">{/*getTimeDurationOfTest().hours*/}h</span>
