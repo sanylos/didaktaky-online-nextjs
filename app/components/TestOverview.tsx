@@ -1,4 +1,7 @@
-const TestOverview = () => {
+//@ts-nocheck
+const TestOverview = ({ submittedExercises, userDBTest }) => {
+    console.log(submittedExercises);
+    console.log(userDBTest);
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center">

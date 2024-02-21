@@ -46,6 +46,7 @@ const TestPage = () => {
         if (error) console.log(error);
         if (data) {
             console.log(data);
+            setUserDBTest(data);
             validateTestAnswers(data.id);
         }
     }
@@ -71,6 +72,7 @@ const TestPage = () => {
                 let submittedArray = submittedExercises;
                 submittedArray.push(data);
                 setSubmittedExercises(submittedArray);
+                console.log(submittedArray);
             }
         }
     }
@@ -143,7 +145,7 @@ const TestPage = () => {
         <div>
             {testState == "ended" &&
                 <div>
-                    <TestOverview test={test} />
+                    <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} />
                 </div>
             }
             {testState == "selection" &&
