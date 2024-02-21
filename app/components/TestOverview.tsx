@@ -47,9 +47,8 @@ const TestOverview = ({ submittedExercises, userDBTest, test }) => {
                     <div>{getAnswerCountByCorrectness().incorrectAnswers} odpovědí</div>
                     <div>{test.duration}m</div>
                     <div>
-                        <span v-if="getTimeDurationOfTest().hours > 0">{/*getTimeDurationOfTest().hours*/}h</span>
-                        <span v-if="getTimeDurationOfTest().minutes > 0">{/*getTimeDurationOfTest().minutes*/}m </span>
-                        <span v-if="getTimeDurationOfTest().seconds > 0"> {/*getTimeDurationOfTest().seconds*/}s</span>
+                        <span>{((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000).toFixed(0)}m </span>
+                        <span> {Math.floor(((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000-Math.floor((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000))*60)}s</span>
                     </div>
                 </div>
             </div>
