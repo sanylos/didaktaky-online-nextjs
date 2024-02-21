@@ -7,6 +7,13 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
         }
         return points;
     }
+    const getMaxPointsCount = () => {
+        let points = 0;
+        for(let i=0;i<submittedExercises.length;i++) {
+            points+=submittedExercises[i].points[1];
+        }
+        return points;
+    }
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center">
@@ -22,7 +29,7 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
                 <div className="text-start col">
                     <div>{/*((getEarnedPointsCount()/* / getMaxPointsCount()) * 100).toFixed(1)*/} %</div>
                     <div>{getEarnedPointsCount()} bodů</div>
-                    <div>{/*getMaxPointsCount()*/} bodů</div>
+                    <div>{getMaxPointsCount()} bodů</div>
                     <div>{/*getAnswerCountByCorrectness.correct*/} odpovědí</div>
                     <div>{/*getAnswerCountByCorrectness.incorrect*/} odpovědí</div>
                     <div>{/*getTestDurationInMinutesBySubject(selectedFilter.examSubject[0])*/}m</div>
