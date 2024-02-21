@@ -40,7 +40,7 @@ const TestOverview = ({ submittedExercises, userDBTest }) => {
                     <div className="me-1">Čas </div>
                 </div>
                 <div className="text-start col">
-                    <div>{/*((getEarnedPointsCount()/* / getMaxPointsCount()) * 100).toFixed(1)*/} %</div>
+                    <div>{((getEarnedPointsCount() / getMaxPointsCount()) * 100).toFixed(1)} %</div>
                     <div>{getEarnedPointsCount()} bodů</div>
                     <div>{getMaxPointsCount()} bodů</div>
                     <div>{getAnswerCountByCorrectness().correctAnswers} odpovědí</div>
