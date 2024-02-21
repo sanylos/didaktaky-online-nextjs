@@ -6,7 +6,7 @@ import AllTestsList from "../components/AllTestsList"
 import Test from "../components/Test";
 import { supabase } from "@/api";
 import TestOverview from "../components/TestOverview";
-import { validateAnswer } from "../utils/answerValidation";
+import { validateAnswer, getTestMaxPoints, getTestTotalPoints } from "../utils/answerValidation";
 import { useUser } from "../UserContext";
 
 const TestPage = () => {
@@ -37,8 +37,8 @@ const TestPage = () => {
             .insert({
                 'created_at': getTestStartTime(),
                 'submitted_at': new Date(),
-                'points': getTestTotalPoints(),
-                'maxPoints': getTestMaxPoints(),
+                'points': getTestTotalPoints(test, exercises, answers),
+                'maxPoints': getTestMaxPoints(test, exercises),
                 'type': exercises[0].test_type,
                 'subject': exercises[0].test_subject,
                 'user_id': userData.user.id
@@ -50,21 +50,7 @@ const TestPage = () => {
         }
     }
 
-    const getTestMaxPoints = () => {
-        let maxPoints = 0;
-        for (let i = 0; i < test.exerciseCount; i++) {
-            maxPoints += exercises[i].points;
-        }
-        return maxPoints;
-    }
 
-    const getTestTotalPoints = () => {
-        let totalPoints = 0;
-        for (let i = 0; i < test.exerciseCount; i++) {
-            totalPoints += validateAnswer(exercises[i], answers[i]);
-        }
-        return totalPoints;
-    }
 
     const validateTestAnswers = async (userTestId) => {
         for (let i = 0; i < test.exerciseCount; i++) {
@@ -168,6 +154,9 @@ const TestPage = () => {
             {testState == "running" &&
                 <div>
                     <Test exercises={exercises} setAnswers={setAnswers} answers={answers} timeLeft={timeLeft} />
+                    <div className="d-flex justify-content-end m-2">
+                        <button onClick={stopTest} className="btn btn-danger">Ukončit test</button>
+                    </div>
                 </div>
             }
 
