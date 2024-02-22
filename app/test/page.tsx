@@ -18,6 +18,12 @@ const TestPage = () => {
     const [loadedExercises, setLoadedExercises] = useState(0);
     const [timeLeft, setTimeLeft] = useState(0);
     const [answers, setAnswers] = useState([]);
+    const [canStartTest, setCanStartTest] = useState(false);
+    useEffect(() => {
+        if (userData) {
+            setCanStartTest(true);
+        }
+    }, [])
 
     const [userDBTest, setUserDBTest] = useState(null);
     const [submittedExercises, setSubmittedExercises] = useState([]);
@@ -144,9 +150,15 @@ const TestPage = () => {
 
     return (
         <div>
+            {canStartTest ||
+                <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Nejste přihlášen/a!</strong> Pro spuštění testu je nutné přihlášení.
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
             {testState == "ended" &&
                 <div>
-                    <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} test={test} />
+                    <TestOverview submittedExercises={submittedExercises} userDBTest={userDBTest} test={test} exercises={exercises} />
                 </div>
             }
             {testState == "ended-loading" &&
@@ -156,7 +168,7 @@ const TestPage = () => {
             }
             {testState == "selection" &&
                 <div>
-                    <AllTestsList createTestSession={createTestSession} />
+                    <AllTestsList createTestSession={createTestSession} canStartTest={canStartTest} />
                 </div>
             }
             {testState == "running" &&
