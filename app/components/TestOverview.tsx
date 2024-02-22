@@ -1,5 +1,6 @@
 //@ts-nocheck
-const TestOverview = ({ submittedExercises, userDBTest, test }) => {
+import { LuPartyPopper } from "react-icons/lu";
+const TestOverview = ({ submittedExercises, userDBTest, test, exercises }) => {
     const getEarnedPointsCount = () => {
         let points = 0;
         for (let i = 0; i < submittedExercises.length; i++) {
@@ -28,8 +29,9 @@ const TestOverview = ({ submittedExercises, userDBTest, test }) => {
         return { correctAnswers, incorrectAnswers }
     }
     return (
-        <div className="container-fluid">
-            <div className="d-flex justify-content-center">
+        <div className="container-fluid d-flex flex-column align-items-center">
+            <span className="fs-1 fw-bold mb-2"><LuPartyPopper /> Gratulujeme!</span>
+            <div className="d-flex justify-content-center container-fluid fs-5">
                 <div className="text-end col">
                     <div className="me-1">Úspěšnost </div>
                     <div className="me-1">Získáno </div>
@@ -39,7 +41,7 @@ const TestOverview = ({ submittedExercises, userDBTest, test }) => {
                     <div className="me-1">Dostupný čas </div>
                     <div className="me-1">Čas </div>
                 </div>
-                <div className="text-start col">
+                <div className="text-start col fw-bold">
                     <div>{((getEarnedPointsCount() / getMaxPointsCount()) * 100).toFixed(1)} %</div>
                     <div>{getEarnedPointsCount()} bodů</div>
                     <div>{getMaxPointsCount()} bodů</div>
@@ -47,10 +49,14 @@ const TestOverview = ({ submittedExercises, userDBTest, test }) => {
                     <div>{getAnswerCountByCorrectness().incorrectAnswers} odpovědí</div>
                     <div>{test.duration}m</div>
                     <div>
-                        <span>{((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000).toFixed(0)}m </span>
-                        <span> {Math.floor(((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000-Math.floor((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime())/60000))*60)}s</span>
+                        <span>{((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime()) / 60000).toFixed(0)}m </span>
+                        <span> {Math.floor(((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime()) / 60000 - Math.floor((new Date(userDBTest.submitted_at).getTime() - new Date(userDBTest.created_at).getTime()) / 60000)) * 60)}s</span>
                     </div>
                 </div>
+            </div>
+            <div>
+                <button className="btn btn-dark mx-1">Podrobnosti</button>
+                <button className="btn btn-success mx-1">Zkusit další</button>
             </div>
         </div>
     )
