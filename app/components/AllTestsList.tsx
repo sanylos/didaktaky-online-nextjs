@@ -18,6 +18,7 @@ interface Test {
 export default function Test({ createTestSession, canStartTest }) {
     const [availableTests, setAvailableTests] = useState<Array<Test>>([]);
     const [groupedTests, setGroupedTests] = useState<any>(null);
+    const [filters, setFilters] = useState([]);
 
     const fetchAvailableTests = async () => {
         const { data, error } = await supabase
@@ -51,8 +52,7 @@ export default function Test({ createTestSession, canStartTest }) {
                 groupedData[type][subject].push(year);
             }
         });
-        console.log(groupedData);
-        console.log(groupedData['PZ'])
+        
         return groupedData;
     }
 
@@ -78,8 +78,33 @@ export default function Test({ createTestSession, canStartTest }) {
         fetchAvailableTests();
     }, [])
 
+    const handleFilter = (filter) => {
+        let filtersArray = filters;
+        if (filtersArray.includes(filter)) {
+            filtersArray = filtersArray.filter((filterItem) => filterItem != filter);
+        } else {
+            filtersArray.push(filter);
+        }
+        setFilters(filtersArray);
+        console.log(filters);
+    }
+
     return <>
         <div className="container mt-1">
+            {JSON.stringify(filters)}
+            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
+            <label class="btn mx-1" for="btn-check-1">Maturita</label>
+
+            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
+            <label class="btn mx-1" for="btn-check-2">Přijímačky</label>
+            |
+            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
+            <label class="btn mx-1" for="btn-check-3">Čeština</label>
+
+            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
+            <label class="btn mx-1" for="btn-check-4">Matematika</label>
+            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
+            <label class="btn mx-1" for="btn-check-5">Angličtina</label>
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
                     <div className="bg-secondary-subtle rounded p-1 m-1" key={type}>
