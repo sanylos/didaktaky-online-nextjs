@@ -19,11 +19,6 @@ const TestPage = () => {
     const [timeLeft, setTimeLeft] = useState(0);
     const [answers, setAnswers] = useState([]);
     const [canStartTest, setCanStartTest] = useState(false);
-    useEffect(() => {
-        if (userData) {
-            setCanStartTest(true);
-        }
-    }, [])
 
     const [userDBTest, setUserDBTest] = useState(null);
     const [submittedExercises, setSubmittedExercises] = useState([]);
@@ -147,6 +142,12 @@ const TestPage = () => {
             }
         }
     }
+
+    useEffect(() => {
+        if (userData) {
+            setCanStartTest(true);
+        }
+    }, [userData])
 
     return (
         <div>
