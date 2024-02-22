@@ -18,7 +18,10 @@ interface Test {
 export default function Test({ createTestSession, canStartTest }) {
     const [availableTests, setAvailableTests] = useState<Array<Test>>([]);
     const [groupedTests, setGroupedTests] = useState<any>(null);
-    const [filters, setFilters] = useState([]);
+    const [filter, setFilter] = useState({
+        subjects: [],
+        types: [],
+    });
 
     const fetchAvailableTests = async () => {
         const { data, error } = await supabase
@@ -42,17 +45,19 @@ export default function Test({ createTestSession, canStartTest }) {
 
         availableTests.forEach(item => {
             const { type, subject, year } = item;
-            if (!groupedData[type]) {
-                groupedData[type] = {};
-            }
-            if (!groupedData[type][subject]) {
-                groupedData[type][subject] = [];
-            }
-            if (!groupedData[type][subject].includes(year)) {
-                groupedData[type][subject].push(year);
+            if ((filter["types"].length > 0 && filter["types"].includes(type)) && (filter["subjects"].length > 0 && filter["subjects"].includes(subject))) {
+                if (!groupedData[type]) {
+                    groupedData[type] = {};
+                }
+                if (!groupedData[type][subject]) {
+                    groupedData[type][subject] = [];
+                }
+                if (!groupedData[type][subject].includes(year)) {
+                    groupedData[type][subject].push(year);
+                }
             }
         });
-        
+
         return groupedData;
     }
 
@@ -73,37 +78,45 @@ export default function Test({ createTestSession, canStartTest }) {
 
     useEffect(() => {
         setGroupedTests(groupByTypeSubjectYear());
-    }, [availableTests])
+    }, [availableTests, filter])
     useEffect(() => {
         fetchAvailableTests();
     }, [])
 
-    const handleFilter = (filter) => {
-        let filtersArray = filters;
-        if (filtersArray.includes(filter)) {
-            filtersArray = filtersArray.filter((filterItem) => filterItem != filter);
-        } else {
-            filtersArray.push(filter);
+    const handleFilter = (cathegory, newFilter) => {
+        let filtersArray = { ...filter };
+        console.log(filtersArray);
+        if (cathegory == "types") {
+            if (filtersArray["types"].includes(newFilter)) {
+                filtersArray["types"] = filtersArray["types"].filter((filterItem) => filterItem != newFilter);
+            } else {
+                filtersArray["types"].push(newFilter);
+            }
         }
-        setFilters(filtersArray);
-        console.log(filters);
+        if (cathegory == "subjects") {
+            if (filtersArray["subjects"].includes(newFilter)) {
+                filtersArray["subjects"] = filtersArray["subjects"].filter((filterItem) => filterItem != newFilter);
+            } else {
+                filtersArray["subjects"].push(newFilter);
+            }
+        }
+        setFilter(filtersArray);
     }
 
     return <>
         <div className="container mt-1">
-            {JSON.stringify(filters)}
-            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-1">Maturita</label>
 
-            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-2">Přijímačky</label>
             |
-            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-3">Čeština</label>
 
-            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-4">Matematika</label>
-            <input type="checkbox" onClick={e => handleFilter(e.target.value)} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-5">Angličtina</label>
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
