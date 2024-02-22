@@ -1,5 +1,9 @@
 //@ts-nocheck
 import { LuPartyPopper } from "react-icons/lu";
+import { GoChecklist } from "react-icons/go";
+import { IoRepeat } from "react-icons/io5";
+import Link from "next/link";
+
 const TestOverview = ({ submittedExercises, userDBTest, test, exercises }) => {
     const getEarnedPointsCount = () => {
         let points = 0;
@@ -55,8 +59,12 @@ const TestOverview = ({ submittedExercises, userDBTest, test, exercises }) => {
                 </div>
             </div>
             <div>
-                <button className="btn btn-dark mx-1">Podrobnosti</button>
-                <button className="btn btn-success mx-1">Zkusit další</button>
+                <Link href={"/test/" + userDBTest.id}>
+                    <button className="btn btn-dark mx-1"><GoChecklist className="fs-5" /> Podrobnosti</button>
+                </Link>
+                <Link href={'/test'}>
+                    <button className="btn btn-success mx-1"><IoRepeat className="fs-5" /> Zkusit další</button>
+                </Link>
             </div>
         </div>
     )
