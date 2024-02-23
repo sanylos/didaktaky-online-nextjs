@@ -3,8 +3,10 @@ import { LuPartyPopper } from "react-icons/lu";
 import { GoChecklist } from "react-icons/go";
 import { IoRepeat } from "react-icons/io5";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const TestOverview = ({ submittedExercises, userDBTest, test, exercises }) => {
+    const router = useRouter();
     const getEarnedPointsCount = () => {
         let points = 0;
         for (let i = 0; i < submittedExercises.length; i++) {
@@ -62,7 +64,7 @@ const TestOverview = ({ submittedExercises, userDBTest, test, exercises }) => {
                 <Link href={"/test/" + userDBTest.id}>
                     <button className="btn btn-dark mx-1"><GoChecklist className="fs-5" /> Podrobnosti</button>
                 </Link>
-                <Link href={'/test'}>
+                <Link href={'/test'} onClick={router.reload}>
                     <button className="btn btn-success mx-1"><IoRepeat className="fs-5" /> Zkusit další</button>
                 </Link>
             </div>
