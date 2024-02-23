@@ -106,19 +106,33 @@ export default function Test({ createTestSession, canStartTest }) {
 
     return <>
         <div className="container mt-1">
-            <div className="bg-secondary-subtle rounded container m-1 p-1">
-                <FaFilter className="mx-2 fs-4" />
-                <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("MZ")} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
-                <label class={"btn mx-1 " + (filter["types"].includes("MZ") ? "btn-dark" : "btn-secondary")} for="btn-check-1">Maturita</label>
-                <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("PZ")} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
-                <label class={"btn mx-1 " + (filter["types"].includes("PZ") ? "btn-dark" : "btn-secondary")} for="btn-check-2">Přijímačky</label>
-                |
-                <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("CJL")} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
-                <label class={"btn mx-1 " + (filter["subjects"].includes("CJL") ? "btn-dark" : "btn-secondary")} for="btn-check-3">Čeština</label>
-                <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("MAT")} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
-                <label class={"btn mx-1 " + (filter["subjects"].includes("MAT") ? "btn-dark" : "btn-secondary")} for="btn-check-4">Matematika</label>
-                <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("ANJ")} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
-                <label class={"btn mx-1 " + (filter["subjects"].includes("ANJ") ? "btn-dark" : "btn-secondary")} for="btn-check-5">Angličtina</label>
+            <div className="bg-secondary-subtle rounded m-1 p-1 d-flex justify-content-between align-items-center">
+                <div>
+                    <FaFilter className="mx-2 fs-4" />
+                    <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("MZ")} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
+                    <label class={"btn mx-1 my-1 " + (filter["types"].includes("MZ") ? "btn-dark" : "btn-secondary")} for="btn-check-1">Maturita</label>
+                    <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("PZ")} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
+                    <label class={"btn mx-1 my-1 " + (filter["types"].includes("PZ") ? "btn-dark" : "btn-secondary")} for="btn-check-2">Přijímačky</label>
+                    |
+                    <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("CJL")} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
+                    <label class={"btn mx-1 my-1 " + (filter["subjects"].includes("CJL") ? "btn-dark" : "btn-secondary")} for="btn-check-3">Čeština</label>
+                    <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("MAT")} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
+                    <label class={"btn mx-1 my-1 " + (filter["subjects"].includes("MAT") ? "btn-dark" : "btn-secondary")} for="btn-check-4">Matematika</label>
+                    <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("ANJ")} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
+                    <label class={"btn mx-1 my-1 " + (filter["subjects"].includes("ANJ") ? "btn-dark" : "btn-secondary")} for="btn-check-5">Angličtina</label>
+                </div>
+                <span className="me-1 fst-italic">Výsledky pro {filter["types"].map((type, index) => (
+                    <span key={type}>{getNameByShortcut(type)}
+                        {filter["types"].length === index + 1 ? "" : <span> a </span>}
+                    </span>
+                ))}
+                    {filter["subjects"].map((subject, index) => (
+                        <span key={subject}>
+                            {index == 0 ? <span> z </span> : <span>, z </span>}
+                            {getNameByShortcut(subject)}
+                        </span>
+                    ))}
+                </span>
             </div>
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
