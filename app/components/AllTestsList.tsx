@@ -3,8 +3,8 @@
 import { supabase } from "@/api";
 import { FaArrowRight, FaCube } from "react-icons/fa";
 import { LiaHourglassStartSolid } from "react-icons/lia";
+import { FaFilter } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { Value } from "sass";
 
 interface Test {
     id: number,
@@ -107,6 +107,7 @@ export default function Test({ createTestSession, canStartTest }) {
     return <>
         <div className="container mt-1">
             <div className="bg-secondary-subtle rounded container m-1 p-1">
+                <FaFilter className="mx-2 fs-4" />
                 <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("MZ")} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
                 <label class={"btn mx-1 " + (filter["types"].includes("MZ") ? "btn-dark" : "btn-secondary")} for="btn-check-1">Maturita</label>
                 <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("PZ")} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
