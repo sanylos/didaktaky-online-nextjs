@@ -62,3 +62,19 @@ export const validateAnswer = (exercise: any, answer: Array<string>) => {
         }
     }
 }
+
+export const getTestMaxPoints = (test, exercises) => {
+    let maxPoints = 0;
+    for (let i = 0; i < test.exerciseCount; i++) {
+        maxPoints += exercises[i].points;
+    }
+    return maxPoints;
+}
+
+export const getTestTotalPoints = (test, exercises, answers) => {
+    let totalPoints = 0;
+    for (let i = 0; i < test.exerciseCount; i++) {
+        totalPoints += validateAnswer(exercises[i], answers[i]);
+    }
+    return totalPoints;
+}

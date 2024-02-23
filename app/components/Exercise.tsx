@@ -70,6 +70,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                 type="radio"
                                 name="exerciseOptions"
                                 value={index}
+                                checked={answer[0] === index.toString()}
                                 onChange={(e) => handleAnswer(0, e.target.value)}
                             />
                             <label className={"btn text-start fw-normal mb-1 "
@@ -104,6 +105,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                     id={"input" + index}
                                     value="ANO"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
+                                    checked={answer[index] == "ANO"}
                                     disabled={isAnswered}
                                 />
                                 <input type="radio"
@@ -112,6 +114,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                     id={"input" + index}
                                     value="NE"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
+                                    checked={answer[index] == "NE"}
                                     disabled={isAnswered}
                                 />
                             </div>
