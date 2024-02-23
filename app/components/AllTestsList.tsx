@@ -4,6 +4,7 @@ import { supabase } from "@/api";
 import { FaArrowRight, FaCube } from "react-icons/fa";
 import { LiaHourglassStartSolid } from "react-icons/lia";
 import { useEffect, useState } from "react";
+import { Value } from "sass";
 
 interface Test {
     id: number,
@@ -19,8 +20,8 @@ export default function Test({ createTestSession, canStartTest }) {
     const [availableTests, setAvailableTests] = useState<Array<Test>>([]);
     const [groupedTests, setGroupedTests] = useState<any>(null);
     const [filter, setFilter] = useState({
-        subjects: [],
-        types: [],
+        subjects: ["CJL", "MAT", "ANJ"],
+        types: ["MZ", "PZ"],
     });
 
     const fetchAvailableTests = async () => {
@@ -105,18 +106,16 @@ export default function Test({ createTestSession, canStartTest }) {
 
     return <>
         <div className="container mt-1">
-            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("MZ")} value="MZ" class="btn-check" id="btn-check-1" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-1">Maturita</label>
-
-            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("types", e.target.value)} checked={filter["types"].includes("PZ")} value="PZ" class="btn-check" id="btn-check-2" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-2">Přijímačky</label>
             |
-            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("CJL")} value="CJL" class="btn-check" id="btn-check-3" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-3">Čeština</label>
-
-            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("MAT")} value="MAT" class="btn-check" id="btn-check-4" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-4">Matematika</label>
-            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
+            <input type="checkbox" onClick={e => handleFilter("subjects", e.target.value)} checked={filter["subjects"].includes("ANJ")} value="ANJ" class="btn-check" id="btn-check-5" autocomplete="off" />
             <label class="btn mx-1" for="btn-check-5">Angličtina</label>
             <div className="">
                 {groupedTests && Object.keys(groupedTests).map(type => (
