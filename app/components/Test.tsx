@@ -6,19 +6,6 @@ import { MdAccessAlarms } from "react-icons/md";
 const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     const [isTimerVisible, setIsTimerVisible] = useState(true);
-    /*const [answers, setAnswers] = useState([]);
-    const initializeAnswers = () => {
-        let answersArray = [];
-        for (let i = 0; i < exercises.length; i++) {
-            let filledArray = Array(exercises[i].correct_answer.length).fill("");
-            answersArray[i] = filledArray;
-        }
-        setAnswers(answersArray);
-    }
-    useEffect(() => {
-        initializeAnswers();
-    }, [])
-*/
     const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
         let answerArray = [...answers];
         answerArray[currentExerciseIndex][index] = exerciseAnswer;
@@ -38,9 +25,9 @@ const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
                 <div className="bg-secondary text-light rounded">
                     <div onClick={e => setIsTimerVisible(!isTimerVisible)} className="bg-danger text-end w-auto container rounded-5 px-2 py-1 d-flex align-items-center" style={{ position: "absolute", right: "0.25rem" }}>
                         {isTimerVisible ?
-                            <span style={{cursor: "pointer"}}>{(Math.floor(timeLeft / 60))}m {timeLeft % 60}s</span>
+                            <span style={{ cursor: "pointer" }}>{(Math.floor(timeLeft / 60))}m {timeLeft % 60}s</span>
                             :
-                            <MdAccessAlarms style={{cursor: "pointer"}} />
+                            <MdAccessAlarms style={{ cursor: "pointer" }} />
                         }
                     </div>
                     <Exercise exercise={exercises[currentExerciseIndex]} answer={answers[currentExerciseIndex]} handleAnswer={handleAnswer} isAnswered={false} />
