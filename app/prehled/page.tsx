@@ -2,10 +2,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUser } from "../UserContext";
+import { getNameByShortcut } from "../utils/shortcutHandler";
 
 const Prehled = () => {
     const { userData } = useUser();
-    const [exercises, setExercises] = useState([]);
+    const [tests, setTests] = useState([]);
 
     async function getData() {
         if (userData) {
@@ -14,16 +15,41 @@ const Prehled = () => {
                     method: 'GET',
                     next: { revalidate: 30 }
                 })
-            const data = await res.json();
+            const { data } = await res.json();
             return data;
         }
     }
     useEffect(() => {
-        getData().then(data => setExercises(data));
+        getData().then(data => setTests(data));
+
     }, [userData])
 
     return <div>
-        {JSON.stringify(exercises)}
+        <div>
+            <span>Moje testy</span>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">TYP TESTU</th>
+                        <th scope="col">PŘEDMĚT</th>
+                        <th scope="col">ZÍSKÁNO/MAXIMUM BODŮ</th>
+                        <th scope="col">ČAS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tests && tests.map((test, index) => (
+                        <tr key={index}>
+                            <td>{test.id}</td>
+                            <td>{getNameByShortcut(test.type)}</td>
+                            <td>{getNameByShortcut(test.subject)}</td>
+                            <td>{test.points}/{test.maxPoints}</td>
+                            <td>{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime())/60000).toFixed(1)} min</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     </div>
 }
 
