@@ -25,9 +25,9 @@ const Prehled = () => {
     }, [userData])
 
     return <div>
-        <div>
-            <span>Moje testy</span>
-            <table className="table">
+        <div className="container bg-secondary-subtle mt-1 rounded">
+            <div className="fs-3 m-1">Moje testy</div>
+            <table className="table table-secondary table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
