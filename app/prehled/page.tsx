@@ -8,17 +8,19 @@ const Prehled = () => {
     const [exercises, setExercises] = useState([]);
 
     async function getData() {
-        const res = await fetch('/api/user/' + userData.user.id + '/tests',
-            {
-                method: 'GET',
-                next: { revalidate: 30 }
-            })
-        const data = await res.json();
-        return data;
+        if (userData) {
+            const res = await fetch('/api/user/' + userData.user.id + '/tests',
+                {
+                    method: 'GET',
+                    next: { revalidate: 30 }
+                })
+            const data = await res.json();
+            return data;
+        }
     }
     useEffect(() => {
         getData().then(data => setExercises(data));
-    }, [])
+    }, [userData])
 
     return <div>
         {JSON.stringify(exercises)}
