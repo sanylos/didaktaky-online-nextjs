@@ -27,7 +27,7 @@ const Prehled = () => {
 
     return <div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-            <div className="fs-3 m-1 fw-bold d-flex align-items-center"><GrDocumentUser className="me-2 fs-5" /> Vaše testy</div>
+            <div className="d-flex align-items-center"><GrDocumentUser className="me-2 fs-5" /><span className="fw-bold fs-3">Vaše testy</span><span className="ms-1 fs-5">({tests?.length})</span></div>
             <div className="table-responsive">
                 <table className="table table-secondary table-striped table-hover">
                     <thead>
