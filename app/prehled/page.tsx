@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
+import { GrDocumentUser } from "react-icons/gr";
 
 const Prehled = () => {
     const { userData } = useUser();
@@ -25,8 +26,8 @@ const Prehled = () => {
     }, [userData])
 
     return <div>
-        <div className="container bg-secondary-subtle mt-1 rounded">
-            <div className="fs-3 m-1">Moje testy</div>
+        <div className="container bg-secondary-subtle mt-1 rounded p-2">
+            <div className="fs-3 m-1 fw-bold d-flex align-items-center"><GrDocumentUser className="me-2 fs-5" /> Vaše testy</div>
             <table className="table table-secondary table-striped table-hover">
                 <thead>
                     <tr>
