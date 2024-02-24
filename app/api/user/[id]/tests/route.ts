@@ -8,7 +8,8 @@ export async function GET(request: Request, context: any) {
     const { data, error } = await supabase
         .from('userTests')
         .select('*')
-        .eq('user_id', params.id);
+        .eq('user_id', params.id)
+        .order('created_at', {ascending: false})
 
     if (error) {
         return NextResponse.error(new Error("Failed to fetch data."));
