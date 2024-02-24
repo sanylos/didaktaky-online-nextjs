@@ -5,7 +5,7 @@ import { FaArrowRight, FaCube } from "react-icons/fa";
 import { LiaHourglassStartSolid } from "react-icons/lia";
 import { FaFilter } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { getNameByShortcut } from "../utils/shortCutHandler";
+import { getNameByShortcut } from "../utils/shortcutHandler";
 
 interface Test {
     id: number,
