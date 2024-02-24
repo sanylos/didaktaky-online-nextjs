@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
 import { GrDocumentUser } from "react-icons/gr";
+import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 
 const Prehled = () => {
     const { userData } = useUser();
@@ -37,6 +39,7 @@ const Prehled = () => {
                             <th scope="col">PŘEDMĚT</th>
                             <th scope="col">ZÍSKÁNO/MAXIMUM BODŮ</th>
                             <th scope="col">ČAS</th>
+                            <td scope="col"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +50,7 @@ const Prehled = () => {
                                 <td>{getNameByShortcut(test.subject)}</td>
                                 <td>{test.points}/{test.maxPoints}</td>
                                 <td>{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</td>
+                                <td><Link href={'/test/' + test.id}><button className="btn btn-secondary btn-sm"><FaArrowRight /></button></Link></td>
                             </tr>
                         ))}
                     </tbody>
