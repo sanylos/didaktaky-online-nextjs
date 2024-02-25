@@ -13,7 +13,7 @@ const Prehled = () => {
 
     async function getData() {
         if (userData) {
-            const res = await fetch('/api/user/' + userData.user.id + '/tests',
+            const res = await fetch('/api/user/' + userData.user.id + '/tests?range=4',
                 {
                     method: 'GET',
                     next: { revalidate: 30 }
