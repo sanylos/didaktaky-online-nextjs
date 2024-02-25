@@ -36,7 +36,16 @@ const Prehled = () => {
                     <div key={test.id} className="me-1">
                         <div className="card bg-secondary-subtle border-secondary shadow-lg" style={{ width: '20rem' }}>
                             <div className="card-body">
-                                <h5 className="card-title">Test {test.id}</h5>
+                                <div className="card-title d-flex justify-content-between">
+                                    <div className="">
+                                        <span className="fs-5">Test</span>
+                                        <span class="badge text-bg-secondary">#{test.id}</span>
+                                    </div>
+                                    <div className="text-end fs-5">
+                                        <span class="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
+                                        <span class="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
+                                    </div>
+                                </div>
                                 <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                 <a href="#" className="btn btn-primary">Go somewhere</a>
                             </div>
