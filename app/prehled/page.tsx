@@ -46,8 +46,12 @@ const Prehled = () => {
                                         <span class="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
                                     </div>
                                 </div>
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" className="btn btn-primary">Go somewhere</a>
+                                <div className="d-flex flex-column">
+                                    <div>
+                                        <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
+                                    </div>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
                             </div>
                         </div>
                     </div>
