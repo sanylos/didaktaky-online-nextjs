@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
 import { LuHistory } from "react-icons/lu";
-import { FaArrowRight } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
 
 const Prehled = () => {
@@ -47,10 +47,14 @@ const Prehled = () => {
                                     </div>
                                 </div>
                                 <div className="d-flex flex-column">
-                                    <div>
+                                    <div className="row">
                                         <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
+                                        <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
                                     </div>
-                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                    <div className="d-flex justify-content-between">
+                                        <button className="btn btn-primary">Public</button>
+                                        <Link href={'/test/' + test.id}><button className="btn btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
