@@ -5,6 +5,7 @@ import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
 import { LuHistory } from "react-icons/lu";
 import { IoIosArrowForward } from "react-icons/io";
+import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import Link from "next/link";
 
 const Prehled = () => {
@@ -52,7 +53,10 @@ const Prehled = () => {
                                         <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
                                     </div>
                                     <div className="d-flex justify-content-between">
-                                        <button className="btn btn-primary">Public</button>
+                                        <div>
+                                            <span className="fs-4">{test.isPublic ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                            {test.isPublic ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
+                                        </div>
                                         <Link href={'/test/' + test.id}><button className="btn btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
                                     </div>
                                 </div>
