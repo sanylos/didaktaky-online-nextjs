@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
-import { GrDocumentUser } from "react-icons/gr";
+import { LuHistory } from "react-icons/lu";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
@@ -13,12 +13,13 @@ const Prehled = () => {
 
     async function getData() {
         if (userData) {
-            const res = await fetch('/api/user/' + userData.user.id + '/tests?range=4',
+            const res = await fetch('/api/user/' + userData.user.id + '/tests?range=3',
                 {
                     method: 'GET',
                     next: { revalidate: 30 }
                 })
             const { data } = await res.json();
+            console.log(data);
             return data;
         }
     }
@@ -29,8 +30,31 @@ const Prehled = () => {
 
     return <div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-            <div className="d-flex align-items-center"><GrDocumentUser className="me-2 fs-5" /><span className="fw-bold fs-3">Vaše testy</span><span className="ms-1 fs-5">({tests?.length})</span></div>
-            <div className="table-responsive">
+            <div className="d-flex align-items-center"><LuHistory className="me-2 fs-4" /><span className="fw-bold fs-4">Poslední vyplněné testy</span></div>
+            <div className="d-flex flex-nowrap" style={{ overflowX: 'auto' }}>
+                {tests && tests.map((test, index) => (
+                    <div key={test.id} className="me-1">
+                        <div className="card bg-secondary-subtle border-secondary shadow-lg" style={{ width: '20rem' }}>
+                            <div className="card-body">
+                                <h5 className="card-title">Test {test.id}</h5>
+                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" className="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                <div className="me-1">
+                    <div className="card" style={{ width: '20rem' }}>
+                        <div className="card-body">
+                            <h5 className="card-title">Special title treatment</h5>
+                            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" className="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {/*<div className="table-responsive">
                 <table className="table table-secondary table-striped table-hover">
                     <thead>
                         <tr>
@@ -55,7 +79,7 @@ const Prehled = () => {
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div>*/}
         </div>
     </div>
 }
