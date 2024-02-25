@@ -6,26 +6,26 @@ import { getNameByShortcut } from "../utils/shortcutHandler";
 import { LuHistory } from "react-icons/lu";
 import { IoIosArrowForward } from "react-icons/io";
 import { HiLockClosed, HiLockOpen } from "react-icons/hi";
+import { supabase } from "@/api";
 import Link from "next/link";
 
 const Prehled = () => {
     const { userData } = useUser();
     const [tests, setTests] = useState([]);
 
-    async function getData() {
+    async function getUserTests() {
         if (userData) {
-            const res = await fetch('/api/user/' + userData.user.id + '/tests?range=3',
-                {
-                    method: 'GET',
-                    next: { revalidate: 30 }
-                })
-            const { data } = await res.json();
-            console.log(data);
+            const { data, error } = await supabase
+                .from('userTests')
+                .select('*')
+                .eq('user_id', userData.user.id)
+                .order('created_at', { ascending: false })
+                .range(0, 3)
             return data;
         }
     }
     useEffect(() => {
-        getData().then(data => setTests(data));
+        getUserTests().then(data => setTests(data));
 
     }, [userData])
 
