@@ -40,11 +40,11 @@ const Prehled = () => {
                                 <div className="card-title d-flex justify-content-between">
                                     <div className="">
                                         <span className="fs-5">Test</span>
-                                        <span class="badge text-bg-secondary">#{test.id}</span>
+                                        <span className="badge text-bg-secondary">#{test.id}</span>
                                     </div>
                                     <div className="text-end fs-5">
-                                        <span class="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
-                                        <span class="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
+                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
+                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
                                     </div>
                                 </div>
                                 <div className="d-flex flex-column">
