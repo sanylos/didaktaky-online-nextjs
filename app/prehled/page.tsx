@@ -54,8 +54,8 @@ const Prehled = () => {
                                     </div>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="">
-                                            <span className="fs-6">{test.isPublic ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
-                                            {test.isPublic ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
+                                            <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                            {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
                                         </div>
                                         <Link href={'/test/' + test.id}><button className="btn btn-sm btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
                                     </div>
