@@ -64,6 +64,10 @@ const UserTestPage = ({ params }: any) => {
                         </div>
                     }
                     {JSON.stringify(exercises)}
+                    {exercises?.length > 0 ?
+                        <div>exercises</div>
+                        :
+                        <div>Loading...</div>}
                 </div>
                 :
                 <div>
