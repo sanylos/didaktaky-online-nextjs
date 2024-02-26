@@ -27,13 +27,17 @@ const UserTestPage = ({ params }: any) => {
         if (test.id) {
             const { data, error } = await supabase
                 .from('userAnswers')
-                .select('*')
+                .select(`
+                *,
+                exercises (*)
+                `)
                 .eq('userTest_id', test.id)
                 .order('generated_at', { ascending: true })
             if (error) {
                 console.log(error);
                 return;
             }
+            console.log(data);
             return data;
         }
     }
@@ -66,10 +70,11 @@ const UserTestPage = ({ params }: any) => {
                         </div>
                     }
                     {exercises?.length > 0 ?
-                        <div>{JSON.stringify(exercises)}
+                        <div>
                             {exercises && exercises.map((exercise, index) => (
                                 <div key={index}>
-                                    {exercise.id}
+                                    <hr />
+                                    <Exercise exercise={exercise.exercises} answer={exercise.answer} handleAnswer={() => { }} isAnswered={true} />
                                 </div>
                             ))}
 
