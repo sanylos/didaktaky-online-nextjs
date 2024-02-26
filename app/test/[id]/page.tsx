@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { DiVim } from "react-icons/di";
 
 const UserTestPage = ({ params }: any) => {
-    const [test, setTest] = useState();
+    const [tests, setTest] = useState();
     const { userData } = useUser();
     const getTestById = async () => {
         const { data, error } = await supabase
@@ -22,7 +22,7 @@ const UserTestPage = ({ params }: any) => {
         return data;
     }
     useEffect(() => {
-        const data = getTestById().then((data) => { setTest(data) });
+        getTestById().then((data) => { setTest(data) });
     }, [])
     return (
         <div>
@@ -30,9 +30,9 @@ const UserTestPage = ({ params }: any) => {
                 Výsledek testu
                 <span class="ms-1 badge text-bg-secondary">#{params.id}</span>
             </div>
-            {test ?
+            {tests ?
                 <div>
-                    {JSON.stringify(test)}
+                    {}
                 </div>
                 :
                 <div>
