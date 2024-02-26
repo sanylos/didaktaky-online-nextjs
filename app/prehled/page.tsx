@@ -52,12 +52,12 @@ const Prehled = () => {
                                         <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
                                         <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
                                     </div>
-                                    <div className="d-flex justify-content-between">
-                                        <div>
-                                            <span className="fs-4">{test.isPublic ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="">
+                                            <span className="fs-6">{test.isPublic ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
                                             {test.isPublic ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
                                         </div>
-                                        <Link href={'/test/' + test.id}><button className="btn btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
+                                        <Link href={'/test/' + test.id}><button className="btn btn-sm btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
                                     </div>
                                 </div>
                             </div>
