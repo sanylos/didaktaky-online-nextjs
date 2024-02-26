@@ -5,7 +5,7 @@ import { supabase } from "@/api";
 import { useUser } from "@/app/UserContext";
 import { getNameByShortcut } from "@/app/utils/shortcutHandler";
 import { useEffect, useState } from "react";
-import { DiVim } from "react-icons/di";
+import Exercise from "@/app/components/Exercise";
 
 const UserTestPage = ({ params }: any) => {
     const [test, setTest] = useState({});
@@ -38,9 +38,11 @@ const UserTestPage = ({ params }: any) => {
         }
     }
     useEffect(() => {
-        getTestById().then((data) => { setTest(data) });
-        getExercisesByTestId().then((data) => { setExercises(data) });
+        getTestById().then((data) => { setTest(data); });
     }, [])
+    useEffect(() => {
+        getExercisesByTestId().then((data) => { setExercises(data) });
+    }, [test])
     return (
         <div>
             <div className="fs-3 m-2 d-flex justify-content-between">
@@ -63,9 +65,15 @@ const UserTestPage = ({ params }: any) => {
                             <div>Čas: <span className="fw-bold">{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span></div>
                         </div>
                     }
-                    {JSON.stringify(exercises)}
                     {exercises?.length > 0 ?
-                        <div>exercises</div>
+                        <div>{JSON.stringify(exercises)}
+                            {exercises && exercises.map((exercise, index) => (
+                                <div key={index}>
+                                    {exercise.id}
+                                </div>
+                            ))}
+
+                        </div>
                         :
                         <div>Loading...</div>}
                 </div>
