@@ -94,19 +94,18 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     <div>
                         {exercise.answers.map((option, index) => (
                             <div key={index}
-                                className={"row align-items-center mb-1 rounded "
+                                className={"row align-items-center mb-1 p-1 rounded "
                                     + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                     + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                                 }>
-                                <p className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></p>
+                                <span className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
                                 <input type="radio"
                                     className="col radio-anone"
                                     name={"input" + index}
                                     id={"input" + index}
                                     value="ANO"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
-                                    checked={answer[index] == "ANO"}
-                                    disabled={isAnswered}
+                                    checked={answer[index] === "ANO"}
                                 />
                                 <input type="radio"
                                     className="col radio-anone"
@@ -114,8 +113,8 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                                     id={"input" + index}
                                     value="NE"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
-                                    checked={answer[index] == "NE"}
-                                    disabled={isAnswered}
+                                    checked={answer[index] === "NE"}
+                                    
                                 />
                             </div>
                         ))}
