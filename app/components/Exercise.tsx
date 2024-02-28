@@ -75,7 +75,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                             />
                             <label className={"btn text-start fw-normal mb-1 "
                                 + (isAnswered && index == exercise.correct_answer[0] ? "bg-success" : "")
-                                + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
+                                + ((isAnswered && !answer.includes("") && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
                             }
                                 htmlFor={"option" + index}
                                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}
