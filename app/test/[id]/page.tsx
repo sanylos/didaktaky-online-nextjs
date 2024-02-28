@@ -60,6 +60,7 @@ const UserTestPage = ({ params }: any) => {
     useEffect(() => {
         getExercisesByTestId();
     }, [test])
+
     return (
         <div>
             {test ?
@@ -84,7 +85,18 @@ const UserTestPage = ({ params }: any) => {
                                     <div>Čas: <span className="fw-bold">{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span></div>
                                 </div>
                                 <div className="text-end">
-                                    <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                    <span className="fs-6">
+                                        {
+                                            test.is_public ?
+                                                <span>
+                                                    <HiLockOpen className="text-success" />
+                                                </span>
+                                                :
+                                                <span>
+                                                    <HiLockClosed className="text-danger" />
+                                                </span>
+                                        }
+                                    </span>
                                     {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
                                 </div>
                             </div>
