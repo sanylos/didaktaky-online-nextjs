@@ -126,7 +126,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 exercise.type == "Přiřazení" && <div>
                     {exercise.answers.map((option, index) => (
                         <div key={index}
-                            className={"d-flex flex-row align-content-start justify-content-between "
+                            className={"d-flex flex-row align-content-start justify-content-between rounded p-1 my-1 "
                                 + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                 + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                             }>
