@@ -61,6 +61,20 @@ const UserTestPage = ({ params }: any) => {
         getExercisesByTestId();
     }, [test])
 
+    const handleAccessToggle = async () => {
+        const { data, error } = await supabase
+            .from('userTests')
+            .update({
+                is_public: !test.is_public
+            })
+            .eq('id', params.id)
+            .select().single()
+        if (error) console.log(error);
+        if (data) {
+            setTest(data);
+        }
+    }
+
     return (
         <div>
             {test ?
@@ -88,12 +102,12 @@ const UserTestPage = ({ params }: any) => {
                                     <span className="fs-6">
                                         {
                                             test.is_public ?
-                                                <span className="">
+                                            <span onClick={handleAccessToggle} className="btn btn-light shadow me-3">
                                                     <HiLockOpen className="text-success" />
                                                     <span className="text-success fw-bold">Veřejný</span>
                                                 </span>
                                                 :
-                                                <span className="btn btn-light shadow me-3">
+                                                <span onClick={handleAccessToggle} className="btn btn-light shadow me-3">
                                                     <HiLockClosed className="text-danger" />
                                                     <span className="text-danger fw-bold">Soukromý</span>
                                                 </span>
