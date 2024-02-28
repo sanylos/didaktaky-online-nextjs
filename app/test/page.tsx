@@ -63,12 +63,13 @@ const TestPage = () => {
                     'answer': answers[i],
                     'examType': exercises[i].test_type,
                     'examSubject': exercises[i].test_subject,
-                    'exerciseType': exercises[i].type,
+                    'type': exercises[i].type,
                     'exerciseGroup': exercises[i].group,
                     'isCorrect': validateAnswer(exercises[i], answers[i]) === exercises[i].points,
                     'userTest_id': userTestId,
                     'points': [validateAnswer(exercises[i], answers[i]), exercises[i].points],
                 }).select().single();
+            if (error) console.log(error)
             if (data) {
                 let submittedArray = submittedExercises;
                 submittedArray.push(data);
