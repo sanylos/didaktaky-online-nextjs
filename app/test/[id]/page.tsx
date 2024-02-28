@@ -88,16 +88,17 @@ const UserTestPage = ({ params }: any) => {
                                     <span className="fs-6">
                                         {
                                             test.is_public ?
-                                                <span>
+                                                <span className="">
                                                     <HiLockOpen className="text-success" />
+                                                    <span className="text-success fw-bold">Veřejný</span>
                                                 </span>
                                                 :
-                                                <span>
+                                                <span className="btn btn-light shadow me-3">
                                                     <HiLockClosed className="text-danger" />
+                                                    <span className="text-danger fw-bold">Soukromý</span>
                                                 </span>
                                         }
                                     </span>
-                                    {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
                                 </div>
                             </div>
                         }
