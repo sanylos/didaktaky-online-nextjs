@@ -6,6 +6,7 @@ import { useUser } from "@/app/UserContext";
 import { getNameByShortcut } from "@/app/utils/shortcutHandler";
 import { useEffect, useState } from "react";
 import Exercise from "@/app/components/Exercise";
+import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 
 const UserTestPage = ({ params }: any) => {
     const [test, setTest] = useState({});
@@ -75,11 +76,17 @@ const UserTestPage = ({ params }: any) => {
                     </div>
                     <div>
                         {test &&
-                            <div className="ms-3">
-                                <div>Úspěšnost: <span className="fw-bold">{(test.points / test.maxPoints) * 100}%</span></div>
-                                <div>Získáno: <span className="fw-bold">{test.points} bodů</span></div>
-                                <div>Maximum: <span className="fw-bold">{test.maxPoints} bodů</span></div>
-                                <div>Čas: <span className="fw-bold">{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span></div>
+                            <div>
+                                <div className="ms-3">
+                                    <div>Úspěšnost: <span className="fw-bold">{(test.points / test.maxPoints) * 100}%</span></div>
+                                    <div>Získáno: <span className="fw-bold">{test.points} bodů</span></div>
+                                    <div>Maximum: <span className="fw-bold">{test.maxPoints} bodů</span></div>
+                                    <div>Čas: <span className="fw-bold">{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span></div>
+                                </div>
+                                <div className="text-end">
+                                    <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                    {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
+                                </div>
                             </div>
                         }
                         {exercises?.length > 0 ?
