@@ -126,7 +126,7 @@ const UserTestPage = ({ params }: any) => {
                                 {exercises && exercises.map((exercise, index) => (
                                     <div key={index}>
                                         <hr />
-                                        <Exercise exercise={exercise.exercises} answer={exercise.answer} handleAnswer={() => { }} isAnswered={true} />
+                                        <Exercise exercise={exercise.exercises} answer={exercise.answer} handleAnswer={() => { }} isAnswered={true} showExerciseNumber={true} />
                                     </div>
                                 ))}
 
