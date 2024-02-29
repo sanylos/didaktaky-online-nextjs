@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import { supabase } from "@/api";
 import Link from "next/link";
+import { IoIosArrowDropright } from "react-icons/io";
 
 const Prehled = () => {
     const { userData } = useUser();
@@ -20,7 +21,7 @@ const Prehled = () => {
                 .select('*')
                 .eq('user_id', userData.user.id)
                 .order('created_at', { ascending: false })
-                .range(0, 3)
+                .range(0, 20)
             return data;
         }
     }
@@ -31,7 +32,17 @@ const Prehled = () => {
 
     return <div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-            <div className="d-flex align-items-center"><LuHistory className="me-2 fs-4" /><span className="fw-bold fs-4">Poslední vyplněné testy</span></div>
+            <div className="d-flex align-items-center justify-content-between mb-1">
+                <div>
+                    <LuHistory className="me-2 mb-2 fs-4" />
+                    <span className="fw-bold fs-4">Poslední vyplněné testy</span>
+                </div>
+                <div>
+                    <Link href={'/prehled/tests'}>
+                        <span className="text-primary fw-bold btn border-0">Zobrazit vše</span>
+                    </Link>
+                </div>
+            </div>
             <div className="d-flex flex-nowrap" style={{ overflowX: 'auto' }}>
                 {tests && tests.map((test, index) => (
                     <div key={test.id} className="me-1">
@@ -64,43 +75,7 @@ const Prehled = () => {
                         </div>
                     </div>
                 ))}
-                <div className="me-1">
-                    <div className="card" style={{ width: '20rem' }}>
-                        <div className="card-body">
-                            <h5 className="card-title">Special title treatment</h5>
-                            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" className="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            {/*<div className="table-responsive">
-                <table className="table table-secondary table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">TYP TESTU</th>
-                            <th scope="col">PŘEDMĚT</th>
-                            <th scope="col">ZÍSKÁNO/MAXIMUM BODŮ</th>
-                            <th scope="col">ČAS</th>
-                            <td scope="col"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tests && tests.map((test, index) => (
-                            <tr key={index}>
-                                <td>{test.id}</td>
-                                <td>{getNameByShortcut(test.type)}</td>
-                                <td>{getNameByShortcut(test.subject)}</td>
-                                <td>{test.points}/{test.maxPoints}</td>
-                                <td>{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</td>
-                                <td><Link href={'/test/' + test.id}><button className="btn btn-secondary btn-sm"><FaArrowRight /></button></Link></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>*/}
         </div>
     </div>
 }
