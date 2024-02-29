@@ -2,7 +2,7 @@
 import { validateAnswer } from '../utils/answerValidation'
 import './Exercise.scss'
 import DOMPurify from 'dompurify'
-const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
+const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumber = false }) => {
 
     return (
         <div className="container">
@@ -50,9 +50,14 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 </div>
             }
             {
-                exercise.title && <div>
+                showExerciseNumber && exercise.number &&
+                <span className='me-1 fw-bold'>
+                    {exercise.number}.
+                </span>
+            }
+            {
+                exercise.title &&
                     <span className="fw-bold" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.title) }}></span>
-                </div>
             }
             {
                 exercise.description && <div>
