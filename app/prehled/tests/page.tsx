@@ -19,7 +19,7 @@ const TestsPage = () => {
                 .select('*')
                 .eq('user_id', userData.user.id)
                 .order('created_at', { ascending: false })
-                .range(tests.length, tests.length + 10)
+                .range(tests.length, tests.length + 5)
 
             let testsCopy = [...tests];
             testsCopy.push(...data);
