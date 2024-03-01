@@ -49,46 +49,43 @@ const TestsPage = () => {
                                 </span>
                         }
                     </span>
-                    <div class="card my-1 bg-secondary-subtle" style={{ width: "25rem" }}>
-                        <div className="card bg-secondary-subtle border-secondary shadow-lg" style={{ width: '20rem' }}>
-                            <div className="card-body">
-                                <div className="card-title d-flex justify-content-between">
-                                    <div className="">
-                                        <span className="fs-5">Test</span>
-                                        <span className="badge text-bg-secondary">#{test.id}</span>
-                                    </div>
-                                    <div className="text-end fs-5">
-                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
-                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
-                                    </div>
+                    <div className="card bg-secondary-subtle border-secondary shadow-lg" style={{ width: '25rem' }}>
+                        <div className="card-body">
+                            <div className="card-title d-flex justify-content-between">
+                                <div className="">
+                                    <span className="fs-5">Test</span>
+                                    <span className="badge text-bg-secondary">#{test.id}</span>
                                 </div>
-                                <div className="d-flex flex-column">
-                                    <div className="row">
-                                        <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
-                                        <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
-                                    </div>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <div className="">
-                                            <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
-                                            {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
-                                        </div>
-                                        <Link href={'/test/' + test.id}><button className="btn btn-sm btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
-                                    </div>
+                                <div className="text-end fs-5">
+                                    <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
+                                    <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <small class="text-body-secondary">
-                                    <span className="me-1">{days[new Date().getDay()]},</span>
-                                    <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
-                                    <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
-                                    <span className="me-1">
-                                        {new Date(test.submitted_at).getHours()}:
-                                        {new Date(test.submitted_at).getMinutes()}
-                                    </span>
-                                </small>
+                            <div className="d-flex flex-column">
+                                <div className="row">
+                                    <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
+                                    <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
+                                </div>
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div className="">
+                                        <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                        {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
+                                    </div>
+                                    <Link href={'/test/' + test.id}><button className="btn btn-sm btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
+                                </div>
                             </div>
                         </div>
-
+                        <div class="card-footer">
+                            <small class="text-body-secondary">
+                                <span className="me-1">{days[new Date().getDay()]},</span>
+                                <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
+                                <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
+                                <span className="me-1">
+                                    {new Date(test.submitted_at).getHours()}:
+                                    {new Date(test.submitted_at).getMinutes()}
+                                </span>
+                            </small>
+                        </div>
                     </div>
                 </div>
             ))}
