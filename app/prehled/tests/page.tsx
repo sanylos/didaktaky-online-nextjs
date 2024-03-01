@@ -3,6 +3,11 @@
 import { supabase } from "@/api";
 import { useUser } from "@/app/UserContext";
 import { useEffect, useState } from "react";
+import { getNameByShortcut } from "@/app/utils/shortcutHandler";
+import { LuHistory } from "react-icons/lu";
+import { IoIosArrowForward } from "react-icons/io";
+import { HiLockClosed, HiLockOpen } from "react-icons/hi";
+import Link from "next/link";
 
 const TestsPage = () => {
     const [tests, setTests] = useState([]);
@@ -22,15 +27,71 @@ const TestsPage = () => {
             console.log(testsCopy);
         }
     }
+    const days = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
     useEffect(() => {
         getUserTests();
     }, [userData])
     return (
-        <div>{tests && tests.map((test, index) => (
-            <div key={index}>
-                {test.id}
-            </div>
-        ))}
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            {tests && tests.map((test, index) => (
+                <div key={index} className="my-2">
+                    <span>
+                        {
+                            (new Date(test.created_at).getFullYear() === new Date().getFullYear() &&
+                                new Date(test.created_at).getMonth() === new Date().getMonth() &&
+                                new Date(test.created_at).getDay() === new Date().getDay()) ?
+                                <span className="fs-3 fw-bold">Dnes</span>
+                                :
+                                <span className="fs-3 fw-bold">
+                                    <span className="me-1">{days[new Date(test.submitted_at).getDay()].slice(0, 2)}</span>
+                                    <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
+                                    <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
+                                </span>
+                        }
+                    </span>
+                    <div class="card my-1 bg-secondary-subtle" style={{ width: "25rem" }}>
+                        <div className="card bg-secondary-subtle border-secondary shadow-lg" style={{ width: '20rem' }}>
+                            <div className="card-body">
+                                <div className="card-title d-flex justify-content-between">
+                                    <div className="">
+                                        <span className="fs-5">Test</span>
+                                        <span className="badge text-bg-secondary">#{test.id}</span>
+                                    </div>
+                                    <div className="text-end fs-5">
+                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.subject)}</span>
+                                        <span className="badge text-bg-primary fw-normal me-1">{getNameByShortcut(test.type)}</span>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-column">
+                                    <div className="row">
+                                        <span className="card-text">Úspěšnost: {(test.points / test.maxPoints) * 100}%</span>
+                                        <span className="card-text">Čas: {((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span>
+                                    </div>
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="">
+                                            <span className="fs-6">{test.is_public ? <HiLockOpen className="text-success" /> : <HiLockClosed className="text-danger" />}</span>
+                                            {test.is_public ? <span className="text-success fw-bold">Veřejný</span> : <span className="text-danger fw-bold">Soukromý</span>}
+                                        </div>
+                                        <Link href={'/test/' + test.id}><button className="btn btn-sm btn-primary">Podrobnosti <IoIosArrowForward /></button></Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <span className="me-1">{days[new Date().getDay()]},</span>
+                                    <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
+                                    <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
+                                    <span className="me-1">
+                                        {new Date(test.submitted_at).getHours()}:
+                                        {new Date(test.submitted_at).getMinutes()}
+                                    </span>
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            ))}
             <button onClick={getUserTests}>load more</button>
         </div>
     )
