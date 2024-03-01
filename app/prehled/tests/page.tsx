@@ -15,16 +15,22 @@ const TestsPage = () => {
                 .eq('user_id', userData.user.id)
                 .order('created_at', { ascending: false })
                 .range(tests.length, tests.length + 10)
+
             let testsCopy = [...tests];
-            testsCopy.push(data);
+            testsCopy.push(...data);
             setTests(testsCopy);
+            console.log(testsCopy);
         }
     }
     useEffect(() => {
         getUserTests();
     }, [userData])
     return (
-        <div>{JSON.stringify(tests, 2, null)}
+        <div>{tests && tests.map((test, index) => (
+            <div key={index}>
+                {test.id}
+            </div>
+        ))}
             <button onClick={getUserTests}>load more</button>
         </div>
     )
