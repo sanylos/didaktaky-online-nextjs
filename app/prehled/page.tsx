@@ -12,7 +12,7 @@ import { IoIosArrowDropright } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
 const Prehled = () => {
-    const { userData } = useUser();
+    const { userData, logout } = useUser();
     const [tests, setTests] = useState([]);
     const router = useRouter();
 
@@ -44,8 +44,8 @@ const Prehled = () => {
                 </div>
 
                 <div className="">
-                    <button className="btn btn-secondary rounded-pill btn-sm me-1">Přepnout účet</button>
-                    <button className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
+                    <button onClick={() => { logout(); router.push('/auth') }} className="btn btn-secondary rounded-pill btn-sm me-1">Přepnout účet</button>
+                    <button onClick={() => { logout(); router.push('/') }} className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
                 </div>
             </div>
         </div>
