@@ -71,7 +71,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                     {exercise.answers.map((option, index) => (
                         <div key={index}>
                             <input className="btn-check"
-                                id={"option" + index}
+                                //id={"option" + index}
                                 type="radio"
                                 name="exerciseOptions"
                                 value={index}
@@ -107,7 +107,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                                 <input type="radio"
                                     className="col radio-anone"
                                     name={"input" + index}
-                                    id={"input" + index}
+                                    //id={"input" + index}
                                     value="ANO"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
                                     checked={answer[index] === "ANO"}
@@ -115,7 +115,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                                 <input type="radio"
                                     className="col radio-anone"
                                     name={"input" + index}
-                                    id={"input" + index}
+                                    //id={"input" + index}
                                     value="NE"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
                                     checked={answer[index] === "NE"}
