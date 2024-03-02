@@ -34,16 +34,11 @@ const TestsPage = () => {
 
     useEffect(() => {
         function handleScroll() {
-            console.log(window.innerHeight + document.documentElement.scrollTop);
-            console.log(document.documentElement.offsetHeight);
-            console.log(window.innerHeight + document.documentElement.scrollTop ===
-                document.documentElement.offsetHeight)
             if (
                 window.innerHeight + document.documentElement.scrollTop + 1 >
                 document.documentElement.offsetHeight
             ) {
                 getUserTests();
-                console.log(tests.length)
             }
         }
 
