@@ -9,10 +9,12 @@ import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import { supabase } from "@/api";
 import Link from "next/link";
 import { IoIosArrowDropright } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 const Prehled = () => {
     const { userData } = useUser();
     const [tests, setTests] = useState([]);
+    const router = useRouter();
 
     async function getUserTests() {
         if (userData) {
@@ -26,6 +28,10 @@ const Prehled = () => {
         }
     }
     useEffect(() => {
+        console.log(userData);
+        if (!userData) {
+            router.push('/auth');
+        }
         getUserTests().then(data => setTests(data));
 
     }, [userData])
