@@ -2,7 +2,7 @@
 import { validateAnswer } from '../utils/answerValidation'
 import './Exercise.scss'
 import DOMPurify from 'dompurify'
-const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
+const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumber = false }) => {
 
     return (
         <div className="container">
@@ -50,9 +50,14 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 </div>
             }
             {
-                exercise.title && <div>
+                showExerciseNumber && exercise.number &&
+                <span className='me-1 fw-bold'>
+                    {exercise.number}.
+                </span>
+            }
+            {
+                exercise.title &&
                     <span className="fw-bold" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(exercise.title) }}></span>
-                </div>
             }
             {
                 exercise.description && <div>
@@ -66,7 +71,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                     {exercise.answers.map((option, index) => (
                         <div key={index}>
                             <input className="btn-check"
-                                id={"option" + index}
+                                //id={"option" + index}
                                 type="radio"
                                 name="exerciseOptions"
                                 value={index}
@@ -75,7 +80,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                             />
                             <label className={"btn text-start fw-normal mb-1 "
                                 + (isAnswered && index == exercise.correct_answer[0] ? "bg-success" : "")
-                                + ((isAnswered && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
+                                + ((isAnswered && !answer.includes("") && index == answer[0] && index != exercise.correct_answer[0]) ? "bg-danger" : "")
                             }
                                 htmlFor={"option" + index}
                                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}
@@ -88,34 +93,33 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 exercise.type == "Výběr mezi ANO/NE" && <div>
                     <div className="row text-center">
                         <div className="col-10"></div>
-                        <div className="col-1">ANO</div>
-                        <div className="col-1">NE</div>
+                        <div className="col-1">A</div>
+                        <div className="col-1">N</div>
                     </div>
                     <div>
                         {exercise.answers.map((option, index) => (
                             <div key={index}
-                                className={"row align-items-center mb-1 rounded "
+                                className={"row align-items-center mb-1 p-1 rounded "
                                     + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                     + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                                 }>
-                                <p className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></p>
+                                <span className="col-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
                                 <input type="radio"
                                     className="col radio-anone"
                                     name={"input" + index}
-                                    id={"input" + index}
+                                    //id={"input" + index}
                                     value="ANO"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
-                                    checked={answer[index] == "ANO"}
-                                    disabled={isAnswered}
+                                    checked={answer[index] === "ANO"}
                                 />
                                 <input type="radio"
                                     className="col radio-anone"
                                     name={"input" + index}
-                                    id={"input" + index}
+                                    //id={"input" + index}
                                     value="NE"
                                     onChange={(e) => handleAnswer(index, e.target.value)}
-                                    checked={answer[index] == "NE"}
-                                    disabled={isAnswered}
+                                    checked={answer[index] === "NE"}
+                                    
                                 />
                             </div>
                         ))}
@@ -126,7 +130,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered }) => {
                 exercise.type == "Přiřazení" && <div>
                     {exercise.answers.map((option, index) => (
                         <div key={index}
-                            className={"d-flex flex-row align-content-start justify-content-between "
+                            className={"d-flex flex-row align-content-start justify-content-between rounded p-1 my-1 "
                                 + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
                                 + ((isAnswered && answer[index] != exercise.correct_answer[index]) ? "bg-danger" : "")
                             }>

@@ -16,8 +16,8 @@ const Test = ({ exercises, setAnswers, answers, timeLeft }) => {
         <div>
             <div className="d-flex justify-content-between bg-secondary w-auto m-2 rounded" style={{ overflowX: "auto" }}>
                 {Array.from({ length: exercises.length }, (_, i) => (
-                    <div key={i} className="m-1 btn bg-secondary-subtle w-100 text-center">
-                        <span onClick={e => setCurrentExerciseIndex(i)}>{i + 1}</span>
+                    <div key={i} className={"m-1 btn w-100 text-center " + ((!answers[i].includes("") && currentExerciseIndex != i) && " bg-success text-white ") + (currentExerciseIndex == i && " bg-primary text-white ") + (currentExerciseIndex != i && answers[i].includes("") && " bg-light ")}>
+                        <span onClick={() => setCurrentExerciseIndex(i)}>{i + 1}</span>
                     </div>
                 ))}
             </div>
