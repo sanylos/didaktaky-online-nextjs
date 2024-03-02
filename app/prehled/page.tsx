@@ -33,7 +33,7 @@ const Prehled = () => {
     }, [userData])
 
     return <div>
-        <div className="container bg-secondary-subtle mt-1 rounded p-2 d-flex">
+        <div className="container mt-1 rounded p-2 d-flex">
             <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
                 <span className="text-white fs-1">{userData?.user.email.slice(0, 2).toUpperCase()}</span>
             </div>
