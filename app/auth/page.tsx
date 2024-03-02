@@ -4,12 +4,20 @@ import { useEffect, useState, useContext } from "react";
 import "./page.scss"
 import { supabase } from "@/api";
 import { useUser } from '../UserContext';
+import { useRouter } from "next/navigation";
 
 const Auth = () => {
-    const { login, register } = useUser();
+    const { userData, login, register } = useUser();
     const [authType, setAuthType] = useState("login");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+
+    useEffect(() => {
+        if (userData) {
+            router.push('/');
+        }
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
