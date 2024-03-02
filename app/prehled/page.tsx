@@ -33,6 +33,22 @@ const Prehled = () => {
     }, [userData])
 
     return <div>
+        <div className="container bg-secondary-subtle mt-1 rounded p-2 d-flex">
+            <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
+                <span className="text-white fs-1">{userData?.user.email.slice(0, 2).toUpperCase()}</span>
+            </div>
+            <div className="ms-3 d-flex flex-column justify-content-between">
+                <div className="row">
+                    <span className="fs-4 fw-bold">{userData?.user.email.split('@')[0].toUpperCase()}</span>
+                    <span>{userData?.user.email}</span>
+                </div>
+
+                <div className="">
+                    <button className="btn btn-secondary rounded-pill btn-sm me-1">Přepnout účet</button>
+                    <button className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
+                </div>
+            </div>
+        </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
             <div className="d-flex align-items-center justify-content-between mb-1">
                 <div>
