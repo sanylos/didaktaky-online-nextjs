@@ -78,7 +78,7 @@ const TestsPage = () => {
                         <div class="card-footer">
                             <small class="text-body-secondary d-flex justify-content-between">
                                 <div>
-                                    <span className="me-1">{days[new Date().getDay()]},</span>
+                                    <span className="me-1">{days[new Date(test.submitted_at).getDay()]},</span>
                                     <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
                                     <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
                                 </div>
