@@ -98,7 +98,7 @@ const UserTestPage = ({ params }: any) => {
                                     <div>Čas: <span className="fw-bold">{((new Date(test.submitted_at).getTime() - new Date(test.created_at).getTime()) / 60000).toFixed(1)} min</span></div>
                                 </div>
                                 <div className="d-flex justify-content-end">
-                                    <div class="input-group flex-nowrap w-auto me-1">
+                                    <div className="input-group flex-nowrap w-auto me-1">
                                         <span className="btn btn-light shadow"><FaLink className="me-2" /><span className="user-select-all">{window.location.href}</span></span>
                                     </div>
                                     <div className="fs-6">
