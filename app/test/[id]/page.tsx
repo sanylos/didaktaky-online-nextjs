@@ -24,7 +24,6 @@ const UserTestPage = ({ params }: any) => {
             console.log(error);
             return;
         }
-        console.log("TEST:", data)
         return data;
     }
 
@@ -34,7 +33,6 @@ const UserTestPage = ({ params }: any) => {
             let obj = exercisesArray[i];
             obj.exercises.test_subject = test.subject;
         }
-        console.log(exercisesArray);
         setExercises(exercisesArray);
     }
 
@@ -52,7 +50,6 @@ const UserTestPage = ({ params }: any) => {
                 console.log(error);
                 return;
             }
-            console.log(data);
             adjustExerciseObject(data);
         }
     }

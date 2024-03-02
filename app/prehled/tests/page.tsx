@@ -24,7 +24,6 @@ const TestsPage = () => {
             let testsCopy = [...tests];
             testsCopy.push(...data);
             setTests(testsCopy);
-            console.log(testsCopy);
         }
     }
     const days = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
