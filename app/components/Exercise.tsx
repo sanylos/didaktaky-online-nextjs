@@ -93,8 +93,8 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                 exercise.type == "Výběr mezi ANO/NE" && <div>
                     <div className="row text-center">
                         <div className="col-10"></div>
-                        <div className="col-1">ANO</div>
-                        <div className="col-1">NE</div>
+                        <div className="col-1">A</div>
+                        <div className="col-1">N</div>
                     </div>
                     <div>
                         {exercise.answers.map((option, index) => (
