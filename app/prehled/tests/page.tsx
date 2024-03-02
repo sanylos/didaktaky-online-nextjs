@@ -14,6 +14,7 @@ const TestsPage = () => {
     const { userData } = useUser();
     async function getUserTests() {
         if (userData) {
+            console.log("fetching")
             const { data, error } = await supabase
                 .from('userTests')
                 .select('*')
@@ -30,6 +31,29 @@ const TestsPage = () => {
     useEffect(() => {
         getUserTests();
     }, [userData])
+
+    useEffect(() => {
+        function handleScroll() {
+            console.log(window.innerHeight + document.documentElement.scrollTop);
+            console.log(document.documentElement.offsetHeight);
+            console.log(window.innerHeight + document.documentElement.scrollTop ===
+                document.documentElement.offsetHeight)
+            if (
+                window.innerHeight + document.documentElement.scrollTop + 1 >
+                document.documentElement.offsetHeight
+            ) {
+                getUserTests();
+                console.log(tests.length)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [tests]);
+
     return (
         <div className="d-flex flex-column justify-content-center align-items-center">
             {tests && tests.map((test, index) => (
@@ -90,7 +114,6 @@ const TestsPage = () => {
                     </div>
                 </div>
             ))}
-            <button onClick={getUserTests}>load more</button>
         </div>
     )
 }
