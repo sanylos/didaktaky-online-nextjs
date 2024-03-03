@@ -12,14 +12,14 @@ export default function PrehledLayout({
 }>) {
     return (
         <div className="d-flex flex-row">
-            <div className="bg-dark col-2 sidebar">
-                cscscsccscscsc
+            <div className="bg-secondary-subtle col-2 sidebar">
+                <div>Vy</div>
+                <div>Historie testů</div>
+                <div>Historie cvičení</div>
             </div>
-            <div className="bg-secondary col-10 children" style={{maxWidth: '100vw'}}>
+            <div className="col-10 children p-2" style={{ maxWidth: '100vw' }}>
                 {children}
             </div>
-
-
         </div>
     );
 }
