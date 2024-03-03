@@ -1,0 +1,12 @@
+.sidebar {
+    color: red;
+}
+
+@media screen and (max-width: 1000px) {
+    .sidebar {
+        display: none;
+    }
+    .children {
+        width: 100vw;
+    }
+}
