@@ -29,6 +29,10 @@ const Prehled = () => {
     }
 
     useEffect(() => {
+        console.log(userData);
+        if(userData === null) {
+            router.push('/auth');
+        }
         getUserTests().then(data => setTests(data));
     }, [userData])
 
