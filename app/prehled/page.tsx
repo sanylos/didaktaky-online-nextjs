@@ -30,13 +30,13 @@ const Prehled = () => {
 
     useEffect(() => {
         console.log(userData);
-        if(userData === null) {
+        if (userData === null) {
             router.push('/auth');
         }
         getUserTests().then(data => setTests(data));
     }, [userData])
 
-    return <div>
+    return <div className="d-flex flex-column justify-content-center">
         <div className="container mt-1 rounded p-2 d-flex">
             <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
                 <span className="text-white fs-1">{userData?.user.email.slice(0, 2).toUpperCase()}</span>
