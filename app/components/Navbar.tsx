@@ -10,11 +10,11 @@ import { supabase } from '@/api';
 import { stringify } from 'querystring';
 
 const links = [
-    { label: 'Procvičování', href: '/procvicovani' },
-    { label: 'Přehled', href: '/prehled' },
-    { label: 'Generování testů', href: '/test' },
-    { label: 'Učebnice', href: '/ucebnice' },
-    { label: 'Maturitní četba', href: '/cetba' },
+    { label: 'Procvičování', href: 'procvicovani' },
+    { label: 'Přehled', href: 'prehled' },
+    { label: 'Generování testů', href: 'test' },
+    { label: 'Učebnice', href: 'ucebnice' },
+    { label: 'Maturitní četba', href: 'cetba' },
 ];
 
 const Navbar = () => {
@@ -22,7 +22,8 @@ const Navbar = () => {
 
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
-        return path === href;
+        console.log(path.split("/"))
+        return path.split("/").includes(href);
     }
 
     const handleLogout = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
                         <ul className="navbar-nav">
                             {links.map(({ href, label }) => (
                                 <li className="nav-item m-1" key={href}>
-                                    <Link className={`nav-link p-1 rounded ${isLinkActive(href) ? 'active' : ''}`} href={href}>
+                                    <Link className={`nav-link p-1 rounded ${isLinkActive(href) ? 'active' : ''}`} href={"/" + href}>
                                         <span>{label}</span>
                                     </Link>
                                 </li>
