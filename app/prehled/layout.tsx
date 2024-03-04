@@ -92,6 +92,7 @@ export default function PrehledLayout({
                                 </button>
                             </Link>
                         ))}
+                        <hr />
                     </div>
                 ))}
             </div>
