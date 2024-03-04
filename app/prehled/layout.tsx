@@ -4,6 +4,7 @@ import { MdQueryStats } from "react-icons/md";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { RiHistoryFill } from "react-icons/ri";
+import { AiOutlineTrophy } from "react-icons/ai";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -18,33 +19,75 @@ export default function PrehledLayout({
 
     const sidebarLinks = [
         {
-            title: "Váš přehled",
+            title: "Vy",
             href: "/",
-            icon: <MdQueryStats />
+            items: [
+                {
+                    title: "Váš přehled",
+                    href: "/",
+                    icon: <MdQueryStats />
+                },
+                {
+                    title: "Historie testů",
+                    href: "/tests",
+                    icon: <RiHistoryFill />
+                }
+            ]
         },
         {
-            title: "Historie testů",
-            href: "/tests",
-            icon: <RiHistoryFill />
+            title: "Přijímačky",
+            href: "/",
+            items: [
+                {
+                    title: "Úspěšnost cvičení (CJL)",
+                    href: "/exercises",
+                    icon: <AiOutlineTrophy />
+                },
+                {
+                    title: "Úspěšnost cvičení (MAT)",
+                    href: "/exercises",
+                    icon: <AiOutlineTrophy />
+                }
+            ]
+        },
+        {
+            title: "Maturita",
+            href: "/",
+            items: [
+                {
+                    title: "Úspěšnost cvičení (CJL)",
+                    href: "/exercises",
+                    icon: <AiOutlineTrophy />
+                },
+                {
+                    title: "Úspěšnost cvičení (MAT)",
+                    href: "/exercises",
+                    icon: <AiOutlineTrophy />
+                }
+            ]
         }
     ]
 
     return (
         <div className="d-flex flex-row">
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
-                <Link href={"/prehled/"}>
-                    <button className="btn p-2 my-1 fw-bold w-100 text-start">
-                        <span className="me-2">Vy</span>
-                        <IoIosArrowForward className="fs-4" />
-                    </button>
-                </Link>
-                {sidebarLinks.map((link, index) => (
-                    <Link key={index} href={"/prehled" + link.href}>
-                        <button className="btn p-2 my-1">
-                            <span>{link.icon}</span>
-                            <span className="ms-1">{link.title}</span>
-                        </button>
-                    </Link>
+                {sidebarLinks.map((cathegory, index) => (
+                    <div key={index}>
+                        <Link href={"/prehled" + cathegory.href}>
+                            <button className="btn p-2 my-1 text-start fw-bold w-100">
+                                <span className="ms-1">{cathegory.title}</span>
+                                <IoIosArrowForward className="fs-4" />
+                            </button>
+                        </Link>
+                        {cathegory.items.map((link, index) => (
+                            <Link key={index} href={"/prehled" + link.href}>
+                                <button className="btn p-2 my-1 text-start">
+                                    <span>{link.icon}</span>
+                                    <span className="ms-1">{link.title}</span>
+                                </button>
+                            </Link>
+                        ))}
+                    </div>
                 ))}
             </div>
             <div className="col-10 children p-2" style={{ maxWidth: '100vw' }}>
