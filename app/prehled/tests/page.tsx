@@ -65,9 +65,9 @@ const TestsPage = () => {
                                     <span className="fs-3 fw-bold">Dnes</span>
                                     :
                                     <span className="fs-3 fw-bold">
-                                        <span className="me-1">{days[new Date(test.submitted_at).getDay()].slice(0, 2)}</span>
+                                        <span className="me-1">{days[new Date(test.submitted_at).getDay()-1].slice(0, 2)}</span>
                                         <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
-                                        <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
+                                        <span className="me-1">{new Date(test.submitted_at).getMonth()+1}.</span>
                                     </span>
                             }
                         </span>
@@ -100,9 +100,9 @@ const TestsPage = () => {
                             <div className="card-footer">
                                 <small className="text-body-secondary d-flex justify-content-between">
                                     <div>
-                                        <span className="me-1">{days[new Date(test.submitted_at).getDay()]},</span>
+                                        <span className="me-1">{days[new Date(test.submitted_at).getDay()-1]},</span>
                                         <span className="me-1">{new Date(test.submitted_at).getDate()}.</span>
-                                        <span className="me-1">{new Date(test.submitted_at).getMonth()}.</span>
+                                        <span className="me-1">{new Date(test.submitted_at).getMonth()+1}.</span>
                                     </div>
                                     <span className="me-1">
                                         {new Date(test.submitted_at).getHours()}:
