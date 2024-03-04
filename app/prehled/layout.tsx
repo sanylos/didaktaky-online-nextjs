@@ -63,6 +63,11 @@ export default function PrehledLayout({
                     title: "Úspěšnost cvičení (MAT)",
                     href: "/exercises",
                     icon: <AiOutlineTrophy />
+                },
+                {
+                    title: "Úspěšnost cvičení (ANJ)",
+                    href: "/exercises",
+                    icon: <AiOutlineTrophy />
                 }
             ]
         }
