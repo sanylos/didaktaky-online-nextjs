@@ -22,7 +22,6 @@ const Navbar = () => {
 
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
-        console.log(path.split("/"))
         return path.split("/").includes(href);
     }
 
