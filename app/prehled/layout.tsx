@@ -31,7 +31,7 @@ export default function PrehledLayout({
 
     return (
         <div className="d-flex flex-row">
-            <div className="bg-secondary-subtle col-2 sidebar d-flex flex-column p-2 min-vh-100">
+            <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
                 <Link href={"/prehled/"}>
                     <button className="btn p-2 my-1 fw-bold w-100 text-start">
                         <span className="me-2">Vy</span>
