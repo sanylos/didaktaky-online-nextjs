@@ -40,12 +40,12 @@ export default function PrehledLayout({
             items: [
                 {
                     title: "Úspěšnost cvičení (CJL)",
-                    href: "/exercises",
+                    href: "/cviceni/prehled?zkouska=PZ&predmet=CJL",
                     icon: <AiOutlineTrophy />
                 },
                 {
                     title: "Úspěšnost cvičení (MAT)",
-                    href: "/exercises",
+                    href: "/cviceni/prehled?zkouska=PZ&predmet=MAT",
                     icon: <AiOutlineTrophy />
                 }
             ]
@@ -56,17 +56,17 @@ export default function PrehledLayout({
             items: [
                 {
                     title: "Úspěšnost cvičení (CJL)",
-                    href: "/exercises",
+                    href: "/cviceni/prehled?zkouska=MZ&predmet=CJL",
                     icon: <AiOutlineTrophy />
                 },
                 {
                     title: "Úspěšnost cvičení (MAT)",
-                    href: "/exercises",
+                    href: "/cviceni/prehled?zkouska=MZ&predmet=MAT",
                     icon: <AiOutlineTrophy />
                 },
                 {
                     title: "Úspěšnost cvičení (ANJ)",
-                    href: "/exercises",
+                    href: "/cviceni/prehled?zkouska=MZ&predmet=ANJ",
                     icon: <AiOutlineTrophy />
                 }
             ]
