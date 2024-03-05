@@ -25,7 +25,7 @@ const CviceniPrehledPage = () => {
     if (userData) {
       fetchExerciseGroups();
     }
-  }, [userData])
+  }, [userData, searchParams])
   return (
     <div>{JSON.stringify(data)}
     
