@@ -7,6 +7,7 @@ export const sidebarLinks = [
     {
         title: "Vy",
         href: "/",
+        onlySidebarLink: true,
         items: [
             {
                 title: "Váš přehled",
@@ -23,6 +24,7 @@ export const sidebarLinks = [
     {
         title: "Přijímačky",
         href: "/",
+        onlySidebarLink: false,
         items: [
             {
                 title: "Úspěšnost cvičení (CJL)",
@@ -39,6 +41,7 @@ export const sidebarLinks = [
     {
         title: "Maturita",
         href: "/",
+        onlySidebarLink: false,
         items: [
             {
                 title: "Úspěšnost cvičení (CJL)",
