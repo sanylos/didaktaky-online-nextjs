@@ -101,19 +101,21 @@ const Prehled = () => {
             </div>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-            {sidebarLinks.filter(cathegory => !cathegory.onlySidebarLink).map((cathegory, index) => (
-                <div key={index}>
-                    {cathegory.items.map((link, index) => (
-                        <Link key={index} href={"/prehled" + link.href}>
-                            <button className="btn p-2 my-1 text-start">
-                                <span>{link.icon}</span>
-                                <span className="ms-1">{link.title}</span>
-                            </button>
-                        </Link>
-                    ))}
-                </div>
+            <div className="d-flex row justify-content-between">
+                {sidebarLinks.filter(cathegory => !cathegory.onlySidebarLink).map((cathegory, index) => (
+                    <div key={index}>
+                        {cathegory.items.map((link, index) => (
+                            <Link key={index} href={"/prehled" + link.href}>
+                                <button className="btn btn-light fs-5 me-1 p-2 my-1 text-start">
+                                    <span>{link.icon}</span>
+                                    <span className="ms-1">{link.title} - {cathegory.title}</span>
+                                </button>
+                            </Link>
+                        ))}
+                    </div>
 
-            ))}
+                ))}
+            </div>
         </div>
     </div>
 }
