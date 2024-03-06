@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Chart } from 'chart.js/auto'
 import { FaDiagramSuccessor } from 'react-icons/fa6'
+import { getNameByShortcut } from '@/app/utils/shortcutHandler'
 
 const CviceniPrehledPage = () => {
   const [data, setData] = useState();
@@ -93,7 +94,16 @@ const CviceniPrehledPage = () => {
 
   return (
     <div>
-      <canvas ref={chartCanvas}></canvas>
+      <div className='d-flex justify-content-between'>
+        <span className='fs-3 fw-bold'>Úspěšnost cvičení</span>
+        <div className='text-end fs-4'>
+          <span className='badge text-bg-primary fw-normal me-1'>{getNameByShortcut(examType)}</span>
+          <span className='badge text-bg-primary fw-normal'>{getNameByShortcut(subject)}</span>
+        </div>
+      </div>
+      <div>
+        <canvas ref={chartCanvas}></canvas>
+      </div>
     </div>
   )
 }
