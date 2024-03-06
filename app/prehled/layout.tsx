@@ -5,6 +5,7 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { RiHistoryFill } from "react-icons/ri";
 import { AiOutlineTrophy } from "react-icons/ai";
+import { sidebarLinks } from "./sidebarLinks";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -16,62 +17,6 @@ export default function PrehledLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
-    const sidebarLinks = [
-        {
-            title: "Vy",
-            href: "/",
-            items: [
-                {
-                    title: "Váš přehled",
-                    href: "/",
-                    icon: <MdQueryStats />
-                },
-                {
-                    title: "Historie testů",
-                    href: "/tests",
-                    icon: <RiHistoryFill />
-                }
-            ]
-        },
-        {
-            title: "Přijímačky",
-            href: "/",
-            items: [
-                {
-                    title: "Úspěšnost cvičení (CJL)",
-                    href: "/cviceni/prehled?zkouska=PZ&predmet=CJL",
-                    icon: <AiOutlineTrophy />
-                },
-                {
-                    title: "Úspěšnost cvičení (MAT)",
-                    href: "/cviceni/prehled?zkouska=PZ&predmet=MAT",
-                    icon: <AiOutlineTrophy />
-                }
-            ]
-        },
-        {
-            title: "Maturita",
-            href: "/",
-            items: [
-                {
-                    title: "Úspěšnost cvičení (CJL)",
-                    href: "/cviceni/prehled?zkouska=MZ&predmet=CJL",
-                    icon: <AiOutlineTrophy />
-                },
-                {
-                    title: "Úspěšnost cvičení (MAT)",
-                    href: "/cviceni/prehled?zkouska=MZ&predmet=MAT",
-                    icon: <AiOutlineTrophy />
-                },
-                {
-                    title: "Úspěšnost cvičení (ANJ)",
-                    href: "/cviceni/prehled?zkouska=MZ&predmet=ANJ",
-                    icon: <AiOutlineTrophy />
-                }
-            ]
-        }
-    ]
 
     return (
         <div className="d-flex flex-row">
