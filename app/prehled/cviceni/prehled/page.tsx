@@ -77,6 +77,11 @@ const CviceniPrehledPage = () => {
         },
         options: {
           indexAxis: 'y',
+          scales: {
+            x: {
+              max: 100
+            }
+          }
         }
       })
       return () => {
