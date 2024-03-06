@@ -2,9 +2,9 @@
 "use client"
 import { supabase } from '@/api'
 import { useUser } from '@/app/UserContext'
-import { unique } from 'next/dist/build/utils'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Chart } from 'chart.js/auto'
 
 const CviceniPrehledPage = () => {
   const [data, setData] = useState();
@@ -31,7 +31,11 @@ const CviceniPrehledPage = () => {
       if (incorrectAnswerGroup) { incorrectGroup.push(incorrectAnswerGroup.count); } else incorrectGroup.push(0);
     }))
 
-    setGroupedData({ labels: uniqueLabels, correctCounts: correctGroup, incorrectCounts: incorrectGroup })
+    let successRates = []
+    for (let i = 0; i < correctGroup.length; i++) {
+      successRates.push((100 / (correctGroup[i] + incorrectGroup[i])) * correctGroup[i]);
+    }
+    setGroupedData({ labels: uniqueLabels, successRates, correctCounts: correctGroup, incorrectCounts: incorrectGroup })
   }
 
   const fetchExerciseGroups = async () => {
@@ -56,9 +60,31 @@ const CviceniPrehledPage = () => {
     }
   }, [data])
 
+  const chartCanvas = useRef(null);
+  useEffect(() => {
+    if (groupedData) {
+      const ctx = chartCanvas.current;
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: groupedData.labels,
+          datasets: [{
+            label: '% správných odpovědí',
+            data: groupedData.successRates,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+        }
+      })
+    }
+  }, [groupedData])
+
   return (
-    <div>{JSON.stringify(data)}
+    <div>
       {JSON.stringify(groupedData)}
+      <canvas ref={chartCanvas}></canvas>
     </div>
   )
 }
