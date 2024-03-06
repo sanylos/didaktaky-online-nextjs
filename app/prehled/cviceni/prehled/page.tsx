@@ -5,6 +5,7 @@ import { useUser } from '@/app/UserContext'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Chart } from 'chart.js/auto'
+import { FaDiagramSuccessor } from 'react-icons/fa6'
 
 const CviceniPrehledPage = () => {
   const [data, setData] = useState();
@@ -64,7 +65,7 @@ const CviceniPrehledPage = () => {
   useEffect(() => {
     if (groupedData) {
       const ctx = chartCanvas.current;
-      new Chart(ctx, {
+      const successRateChart = new Chart(ctx, {
         type: 'bar',
         data: {
           labels: groupedData.labels,
@@ -78,12 +79,15 @@ const CviceniPrehledPage = () => {
           indexAxis: 'y',
         }
       })
+      return () => {
+        successRateChart.destroy();
+      }
     }
   }, [groupedData])
 
+
   return (
     <div>
-      {JSON.stringify(groupedData)}
       <canvas ref={chartCanvas}></canvas>
     </div>
   )
