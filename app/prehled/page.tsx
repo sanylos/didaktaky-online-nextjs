@@ -15,6 +15,7 @@ import { sidebarLinks } from "./sidebarLinks";
 const Prehled = () => {
     const { userData, logout } = useUser();
     const [tests, setTests] = useState([]);
+    const [answerCounts, setAnswerCounts] = useState();
     const router = useRouter();
 
     async function getUserTests() {
@@ -29,12 +30,21 @@ const Prehled = () => {
         }
     }
 
+    const getUserActivityData = async () => {
+        const { data, error } = await supabase
+            .rpc('getuseractivitydata', {
+                user_id: userData.user.id
+            })
+        return data;
+    }
+
     useEffect(() => {
         console.log(userData);
         if (userData === null) {
             router.push('/auth');
         }
         getUserTests().then(data => setTests(data));
+        getUserActivityData().then(data => setAnswerCounts(data));
     }, [userData])
 
     return <div className="d-flex flex-column justify-content-center w-100">
