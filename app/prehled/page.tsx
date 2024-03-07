@@ -12,6 +12,7 @@ import { Chart } from "chart.js/auto";
 import { AiOutlineTrophy } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { sidebarLinks } from "./sidebarLinks";
+import { HiOutlineTrendingUp } from "react-icons/hi";
 
 const Prehled = () => {
     const { userData, logout } = useUser();
@@ -94,6 +95,11 @@ const Prehled = () => {
             </div>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
+        <div>
+                    <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
+                    <span className="fw-bold fs-4">Poslední vyplněné testy</span>
+                </div>
+        
             <canvas ref={chartCanvas} height={'50px'}></canvas>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
