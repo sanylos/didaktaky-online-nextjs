@@ -67,6 +67,7 @@ const TestPage = () => {
                     'exerciseGroup': exercises[i].group,
                     'isCorrect': validateAnswer(exercises[i], answers[i]) === exercises[i].points,
                     'userTest_id': userTestId,
+                    'answered_at': new Date(),
                     'points': [validateAnswer(exercises[i], answers[i]), exercises[i].points],
                 }).select().single();
             if (error) console.log(error)
