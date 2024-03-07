@@ -17,7 +17,7 @@ import { HiOutlineTrendingUp } from "react-icons/hi";
 const Prehled = () => {
     const { userData, logout } = useUser();
     const [tests, setTests] = useState([]);
-    const [answerCounts, setAnswerCounts] = useState();
+    const [answerCounts, setAnswerCounts] = useState({});
     const router = useRouter();
 
     async function getUserTests() {
@@ -45,20 +45,20 @@ const Prehled = () => {
         }
         if (userData) {
             getUserTests().then(data => setTests(data));
-            getUserActivityData().then(data => setAnswerCounts(data));
+            getUserActivityData().then(data => setAnswerCounts({ data, filteredData: data, filter: 30 }));
         }
     }, [userData])
-
+    console.log(answerCounts)
     const chartCanvas = useRef(null);
     useEffect(() => {
         if (answerCounts) {
             const ctx = chartCanvas.current;
             const answerCountsChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: answerCounts.map(group => group["answered_date"]),
+                    labels: answerCounts.filteredData?.map(group => group["answered_date"]),
                     datasets: [{
-                        data: answerCounts.map(group => group["answers_count"]),
+                        data: answerCounts.filteredData?.map(group => group["answers_count"]),
                         borderWidth: 1
                     }]
                 },
@@ -82,6 +82,16 @@ const Prehled = () => {
         }
     }, [answerCounts])
 
+    const handleFilter = (filter) => {
+        let filterDate = new Date();
+        filterDate.setDate(filterDate.getDate() - parseInt(filter));
+        setAnswerCounts({
+            ...answerCounts,
+            filteredData: answerCounts.data.filter(data => new Date(data["answered_date"]) > filterDate),
+            filter
+        })
+    }
+
     return <div className="d-flex flex-column justify-content-center w-100">
         <div className="container mt-1 rounded p-2 d-flex">
             <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
@@ -100,9 +110,19 @@ const Prehled = () => {
             </div>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-            <div>
-                <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
-                <span className="fw-bold fs-4">Vaše aktivita</span>
+            <div className="d-flex flex-row justify-content-between">
+                <div>
+                    <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
+                    <span className="fw-bold fs-4">Vaše aktivita</span>
+                </div>
+                <div>
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "7"} value={7} className="btn-check" id="btn-check-3" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "7" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-3">7D</label>
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "14"} value={14} className="btn-check" id="btn-check-2" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "14" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-2">14D</label>
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "30"} value={30} className="btn-check" id="btn-check-1" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "30" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-1">30D</label>
+                </div>
             </div>
 
             <canvas ref={chartCanvas} height={'50px'}></canvas>
