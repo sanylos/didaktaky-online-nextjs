@@ -57,7 +57,7 @@ const Prehled = () => {
     useEffect(() => {
         const ctx = chartCanvas.current;
         const answerCountsChart = new Chart(ctx, {
-            type: 'line',
+            type: answerCounts.chartType,
             data: {
                 labels: answerCounts.filteredData?.map(group => group["answered_date"]),
                 datasets: [{
@@ -118,6 +118,8 @@ const Prehled = () => {
                     <span className="fw-bold fs-4">Vaše aktivita</span>
                 </div>
                 <div>
+                    <button onClick={() => setAnswerCounts({ ...answerCounts, chartType: answerCounts.chartType === 'bar' ? 'line' : 'bar' })} className="btn btn-secondary btn-sm mx-1 my-1"><MdOutlineSwitchAccessShortcutAdd /></button>
+
                     <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "7"} value={7} className="btn-check" id="btn-check-3" autoComplete="off" />
                     <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "7" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-3">7D</label>
                     <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "14"} value={14} className="btn-check" id="btn-check-2" autoComplete="off" />
@@ -192,7 +194,7 @@ const Prehled = () => {
                 ))}
             </div>
         </div>
-    </div>
+    </div >
 }
 
 export default Prehled;
