@@ -64,6 +64,11 @@ const Prehled = () => {
                 },
                 options: {
                     indexAxis: 'x',
+                    scales: {
+                        y: {
+                            display: false
+                        }
+                    },
                     plugins: {
                         legend: {
                             display: false
