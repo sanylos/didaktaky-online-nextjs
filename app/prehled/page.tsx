@@ -95,11 +95,11 @@ const Prehled = () => {
             </div>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
-        <div>
-                    <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
-                    <span className="fw-bold fs-4">Poslední vyplněné testy</span>
-                </div>
-        
+            <div>
+                <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
+                <span className="fw-bold fs-4">Vaše aktivita</span>
+            </div>
+
             <canvas ref={chartCanvas} height={'50px'}></canvas>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
