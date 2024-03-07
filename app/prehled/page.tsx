@@ -13,11 +13,15 @@ import { AiOutlineTrophy } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { sidebarLinks } from "./sidebarLinks";
 import { HiOutlineTrendingUp } from "react-icons/hi";
+import { MdOutlineSwitchAccessShortcutAdd } from "react-icons/md";
 
 const Prehled = () => {
     const { userData, logout } = useUser();
     const [tests, setTests] = useState([]);
-    const [answerCounts, setAnswerCounts] = useState({});
+    const [answerCounts, setAnswerCounts] = useState({
+        filter: '30',
+        chartType: 'bar'
+    });
     const router = useRouter();
 
     async function getUserTests() {
@@ -45,40 +49,38 @@ const Prehled = () => {
         }
         if (userData) {
             getUserTests().then(data => setTests(data));
-            getUserActivityData().then(data => setAnswerCounts({ data, filteredData: data, filter: 30 }));
+            getUserActivityData().then(data => setAnswerCounts({ ...answerCounts, data, filteredData: data }));
         }
     }, [userData])
-    console.log(answerCounts)
+
     const chartCanvas = useRef(null);
     useEffect(() => {
-        if (answerCounts) {
-            const ctx = chartCanvas.current;
-            const answerCountsChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: answerCounts.filteredData?.map(group => group["answered_date"]),
-                    datasets: [{
-                        data: answerCounts.filteredData?.map(group => group["answers_count"]),
-                        borderWidth: 1
-                    }]
+        const ctx = chartCanvas.current;
+        const answerCountsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: answerCounts.filteredData?.map(group => group["answered_date"]),
+                datasets: [{
+                    data: answerCounts.filteredData?.map(group => group["answers_count"]),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'x',
+                scales: {
+                    y: {
+                        display: false
+                    }
                 },
-                options: {
-                    indexAxis: 'x',
-                    scales: {
-                        y: {
-                            display: false
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
+                plugins: {
+                    legend: {
+                        display: false
                     }
                 }
-            })
-            return () => {
-                answerCountsChart.destroy();
             }
+        })
+        return () => {
+            answerCountsChart.destroy();
         }
     }, [answerCounts])
 
