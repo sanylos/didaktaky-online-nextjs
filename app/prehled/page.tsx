@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
 import { LuHistory } from "react-icons/lu";
@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import { supabase } from "@/api";
 import Link from "next/link";
+import { Chart } from "chart.js/auto";
 import { AiOutlineTrophy } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { sidebarLinks } from "./sidebarLinks";
@@ -47,6 +48,34 @@ const Prehled = () => {
         }
     }, [userData])
 
+    const chartCanvas = useRef(null);
+    useEffect(() => {
+        if (answerCounts) {
+            const ctx = chartCanvas.current;
+            const answerCountsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: answerCounts.map(group => group["answered_date"]),
+                    datasets: [{
+                        data: answerCounts.map(group => group["answers_count"]),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'x',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            })
+            return () => {
+                answerCountsChart.destroy();
+            }
+        }
+    }, [answerCounts])
+
     return <div className="d-flex flex-column justify-content-center w-100">
         <div className="container mt-1 rounded p-2 d-flex">
             <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
@@ -63,6 +92,9 @@ const Prehled = () => {
                     <button onClick={() => { logout(); router.push('/') }} className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
                 </div>
             </div>
+        </div>
+        <div className="container bg-secondary-subtle mt-1 rounded p-2">
+            <canvas ref={chartCanvas} height={'50px'}></canvas>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
             <div className="d-flex align-items-center justify-content-between mb-1">
