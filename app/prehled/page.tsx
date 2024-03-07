@@ -19,15 +19,13 @@ const Prehled = () => {
     const router = useRouter();
 
     async function getUserTests() {
-        if (userData) {
-            const { data, error } = await supabase
-                .from('userTests')
-                .select('*')
-                .eq('user_id', userData.user.id)
-                .order('created_at', { ascending: false })
-                .range(0, 20)
-            return data;
-        }
+        const { data, error } = await supabase
+            .from('userTests')
+            .select('*')
+            .eq('user_id', userData.user.id)
+            .order('created_at', { ascending: false })
+            .range(0, 20)
+        return data;
     }
 
     const getUserActivityData = async () => {
@@ -43,8 +41,10 @@ const Prehled = () => {
         if (userData === null) {
             router.push('/auth');
         }
-        getUserTests().then(data => setTests(data));
-        getUserActivityData().then(data => setAnswerCounts(data));
+        if (userData) {
+            getUserTests().then(data => setTests(data));
+            getUserActivityData().then(data => setAnswerCounts(data));
+        }
     }, [userData])
 
     return <div className="d-flex flex-column justify-content-center w-100">
