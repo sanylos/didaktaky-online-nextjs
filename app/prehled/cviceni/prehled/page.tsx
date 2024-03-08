@@ -41,14 +41,16 @@ const CviceniPrehledPage = () => {
   }
 
   const fetchExerciseGroups = async () => {
-    const { data, error } = await supabase.rpc('getcountexercisegroups', {
-      user_id: userData.user.id
-    })
-      .eq('subject', subject)
-      .eq('examtype', examType)
-    console.log(data)
-    if (error) console.log(error);
-    if (data) setData(data);
+    if (examType && subject) {
+      const { data, error } = await supabase.rpc('getcountexercisegroups', {
+        user_id: userData.user.id
+      })
+        .eq('subject', subject)
+        .eq('examtype', examType)
+      console.log(data)
+      if (error) console.log(error);
+      if (data) setData(data);
+    }
   }
   useEffect(() => {
     if (userData) {
