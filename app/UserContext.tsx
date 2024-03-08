@@ -14,7 +14,7 @@ const UserContext = createContext({
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState();
     const router = useRouter();
 
     const fetchUserData = async () => {

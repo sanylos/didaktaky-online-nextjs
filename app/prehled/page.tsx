@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUser } from "../UserContext";
 import { getNameByShortcut } from "../utils/shortcutHandler";
 import { LuHistory } from "react-icons/lu";
@@ -8,32 +8,94 @@ import { IoIosArrowForward } from "react-icons/io";
 import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import { supabase } from "@/api";
 import Link from "next/link";
-import { IoIosArrowDropright } from "react-icons/io";
+import { Chart } from "chart.js/auto";
+import { AiOutlineTrophy } from "react-icons/ai";
 import { useRouter } from "next/navigation";
+import { sidebarLinks } from "./sidebarLinks";
+import { HiOutlineTrendingUp } from "react-icons/hi";
+import { MdOutlineSwitchAccessShortcutAdd } from "react-icons/md";
 
 const Prehled = () => {
-    const { userData } = useUser();
+    const { userData, logout } = useUser();
     const [tests, setTests] = useState([]);
+    const [answerCounts, setAnswerCounts] = useState({
+        filter: '30',
+        chartType: 'bar'
+    });
     const router = useRouter();
 
     async function getUserTests() {
-        if (userData) {
-            const { data, error } = await supabase
-                .from('userTests')
-                .select('*')
-                .eq('user_id', userData.user.id)
-                .order('created_at', { ascending: false })
-                .range(0, 20)
-            return data;
-        }
+        const { data, error } = await supabase
+            .from('userTests')
+            .select('*')
+            .eq('user_id', userData.user.id)
+            .order('created_at', { ascending: false })
+            .range(0, 20)
+        return data;
+    }
+
+    const getUserActivityData = async () => {
+        const { data, error } = await supabase
+            .rpc('getuseractivitydata', {
+                user_id: userData.user.id
+            })
+        return data;
     }
 
     useEffect(() => {
-        getUserTests().then(data => setTests(data));
+        console.log(userData);
+        if (userData === null) {
+            router.push('/auth');
+        }
+        if (userData) {
+            getUserTests().then(data => setTests(data));
+            getUserActivityData().then(data => setAnswerCounts({ ...answerCounts, data, filteredData: data }));
+        }
     }, [userData])
 
-    return <div>
-        <div className="container bg-secondary-subtle mt-1 rounded p-2 d-flex">
+    const chartCanvas = useRef(null);
+    useEffect(() => {
+        const ctx = chartCanvas.current;
+        const answerCountsChart = new Chart(ctx, {
+            type: answerCounts.chartType,
+            data: {
+                labels: answerCounts.filteredData?.map(group => group["answered_date"]),
+                datasets: [{
+                    data: answerCounts.filteredData?.map(group => group["answers_count"]),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'x',
+                scales: {
+                    y: {
+                        display: false
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        })
+        return () => {
+            answerCountsChart.destroy();
+        }
+    }, [answerCounts])
+
+    const handleFilter = (filter) => {
+        let filterDate = new Date();
+        filterDate.setDate(filterDate.getDate() - parseInt(filter));
+        setAnswerCounts({
+            ...answerCounts,
+            filteredData: answerCounts.data.filter(data => new Date(data["answered_date"]) > filterDate),
+            filter
+        })
+    }
+
+    return <div className="d-flex flex-column justify-content-center w-100">
+        <div className="container mt-1 rounded p-2 d-flex">
             <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "120px", height: "120px", backgroundColor: "gold" }}>
                 <span className="text-white fs-1">{userData?.user.email.slice(0, 2).toUpperCase()}</span>
             </div>
@@ -44,10 +106,30 @@ const Prehled = () => {
                 </div>
 
                 <div className="">
-                    <button className="btn btn-secondary rounded-pill btn-sm me-1">Přepnout účet</button>
-                    <button className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
+                    <button onClick={() => { logout(); router.push('/auth') }} className="btn btn-secondary rounded-pill btn-sm me-1">Přepnout účet</button>
+                    <button onClick={() => { logout(); router.push('/') }} className="btn btn-secondary rounded-pill btn-sm">Odhlásit se</button>
                 </div>
             </div>
+        </div>
+        <div className="container bg-secondary-subtle mt-1 rounded p-2">
+            <div className="d-flex flex-row justify-content-between">
+                <div>
+                    <HiOutlineTrendingUp className="me-2 mb-2 fs-4" />
+                    <span className="fw-bold fs-4">Vaše aktivita</span>
+                </div>
+                <div>
+                    <button onClick={() => setAnswerCounts({ ...answerCounts, chartType: answerCounts.chartType === 'bar' ? 'line' : 'bar' })} className="btn btn-secondary btn-sm mx-1 my-1"><MdOutlineSwitchAccessShortcutAdd /></button>
+
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "7"} value={7} className="btn-check" id="btn-check-3" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "7" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-3">7D</label>
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "14"} value={14} className="btn-check" id="btn-check-2" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "14" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-2">14D</label>
+                    <input type="radio" onChange={e => handleFilter(e.target.value)} checked={answerCounts.filter == "30"} value={30} className="btn-check" id="btn-check-1" autoComplete="off" />
+                    <label className={"btn btn-sm mx-1 my-1 " + (answerCounts.filter == "30" ? "btn-dark" : "btn-secondary")} htmlFor="btn-check-1">30D</label>
+                </div>
+            </div>
+
+            <canvas ref={chartCanvas} height={'50px'}></canvas>
         </div>
         <div className="container bg-secondary-subtle mt-1 rounded p-2">
             <div className="d-flex align-items-center justify-content-between mb-1">
@@ -95,7 +177,24 @@ const Prehled = () => {
                 ))}
             </div>
         </div>
-    </div>
+        <div className="container bg-secondary-subtle mt-1 rounded p-2">
+            <div className="d-flex row justify-content-between">
+                {sidebarLinks.filter(cathegory => !cathegory.onlySidebarLink).map((cathegory, index) => (
+                    <div key={index}>
+                        {cathegory.items.map((link, index) => (
+                            <Link key={index} href={"/prehled" + link.href}>
+                                <button className="btn btn-light fs-5 me-1 p-2 my-1 text-start">
+                                    <span>{link.icon}</span>
+                                    <span className="ms-1">{link.title} - {cathegory.title}</span>
+                                </button>
+                            </Link>
+                        ))}
+                    </div>
+
+                ))}
+            </div>
+        </div>
+    </div >
 }
 
 export default Prehled;
