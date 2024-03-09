@@ -34,17 +34,15 @@ export default function UcebniceLayout({
     return (
         <div className="d-flex flex-row">
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
-                {JSON.stringify(data)}
                 {data && data.map(subject => (
-                    <div key={subject.id} className="fs-3 fw-bold">
-
-                        <button className="fs-3 fw-bold btn border-0" data-bs-toggle="collapse" href="#collapseCathegories" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <div key={subject.id}>
+                        <button className="fs-3 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegories" role="button" aria-expanded="false" aria-controls="collapseExample">
                             {subject.name}
                         </button>
                         <div className="collapse" id="collapseCathegories">
                             {subject.cathegories.map(cathegory => (
                                 <div key={cathegory.id}>
-                                    <button className="fs-3 fw-bold btn border-0" data-bs-toggle="collapse" href="#collapseCathegoryContent" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <button className="fs-5 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegoryContent" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         {cathegory.name}
                                     </button>
                                     <div className="collapse" id="collapseCathegoryContent">
@@ -54,6 +52,7 @@ export default function UcebniceLayout({
                                             </div>
                                         ))}
                                     </div>
+                                    <hr></hr>
                                 </div>
                             ))}
                         </div>
