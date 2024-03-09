@@ -48,7 +48,7 @@ export default function UcebniceLayout({
                                     <div className="collapse" id="collapseCathegoryContent">
                                         {cathegory.cathegory_content.map(content => (
                                             <div key={content.id}>
-                                                {content.name}
+                                                <Link href={'/ucebnice/' + content.id}>{content.name}</Link>
                                             </div>
                                         ))}
                                     </div>
