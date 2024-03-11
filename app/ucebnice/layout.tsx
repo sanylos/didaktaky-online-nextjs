@@ -36,16 +36,16 @@ export default function UcebniceLayout({
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
                 {data && data.map(category => (
                     <div key={category.id}>
-                        <button className="fs-3 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegories" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <button className="fs-3 fw-bold btn p-0" data-bs-toggle="collapse" href={"#collapseCategories"+category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
                             {category.name}
                         </button>
-                        <div className="collapse" id="collapseCathegories">
+                        <div className="collapse" id={"collapseCategories"+category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
-                                    <button className="fs-5 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegoryContent" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <button className="fs-5 fw-bold btn p-0" data-bs-toggle="collapse" href={"#collapseSubcategory"+subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
                                         {subcategory.name}
                                     </button>
-                                    <div className="collapse" id="collapseCathegoryContent">
+                                    <div className="collapse" id={"collapseSubcategory"+subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <Link href={'/ucebnice/' + content.id}>{content.name}</Link>
