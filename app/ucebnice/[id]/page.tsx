@@ -24,10 +24,15 @@ export async function getContent(params) {
     return data;
 }
 
+
+
 const AutorPage = async ({ params }) => {
     const data = await getContent(params);
+    console.log(data);
     return (
-        <div>AutorPage {JSON.stringify(data)}</div>
+        <div>
+            <div dangerouslySetInnerHTML={{ __html: data.content }} />
+        </div >
     )
 }
 
