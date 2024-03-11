@@ -34,19 +34,19 @@ export default function UcebniceLayout({
     return (
         <div className="d-flex flex-row">
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
-                {data && data.map(subject => (
-                    <div key={subject.id}>
+                {data && data.map(category => (
+                    <div key={category.id}>
                         <button className="fs-3 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegories" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            {subject.name}
+                            {category.name}
                         </button>
                         <div className="collapse" id="collapseCathegories">
-                            {subject.cathegories.map(cathegory => (
-                                <div key={cathegory.id}>
+                            {category.ucebnice_subcategories.map(subcategory => (
+                                <div key={subcategory.id}>
                                     <button className="fs-5 fw-bold btn p-0" data-bs-toggle="collapse" href="#collapseCathegoryContent" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        {cathegory.name}
+                                        {subcategory.name}
                                     </button>
                                     <div className="collapse" id="collapseCathegoryContent">
-                                        {cathegory.cathegory_content.map(content => (
+                                        {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <Link href={'/ucebnice/' + content.id}>{content.name}</Link>
                                             </div>
