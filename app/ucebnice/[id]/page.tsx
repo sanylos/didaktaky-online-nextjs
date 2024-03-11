@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 
 export async function getContent(params) {
     const { data, error } = await supabase
-        .from('cathegory_content')
+        .from('ucebnice_category_content')
         .select('*')
         .eq('id', params.id)
         .single();
