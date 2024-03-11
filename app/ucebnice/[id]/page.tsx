@@ -24,7 +24,7 @@ export async function getContent(params) {
     return data;
 }
 
-
+export const revalidate = 3600;
 
 const AutorPage = async ({ params }) => {
     const data = await getContent(params);
