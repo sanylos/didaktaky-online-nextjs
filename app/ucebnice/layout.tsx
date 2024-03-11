@@ -19,8 +19,8 @@ export default function UcebniceLayout({
 
     const getSidebarContent = async () => {
         const { data, error } = await supabase
-            .from('subjects')
-            .select('*, cathegories(*, cathegory_content(*))')
+            .from('ucebnice_categories')
+            .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
         console.log(error);
         console.log(data);
         setData(data);
