@@ -4,7 +4,10 @@ import { redirect } from 'next/navigation'
 
 
 export async function generateStaticParams() {
-    return [{ id: 'Ernest-Hemingway' }]
+    const { data } = await supabase
+        .from('ucebnice_category_content')
+        .select('id')
+    return data;
 
 }
 
