@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { supabase } from '@/api'
-import React from 'react'
+import { redirect } from 'next/navigation'
 
 
 export async function generateStaticParams() {
@@ -15,7 +15,9 @@ export async function getContent(params) {
         .eq('id', params.id)
         .single();
     console.log(data);
-    console.log(error);
+    if (error) {
+        redirect('/ucebnice')
+    }
     return data;
 }
 
