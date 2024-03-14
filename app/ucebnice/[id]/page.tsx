@@ -18,19 +18,25 @@ export async function getContent(params) {
         .eq('id', params.id)
         .order('order_number', { referencedTable: 'ucebnice_content_articles', ascending: true })
         .single();
-    console.log(data);
     if (error) {
         console.log(error)
-        redirect('/ucebnice')
+        //redirect('/ucebnice')
     }
     return data;
+}
+
+export async function generateMetadata({ params }) {
+    const data = await getContent(params)
+    return {
+        title: data.name,
+        description: data.meta_description
+    }
 }
 
 export const revalidate = 60;
 
 const AutorPage = async ({ params }) => {
     const data = await getContent(params);
-    console.log(data);
     return (
         <div>
             {data?.ucebnice_content_articles?.map(article => (
