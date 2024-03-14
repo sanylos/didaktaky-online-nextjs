@@ -39,8 +39,9 @@ const AutorPage = async ({ params }) => {
     const data = await getContent(params);
     return (
         <>
+            <h1 className='fw-semibold' style={{ fontFamily: 'Roboto' }}>{data?.name}</h1>
             {data?.ucebnice_content_articles?.map(article => (
-                <div style={{ fontFamily: 'Roboto' }} key={article.id} id={article.id}>
+                <div key={article.id} id={article.id} style={{ fontFamily: 'Roboto' }}>
                     <div className='d-flex flex-row align-items-center'>
                         <a className='fs-1 text-secondary me-2 fw-bold' style={{ textDecoration: 'none' }} href={'#' + article.id}>#</a>
                         <h2 className='fw-semibold' dangerouslySetInnerHTML={{ __html: article.title }}></h2>
