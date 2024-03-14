@@ -38,7 +38,7 @@ export const revalidate = 60;
 const AutorPage = async ({ params }) => {
     const data = await getContent(params);
     return (
-        <div>
+        <>
             {data?.ucebnice_content_articles?.map(article => (
                 <div style={{ fontFamily: 'Roboto' }} key={article.id} id={article.id}>
                     <div className='d-flex flex-row align-items-center'>
@@ -49,7 +49,7 @@ const AutorPage = async ({ params }) => {
                     <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
                 </div>
             ))}
-        </div >
+        </ >
     )
 }
 
