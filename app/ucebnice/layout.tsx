@@ -4,6 +4,7 @@
 import "@/app/prehled/layout.scss"
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa6";
+import { TbArrowRampRight3 } from "react-icons/tb";
 import { supabase } from "@/api";
 import { useEffect, useState } from "react";
 
@@ -33,9 +34,12 @@ export default function UcebniceLayout({
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
                 {data && data.map(category => (
                     <div key={category.id} className="rounded bg-light p-1 mb-2">
-                        <h3 className="fw-bold" data-bs-toggle="collapse" href={"#collapseCategories" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
-                            {category.name}
-                        </h3>
+                        <div className="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href={"#collapseCategories" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <h3 className="fw-bold">
+                                {category.name}
+                            </h3>
+                            <FaAngleDown className="fs-3" />
+                        </div>
                         <div className="collapse" id={"collapseCategories" + category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
@@ -46,6 +50,7 @@ export default function UcebniceLayout({
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <h5>
+                                                    <TbArrowRampRight3 />
                                                     <Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + content.id}>{content.name}</Link>
                                                 </h5>
                                             </div>
