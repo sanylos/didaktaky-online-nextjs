@@ -1,22 +1,26 @@
-"use client";
-import Image from "next/image";
-import styles from "./page.module.css";
+//@ts-nocheck
 import "./page.scss"
 import { FaArrowDown } from "react-icons/fa6";
 import { MdOutlineInsights, MdOutlineMemory } from "react-icons/md";
 import { PiExamDuotone } from "react-icons/pi";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { relative } from "path";
 import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import CountUp from 'react-countup';
 import Link from "next/link";
 
-export default function Home() {
+export async function getContent() {
+  const { data, error } = await supabase
+    .from('answer_counts')
+    .select('*')
+    .single()
 
-  const [answeredExerciseCount, setAnsweredExerciseCount] = useState(0);
-  const [submittedTestCount, setSubmittedTestCount] = useState(0);
-  const [reviews] = useState([
+  return { answeredExerciseCount: data.exercise_answers_count, submittedTestCount: data.answered_tests_count };
+}
+
+export default async function Home() {
+  const { answeredExerciseCount, submittedTestCount } = await getContent();
+  const reviews = [
     {
       id: 1,
       comment: "Nabídka maturitní četby na této stránce je velmi široká a pestrá. Najdete zde všechny povinné knihy pro maturitu, ale i mnoho dalších zajímavých titulů. Oceňuji, že knihy jsou dostupné v elektronické i tištěné podobě, takže si každý může vybrat tu variantu, která mu více vyhovuje. Ceny knih jsou také velmi příznivé.",
@@ -73,32 +77,7 @@ export default function Home() {
       rating: 4,
       school: "Střední škola",
     },
-  ]);
-
-  const fetchCountOfAnsweredExercises = async () => {
-    const { count, error } = await supabase
-      .from('userAnswers')
-      .select('*', { count: 'exact', head: true });
-    if (error) console.log(error);
-    else {
-      if (count) setAnsweredExerciseCount(count);
-    }
-  }
-
-  const fetchCountOfSubmittedTests = async () => {
-    const { count, error } = await supabase
-      .from('userTests')
-      .select('*', { count: 'exact', head: true });
-    if (error) console.log(error);
-    else {
-      if (count) setSubmittedTestCount(count);
-    }
-  }
-
-  useEffect(() => {
-    fetchCountOfAnsweredExercises();
-    fetchCountOfSubmittedTests();
-  }, []);
+  ];
 
   return (
     <div className="d-flex flex-column main align-items-center">
@@ -118,10 +97,10 @@ export default function Home() {
           <div style={{ position: "absolute", bottom: "10vh" }}
             className="container-fluid d-flex align-items-center justify-content-start">
             <div className="mx-5" v-if="answeredExerciseCount">
-              <span className="fs-1 fw-bold"><CountUp start={0} end={answeredExerciseCount} duration={5} /></span><span className="fs-6"> vyplněných cvičení</span>
+              <span className="fs-1 fw-bold">{answeredExerciseCount}</span><span className="fs-6"> vyplněných cvičení</span>
             </div>
             <div className="mx-5" v-if="submittedTestCount">
-              <span className="fs-1 fw-bold"><CountUp start={0} end={submittedTestCount} duration={5} /></span><span className="fs-6"> vyplněných testů</span>
+              <span className="fs-1 fw-bold">{submittedTestCount}</span><span className="fs-6"> vyplněných testů (veřejných)</span>
             </div>
           </div>
         </div>
