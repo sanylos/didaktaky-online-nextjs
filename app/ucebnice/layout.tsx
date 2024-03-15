@@ -1,34 +1,26 @@
 // @ts-nocheck
-"use client"
 
 import "@/app/ucebnice/layout.scss"
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa6";
 import { TbArrowRampRight3 } from "react-icons/tb";
 import { supabase } from "@/api";
-import { useEffect, useState } from "react";
 
-export default function UcebniceLayout({
+export async function getContent() {
+    const { data, error } = await supabase
+        .from('ucebnice_categories')
+        .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
+    return data;
+}
+
+export const revalidate = 60;
+
+export default async function UcebniceLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [data, setData] = useState();
-
-    const getSidebarContent = async () => {
-        const { data, error } = await supabase
-            .from('ucebnice_categories')
-            .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
-        console.log(error);
-        console.log(data);
-        setData(data);
-
-    }
-
-    useEffect(() => {
-        getSidebarContent();
-    }, [])
-
+    const data = await getContent();
     return (
         <div className="d-flex flex-row">
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
