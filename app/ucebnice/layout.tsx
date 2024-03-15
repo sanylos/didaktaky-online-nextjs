@@ -43,9 +43,12 @@ export default function UcebniceLayout({
                         <div className="collapse" id={"collapseCategories" + category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
-                                    <h4 className="fs-5 fw-bold" data-bs-toggle="collapse" href={"#collapseSubcategory" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        {subcategory.name}
-                                    </h4>
+                                    <div className="d-flex align-items-center" data-bs-toggle="collapse" href={"#collapseSubcategory" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <h4 className="fs-5 fw-bold">
+                                            {subcategory.name}
+                                        </h4>
+                                        <FaAngleDown className="fs-5 mb-1 ms-1" />
+                                    </div>
                                     <div className="collapse" id={"collapseSubcategory" + subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
