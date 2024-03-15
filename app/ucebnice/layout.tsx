@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client"
 
-import "@/app/prehled/layout.scss"
+import "@/app/ucebnice/layout.scss"
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa6";
 import { TbArrowRampRight3 } from "react-icons/tb";
@@ -34,7 +34,7 @@ export default function UcebniceLayout({
             <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
                 {data && data.map(category => (
                     <div key={category.id} className="rounded bg-light p-1 mb-2">
-                        <div className="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href={"#collapseCategories" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div className="link rounded p-1 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href={"#collapseCategories" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
                             <h3 className="fw-bold">
                                 {category.name}
                             </h3>
@@ -43,7 +43,7 @@ export default function UcebniceLayout({
                         <div className="collapse" id={"collapseCategories" + category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
-                                    <div className="d-flex align-items-center" data-bs-toggle="collapse" href={"#collapseSubcategory" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <div className="link rounded p-1 d-flex align-items-center" data-bs-toggle="collapse" href={"#collapseSubcategory" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
                                         <h4 className="fs-5 fw-bold">
                                             {subcategory.name}
                                         </h4>
