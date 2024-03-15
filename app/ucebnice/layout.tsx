@@ -49,10 +49,10 @@ export default function UcebniceLayout({
                                     <div className="collapse" id={"collapseSubcategory" + subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
-                                                <h5>
-                                                    <TbArrowRampRight3 />
-                                                    <Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + content.id}>{content.name}</Link>
-                                                </h5>
+                                                <div className="d-flex aling-items-center">
+                                                    <TbArrowRampRight3 className="fs-4" />
+                                                    <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + content.id}>{content.name}</Link></h5>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
