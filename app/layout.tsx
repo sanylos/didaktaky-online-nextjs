@@ -8,11 +8,15 @@ import "./layout.scss"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DIDAKTAKY - ONLINE",
+  title: {
+    template: '%s | DIDAKTAKY-ONLINE',
+    default: 'DIDAKTAKY-ONLINE'
+  },
   description: "Didaktické testy pro přijímací zkoušky a maturitu",
+  keywords: ['Didaktické testy', 'Maturita', 'Přijímačky', 'Český jazyk a literatura', 'Matematika', 'Anglický jazyk'],
   openGraph: {
     title: "DIDAKTAKY-ONLINE",
-    description: "Didaktické testy pro přijímací zkoušky a maturitu"
+    description: "Připravte se na přijímací zkoušky nebo maturitu online!"
   }
 };
 
@@ -22,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="cs">
       <head>
         <meta name="google-site-verification" content="XGFJGSt2UvIUIIJ8J032QN6UtaocNtuErve76F5NzKA" />
       </head>
