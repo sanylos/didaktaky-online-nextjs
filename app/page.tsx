@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/api";
 import CountUp from 'react-countup';
 import Link from "next/link";
+import Image from "next/image";
 
 export async function getContent() {
   const { data, error } = await supabase
@@ -93,7 +94,7 @@ export default async function Home() {
               <a className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
             </div>
           </div>
-          <img src="/prijimacky-online-phone-mockup.png" className="desktop" />
+          <Image width={1000} height={1000} src="/prijimacky-online-phone-mockup.png" className="desktop" alt="didaktaky-online-phone-mockup" />
           <div style={{ position: "absolute", bottom: "10vh" }}
             className="container-fluid d-flex align-items-center justify-content-start">
             <div className="mx-5" v-if="answeredExerciseCount">
