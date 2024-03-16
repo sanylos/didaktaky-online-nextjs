@@ -151,12 +151,12 @@ export default async function Home() {
         </div >
       </section >
       <hr className="text-dark w-100" />
-      <section>
+      <section style={{ height: '100vh' }}>
         <div className="mt-5 mb-5" id="reviews">
           <div className="text-center mx-2">
             <div className="text-dark fs-2 fw-normal mb-5">Recenze</div>
             <div className="h-100 d-flex align-items-center justify-content-center">
-              <div id="carouselExample" className="carousel carousel-dark slide w-100">
+              <div id="carouselExample" className="carousel carousel-dark slide w-100 h-100">
                 <div className="carousel-inner">
                   {reviews.map((review) => (
                     <div className={"carousel-item " + (review.id == 1 && "active")} key={review.id}>
@@ -175,7 +175,7 @@ export default async function Home() {
                           </div>
                           <div className="card-body">
                             <blockquote className="blockquote mb-0">
-                              <p>{review.comment}</p>
+                              <p style={{ fontSize: '1rem' }}>{review.comment}</p>
                               <footer className="blockquote-footer">{review.userName}, <cite title="Source Title">{review.school}</cite></footer>
                             </blockquote>
                           </div>
