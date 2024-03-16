@@ -24,52 +24,52 @@ export default async function Home() {
   const reviews = [
     {
       id: 1,
-      comment: "Nabídka maturitní četby na této stránce je velmi široká a pestrá. Najdete zde všechny povinné knihy pro maturitu, ale i mnoho dalších zajímavých titulů. Oceňuji, že knihy jsou dostupné v elektronické i tištěné podobě, takže si každý může vybrat tu variantu, která mu více vyhovuje. Ceny knih jsou také velmi příznivé.",
+      comment: "Wow, tenhle web s maturitní četbou je fakt bomba! Mají tu všechno - povinnou četbu i spoustu dalších super knížek. A co je nejlepší? Můžu si je stáhnout, navíc ceny jsou fakt nízké, určitě doporučuji!",
       userName: "Šimon Němec",
       rating: 5,
-      school: "Střední škola",
+      school: "Střední škola"
     },
     {
       id: 2,
-      comment: "Aplikaci jsem začal používat, abych se připravil na přijímačky na střední školu. Nabízí širokou škálu testů z předchozích let, takže jsem si mohl vybrat ty, které jsem potřeboval. Stránka je přehledná a snadno se používá. Velmi oceňuji i možnost procvičovat si jednotlivé typy úloh i celé testy. Díky této aplikaci jsem se na přijímačky cítil skvěle připravený a byl jsem úspěšný.",
+      comment: "Díky tomuto webu jsem se dostal na střední! Nabízí mraky testů z minulých let, takže jsem si mohl vybrat ty, které jsem pro přijímačky potřeboval. Stránka je přehledná a jednoduchá na používání. Super je i možnost procvičovat si jednotlivé typy úloh i celé testy. Díky nim jsem se na přijímačky cítil perfektně připravený a klaplo to!",
       userName: "Michael Pokorný",
       rating: 5,
       school: "Základní škola"
     },
     {
       id: 3,
-      comment: "Tuto stránku používám pro procvičování maturitní četby. Líbí se mi, že si můžu texty zakoupit přímo v aplikaci a nemusím je hledat jinde. Jsou zde i různé typy cvičení, takže si můžu procvičit všechny aspekty maturitní zkoušky. Jediné, co bych vytkla, je absence funkce pro dělání poznámek.",
+      comment: "Na procvičování maturitní četby používám tenhle web už dlouho. Je super, že si můžu texty koupit přímo tady, některé i zdarma, a nemusím je shánět jinde. Mají tu i různé typy cvičení, takže si můžu procvičit všechno, co na maturitě bude potřeba. Jediné, co mi chybí, je možnost si do textů dělat poznámky.",
       userName: "Elena Poláková",
       rating: 4,
-      school: "Střední škola",
+      school: "Střední škola"
     },
     {
       id: 4,
-      comment: "Vadí mi, že aplikace nefunguje offline. To je nepraktické, když se chci učit někde, kde není internetové připojení.",
+      comment: "Největší mínus je, že tenhle web nejde používat offline. To je fakt otravný, když se chci učit někde, kde není internet. Jinak by to ale šlo.",
       userName: "Patrik Kratochvíl",
       rating: 2,
-      school: "Střední škola",
+      school: "Střední škola"
     },
     {
       id: 5,
-      comment: "Tento web je naprosto úžasný! Pomohl mi se skvěle připravit na maturitu z matematiky. Díky němu jsem si procvičila všechny typy příkladů a naučila se je řešit rychle a správně. Web je navíc moc přehledný a snadno se používá. Vřele doporučuji všem studentům, kteří se chtějí na maturitu zodpovědně připravit.",
+      comment: "Díky tomuto webu jsem zvládla maturitu z matematiky na jedničku! Procvičila jsem si tu všechny typy příkladů a naučila se je řešit rychle a správně. Web je navíc super přehledný a jednoduchý na používání. Vřele ho doporučuji všem studentům, co se chtějí na maturitu z matiky fakt připravit.",
       userName: "Jasmína Kučerová",
       rating: 5,
-      school: "Střední škola",
+      school: "Střední škola"
     },
     {
       id: 6,
-      comment: "Aplikace je užitečná pro procvičování didaktických testů, ale má i své chyby. Někdy se mi stane, že se web zasekne a nevyhodnotí moji odpověď. Také mi vadí, že pro používání je potřeba internetové připojení. To je nepraktické, když se chci učit někde, kde není internet.",
+      comment: "Na procvičování didakťáků je tenhle web docela fajn, ale má i své mouchy. Někdy se mi stane, že se web zasekne a nejde mi vyhodnotit odpověď. A taky mi vadí, že na používání je potřeba internet. To je fakt otravný, když se chci učit někde, kde není signál.",
       userName: "Nikola Soukupová",
       rating: 3,
-      school: "Základní škola",
+      school: "Základní škola"
     },
     {
       id: 7,
-      comment: "Oceňuji, že si můžu vybrat testy z různých předmětů. Také se mi líbí, že stránka sleduje mé výsledky a zobrazuje mi je v statistikách. To mi pomáhá sledovat svůj pokrok a motivovat se k dalšímu studiu. Jediné, co bych stránce vytknul, je rychlost, se slabším internetem na vesnici se zasekává.",
+      comment: "Super je, že si můžu vybrat testy z různých předmětů. A taky se mi líbí, že web sleduje mé výsledky a ukazuje mi je v statistikách. To mi pomáhá sledovat můj pokrok a učit se dál. Jediné, co bych webu vytknul, je rychlost. Na vesnici s pomalým internetem se dost seká.",
       userName: "Kryštof Kříž",
       rating: 4,
-      school: "Základní škola",
+      school: "Základní škola"
     },
     {
       id: 8,
