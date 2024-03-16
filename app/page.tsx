@@ -100,7 +100,7 @@ export default async function Home() {
               <span className="fs-1 fw-bold">{answeredExerciseCount}</span><span className="fs-6"> vyplněných cvičení</span>
             </div>
             <div className="mx-5" v-if="submittedTestCount">
-              <span className="fs-1 fw-bold">{submittedTestCount}</span><span className="fs-6"> vyplněných testů (veřejných)</span>
+              <span className="fs-1 fw-bold">{submittedTestCount}</span><span className="fs-6"> vyplněných testů</span>
             </div>
           </div>
         </div>
