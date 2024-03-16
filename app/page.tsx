@@ -86,9 +86,11 @@ export default async function Home() {
       <section className="purpleAnimatedBackground shadow-lg">
         <div className="d-flex flex-column justify-content-center mobileImageWrapper"
           style={{ height: "100vh", position: "relative" }}>
-          <div className="main-title fs-1" style={{ position: "absolute" }}>
-            <div className="fw-bold">Moderní a efektivní příprava</div>
-            <div>na přijímací zkoušky a maturitu</div>
+          <div className="main-title" style={{ position: "absolute" }}>
+            <div>
+              <h1 className="fw-bold">Moderní a efektivní příprava</h1>
+              <h2>na přijímací zkoušky a maturitu</h2>
+            </div>
             <div className="d-flex flex-row justify-content-start">
               <Link href="/procvicovani" className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</Link>
               <a className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
