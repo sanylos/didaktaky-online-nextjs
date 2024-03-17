@@ -8,7 +8,7 @@ export default async function sitemap() {
     console.log(data)
     console.log(error)
     return data?.map((site) => ({
-        url: 'https://didaktaky-online.vercel.app/ucebnice/' + site.id,
+        url: process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + site.id,
         lastModified: new Date(),
     }))
 }

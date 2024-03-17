@@ -6,20 +6,10 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation';
 import './Navbar.scss';
 import { useUser } from '../UserContext';
-import { supabase } from '@/api';
-import { stringify } from 'querystring';
-
-const links = [
-    { label: 'Procvičování', href: 'procvicovani' },
-    { label: 'Přehled', href: 'prehled' },
-    { label: 'Generování testů', href: 'test' },
-    { label: 'Učebnice', href: 'ucebnice' },
-    { label: 'Maturitní četba', href: 'cetba' },
-];
+import { links } from '@/app/data/links'
 
 const Navbar = () => {
     const { userData, logout } = useUser();
-
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
         return path.split("/").includes(href);
