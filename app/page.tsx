@@ -112,7 +112,7 @@ export default async function Home() {
       <section>
         <div className="mt-5 mb-5" id="about">
           <div className="text-center mx-2">
-            <h1 className="text-dark fw-normal mb-5">Připravte se na zkoušky a dosáhněte úspěchu!</h1>
+            <h2 className="text-dark fw-normal mb-5">Připravte se na zkoušky a dosáhněte úspěchu!</h2>
             <div className="row d-flex align-items-center mx-1">
 
               <div className="col-sm-4 mb-3 mb-sm-0">
