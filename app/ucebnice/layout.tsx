@@ -57,7 +57,7 @@ export default async function UcebniceLayout({
                     </div>
                 ))}
             </div>
-            <div className="col-10 children p-2" style={{ maxWidth: '100vw' }}>
+            <div className="col-10 children" style={{ maxWidth: '100vw' }}>
                 {children}
             </div>
         </div >
