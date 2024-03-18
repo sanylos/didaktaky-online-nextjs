@@ -14,14 +14,14 @@ export async function getContent() {
 export const UcebnicePage = async () => {
     const data = await getContent();
     const pros = [
-        "Aktuální osnovy výuky: Zaručujeme aktuální informace o obsahu zkoušek z češtiny, angličtiny a matematiky, abyste byli dobře připraveni.",
-        "Komplexní příprava na zkoušky: Poskytujeme kompletní sadu materiálů a metod pro úspěšné absolvování maturity i přijímacích zkoušek.",
-        "Kvalitní studijní materiály: Naše materiály pro výuku jsou pečlivě vybrány a ověřeny odborníky, abyste měli jistotu kvality.",
-        "Flexibilní výuka: Možnost učit se podle vlastního tempa a přizpůsobit si studium svým potřebám a preferencím.",
+        { title: "Aktuální osnovy výuky", text: "Zaručujeme aktuální informace o obsahu zkoušek z češtiny, angličtiny a matematiky, abyste byli dobře připraveni." },
+        { title: "Komplexní příprava na zkoušky", text: "Poskytujeme kompletní sadu materiálů a metod pro úspěšné absolvování maturity i přijímacích zkoušek." },
+        { title: "Kvalitní studijní materiály", text: "Naše materiály pro výuku jsou pečlivě vybrány a ověřeny odborníky, abyste měli jistotu kvality." },
+        { title: "Flexibilní výuka", text: "Možnost učit se podle vlastního tempa a přizpůsobit si studium svým potřebám a preferencím." },
     ]
     return (
         <div className="d-flex flex-column main">
-            <div className='p-1'>
+            <div className='p-1 shadow-lg mb-2'>
                 <h1 className='mb-0'>Elektronická učebnice</h1>
                 <h5>Hledáte komplexní přípravu na maturitní a přijímací zkoušky z češtiny, angličtiny a matematiky? Pak jste na správném místě! Nabízíme rozsáhlou sbírku materiálů, učebních osnov a témat, která vám pomohou dosáhnout vašich cílů.</h5>
             </div>
@@ -31,7 +31,10 @@ export const UcebnicePage = async () => {
                         <div className="ms-1 box__icon">
                             <FaCheck className='text-success fs-4' />
                         </div>
-                        <h5 className="box__title ms-1">{item}</h5>
+                        <div className='d-flex flex-column'>
+                            <h5 className="box__title ms-1 mb-0">{item.title}</h5>
+                            <p className="ms-1 mb-0">{item.text}</p>
+                        </div>
                     </div>
 
                 ))}
