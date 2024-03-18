@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
 }
 
-.error {
+.box {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     width: auto;
@@ -21,12 +21,11 @@
     box-shadow: 0 0px 10px #de1c3280;
 }
 
-.error__icon {
+.box__icon {
     margin-right: 8px;
     filter: drop-shadow(2px 1px 2px rgb(0 0 0 / 0.4));
 }
 
-.error__title {
+.box__title {
     font-weight: 500;
-    font-size: 14px;
 }
