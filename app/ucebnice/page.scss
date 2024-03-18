@@ -1,9 +1,22 @@
 .main {
+    position: relative;
     height: 100vh;
+    overflow: hidden;
+}
+
+.main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    z-index: -1;
     background-image: url('/ucebnice_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .box {

@@ -17,11 +17,11 @@ const UcebnicePage = () => {
             </div>
             <div>
                 {pros.map((item, index) => (
-                    <div key={index} class="box text-white mb-1 mx-1">
-                        <div class="ms-1 box__icon">
+                    <div key={index} className="box text-white mb-1 mx-1">
+                        <div className="ms-1 box__icon">
                             <FaCheck className='text-success fs-4' />
                         </div>
-                        <h5 class="box__title ms-1">{item}</h5>
+                        <h5 className="box__title ms-1">{item}</h5>
                     </div>
 
                 ))}
