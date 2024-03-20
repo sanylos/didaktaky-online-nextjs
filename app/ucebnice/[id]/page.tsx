@@ -54,9 +54,11 @@ const AutorPage = async ({ params }) => {
                         </div>
                     ))}
                 </div>
-                <div className='col-sm-0 col-lg-2 alert alert-light h-100'>
-                    <p>{data?.description}</p>
-                </div>
+                {data?.description &&
+                    <div className='my-2 col-sm-0 col-lg-2 alert alert-light h-100'>
+                        <p>{data?.description}</p>
+                    </div>}
+
             </div>
         </div>
     )
