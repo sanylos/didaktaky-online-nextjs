@@ -44,14 +44,8 @@ export const UcebnicePage = async () => {
             <div className='mt-3 p-1'>
                 <h2 className='text-center'>Obsah učebnice</h2>
                 <div className='container'>
-                    <div className="input-group mb-1">
-                        <input type="text" className="form-control" placeholder="Hledat" aria-label="Vyhledavani" aria-describedby="button-addon1" />
-                        <button className="btn btn-light" type="button" id="button-addon1"><FaSearch /></button>
-                    </div>
-                    <Navigation data={data} name="UcebnicePage"></Navigation>
-                </div>
-                <div>
                     <NavigationSearch data={data} />
+                    <Navigation data={data} name="UcebnicePage"></Navigation>
                 </div>
             </div>
         </div>
