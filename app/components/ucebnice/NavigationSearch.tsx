@@ -13,7 +13,7 @@ const NavigationSearch = ({ data }) => {
         data.map((category) => (
             category.ucebnice_subcategories.map((subcategory) => (
                 subcategory.ucebnice_category_content.map((content) => (
-                    content.name.includes(filter) ?
+                    content.name.toLowerCase().includes(filter.toLocaleLowerCase()) ?
                         contentArray.push(content) : console.log("neobsahuje " + filter)
                 ))
             ))
