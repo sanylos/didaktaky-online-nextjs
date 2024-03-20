@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { supabase } from '@/api';
 import Navigation from '../components/ucebnice/Navigation';
 import { FaSearch } from "react-icons/fa";
+import NavigationSearch from '../components/ucebnice/NavigationSearch';
 
 export async function getContent() {
     const { data, error } = await supabase
@@ -48,6 +49,9 @@ export const UcebnicePage = async () => {
                         <button className="btn btn-light" type="button" id="button-addon1"><FaSearch /></button>
                     </div>
                     <Navigation data={data} name="UcebnicePage"></Navigation>
+                </div>
+                <div>
+                    <NavigationSearch data={data} />
                 </div>
             </div>
         </div>
