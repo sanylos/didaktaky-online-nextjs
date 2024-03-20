@@ -24,13 +24,13 @@ const NavigationSearch = ({ data }) => {
         setFilteredData(getFilteredContent());
     }, [filter])
     return (
-        <div>
-            <div className="input-group mb-1">
+        <div className="mb-1 bg-light rounded">
+            <div className="input-group">
                 <input onChange={e => setFilter(e.target.value)} type="text" className="form-control" placeholder="Hledat" aria-label="Vyhledavani" aria-describedby="button-addon1" />
                 <button className="btn btn-light" type="button" id="button-addon1"><FaSearch /></button>
             </div>
             {!filter == "" &&
-                <div>
+                <div className="mt-1">
                     {filteredData.map(content => (
                         <div key={content.id}>
                             <div className="d-flex aling-items-center">
