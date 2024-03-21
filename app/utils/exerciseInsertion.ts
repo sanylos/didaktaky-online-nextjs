@@ -2,7 +2,6 @@ import { supabase } from "@/api"
 import { validateAnswer } from "./answerValidation";
 
 export const upsertExercise = async (exercise: any, answer: Array<string>, userAnswerId: string) => {
-    console.log(userAnswerId)
     if (userAnswerId) {
         const { data, error } = await supabase
             .from('userAnswers')
