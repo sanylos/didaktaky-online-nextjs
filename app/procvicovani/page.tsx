@@ -22,7 +22,7 @@ const Procvicovani = () => {
             setAnswerHistory([answer, ...answerHistory]);
             setExerciseHistory([exercise, ...exerciseHistory]);
             if (userData) {
-                const { data, error } = await upsertExercise(exercise, answer, true, userAnswerId);
+                const { data, error } = await upsertExercise(exercise, answer, userAnswerId);
                 if (error) {
                     console.log(error);
                 }
@@ -52,11 +52,12 @@ const Procvicovani = () => {
                 setAnswer(filledArray);
             }
             if (userData) {
-                const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray, false);
+                const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray);
                 if (upsertError) {
                     console.log(error);
                 }
                 if (upsertData) {
+                    console.log(upsertData)
                     setUserAnswerId(upsertData.id);
                 }
             }

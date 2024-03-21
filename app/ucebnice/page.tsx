@@ -3,6 +3,8 @@ import './page.scss'
 import { FaCheck } from "react-icons/fa";
 import { supabase } from '@/api';
 import Navigation from '../components/ucebnice/Navigation';
+import { FaSearch } from "react-icons/fa";
+import NavigationSearch from '../components/ucebnice/NavigationSearch';
 
 export async function getContent() {
     const { data, error } = await supabase
@@ -22,7 +24,7 @@ export const UcebnicePage = async () => {
     return (
         <div className="d-flex flex-column main">
             <div className='p-1 shadow-lg mb-2'>
-                <h1 className='mb-0'>Elektronická učebnice</h1>
+                <h1 className='mb-0 fw-bold'>Elektronická učebnice</h1>
                 <h5>Hledáte komplexní přípravu na maturitní a přijímací zkoušky z češtiny, angličtiny a matematiky? Pak jste na správném místě! Nabízíme rozsáhlou sbírku materiálů, učebních osnov a témat, která vám pomohou dosáhnout vašich cílů.</h5>
             </div>
             <div className='p-1'>
@@ -42,6 +44,7 @@ export const UcebnicePage = async () => {
             <div className='mt-3 p-1'>
                 <h2 className='text-center'>Obsah učebnice</h2>
                 <div className='container'>
+                    <NavigationSearch data={data} />
                     <Navigation data={data} name="UcebnicePage"></Navigation>
                 </div>
             </div>
