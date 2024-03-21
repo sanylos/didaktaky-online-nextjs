@@ -9,7 +9,7 @@ export const upsertExercise = async (exercise: any, answer: Array<string>, isAns
             'exercise_id': exercise.exercise_id,
             'examType': exercise.test_type,
             'examSubject': exercise.subject,
-            'exerciseType': exercise.type,
+            'type': exercise.type,
             'exerciseGroup': exercise.group,
             'answer': answer,
             'answered_at': isAnswered ? new Date() : null,
