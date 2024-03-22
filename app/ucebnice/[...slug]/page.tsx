@@ -33,8 +33,14 @@ export async function getContent(params) {
 
 export async function generateMetadata({ params }) {
     const data = await getContent(params)
+    const { data: categoryData } = await supabase
+        .from('ucebnice_categories')
+        .select('name')
+        .eq('id', params.slug[0])
+        .single();
+
     return {
-        title: data?.name,
+        title: categoryData?.name + ' - ' + data?.name,
         description: data?.meta_description
     }
 }
