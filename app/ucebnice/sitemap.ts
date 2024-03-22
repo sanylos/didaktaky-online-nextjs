@@ -11,7 +11,7 @@ export default async function sitemap() {
     data.map(category => {
         category.ucebnice_subcategories.map(subcategory => {
             subcategory.ucebnice_category_content.map(content => {
-                const url = process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + category.id + '/' + subcategory.id + '/' + content.id;
+                const url = process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + category.id + '/' + content.id;
                 urls.push({ url });
             });
         });
