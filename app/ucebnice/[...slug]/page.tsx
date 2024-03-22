@@ -41,7 +41,11 @@ export async function generateMetadata({ params }) {
 
     return {
         title: categoryData?.name + ' - ' + data?.name,
-        description: data?.meta_description
+        description: data?.meta_description,
+        openGraph: {
+            title: categoryData?.name + ' - ' + data?.name,
+            description: data?.meta_description
+        }
     }
 }
 
