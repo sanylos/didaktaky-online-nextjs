@@ -5,22 +5,28 @@ import { redirect } from 'next/navigation'
 
 export async function generateStaticParams() {
     const { data } = await supabase
-        .from('ucebnice_category_content')
-        .select('id')
-    return data;
+        .from('ucebnice_categories')
+        .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
 
+    return [data?.map(category => (
+        category.ucebnice_subcategories.map(subcategory => (
+            subcategory.ucebnice_category_content.map(content => (
+                { slug: [category.id, content.id] }
+            ))
+        ))
+    ))]
 }
 
 export async function getContent(params) {
     const { data, error } = await supabase
         .from('ucebnice_category_content')
         .select('*, ucebnice_content_articles(*)')
-        .eq('id', params.id)
+        .eq('id', params.slug[2])
         .order('order_number', { referencedTable: 'ucebnice_content_articles', ascending: true })
         .single();
     if (error) {
         console.log(error)
-        redirect('/ucebnice')
+        //redirect('/ucebnice')
     }
     return data;
 }
@@ -28,8 +34,8 @@ export async function getContent(params) {
 export async function generateMetadata({ params }) {
     const data = await getContent(params)
     return {
-        title: data.name,
-        description: data.meta_description
+        title: data?.name,
+        description: data?.meta_description
     }
 }
 
