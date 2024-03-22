@@ -26,7 +26,7 @@ export async function getContent(params) {
         .single();
     if (error) {
         console.log(error)
-        //redirect('/ucebnice')
+        redirect('/ucebnice')
     }
     return data;
 }
