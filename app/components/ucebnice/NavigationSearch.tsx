@@ -34,7 +34,7 @@ const NavigationSearch = ({ data }) => {
                     {filteredData.map(content => (
                         <div key={content.id}>
                             <div className="d-flex aling-items-center">
-                                <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + data.category + '/' + content.id}>{content.name}</Link></h5>
+                                <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + content.id}>{content.name}</Link></h5>
                             </div>
                         </div>
                     ))}
