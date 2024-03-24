@@ -49,9 +49,13 @@ const CategoryPage = async ({ params }) => {
     const data = await getContent(params);
     console.log(data.ucebnice_subcategories)
     return (
-        <div className='container'>
+        <div className='container' style={{ fontFamily: 'Roboto' }}>
             <div className='row'>
-
+                <h1 className='fw-semibold mb-0'>{data?.name}</h1>
+                <h4 className='fw-normal'>{data?.description}</h4>
+            </div>
+            <div className='row'>
+                <h2 className='fw-semibold mb-0'>Obsah učebnice</h2>
             </div>
         </div>
     )
