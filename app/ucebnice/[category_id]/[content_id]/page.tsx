@@ -5,23 +5,17 @@ import { redirect } from 'next/navigation'
 
 export async function generateStaticParams() {
     const { data } = await supabase
-        .from('ucebnice_categories')
-        .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
+        .from('ucebnice_category_content')
+        .select('id')
+    return data;
 
-    return [data?.map(category => (
-        category.ucebnice_subcategories.map(subcategory => (
-            subcategory.ucebnice_category_content.map(content => (
-                { slug: [category.id, content.id] }
-            ))
-        ))
-    ))]
 }
 
 export async function getContent(params) {
     const { data, error } = await supabase
         .from('ucebnice_category_content')
         .select('*, ucebnice_content_articles(*)')
-        .eq('id', params.slug[1])
+        .eq('id', params.content_id)
         .order('order_number', { referencedTable: 'ucebnice_content_articles', ascending: true })
         .single();
     if (error) {
@@ -34,16 +28,18 @@ export async function getContent(params) {
 export async function generateMetadata({ params }) {
     const data = await getContent(params)
     const { data: categoryData } = await supabase
-        .from('ucebnice_categories')
-        .select('name')
-        .eq('id', params.slug[0])
+        .from('ucebnice_category_content')
+        .select('ucebnice_subcategories(ucebnice_categories(name))')
+        .eq('id', params.content_id)
         .single();
 
+    const categoryName = categoryData?.ucebnice_subcategories.ucebnice_categories.name;
+
     return {
-        title: categoryData?.name + ' - ' + data?.name,
+        title: categoryName + ' - ' + data?.name,
         description: data?.meta_description,
         openGraph: {
-            title: categoryData?.name + ' - ' + data?.name,
+            title: categoryName + ' - ' + data?.name,
             description: data?.meta_description
         }
     }
@@ -51,7 +47,7 @@ export async function generateMetadata({ params }) {
 
 export const revalidate = 60;
 
-const AutorPage = async ({ params }) => {
+const ContentPage = async ({ params }) => {
     const data = await getContent(params);
     return (
         <div className='container'>
@@ -80,4 +76,4 @@ const AutorPage = async ({ params }) => {
     )
 }
 
-export default AutorPage
+export default ContentPage

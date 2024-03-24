@@ -3,19 +3,21 @@ import Link from 'next/link';
 import { FaAngleDown } from "react-icons/fa6";
 import { TbArrowRampRight3 } from "react-icons/tb";
 
-const Navigation = ({ data, name }) => {
+const Navigation = ({ data, name, isCollapsed = true }) => {
     return (
         <>
             {
                 data && data.map(category => (
                     <div key={category.id} className="rounded bg-light p-1 mb-2">
-                        <div className="link rounded p-1 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href={"#collapseCategories-" + name + "-" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <h3 className="fw-bold">
-                                {category.name}
+                        <div className="link rounded p-1 d-flex justify-content-between align-items-center">
+                            <h3 className='fw-semibold'>
+                                <Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id}>{category.name}</Link>
                             </h3>
-                            <FaAngleDown className="fs-3" />
+                            <div className='btn btn-light rounded-5 p-1'>
+                                <FaAngleDown className="fs-3" data-bs-toggle="collapse" href={"#collapseCategories-" + name + "-" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample" />
+                            </div>
                         </div>
-                        <div className="collapse" id={"collapseCategories-" + name + "-" + category.id}>
+                        <div className={"collapse " + (isCollapsed || "show")} id={"collapseCategories-" + name + "-" + category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
                                     <div className="link rounded p-1 d-flex align-items-center" data-bs-toggle="collapse" href={"#collapseSubcategory-" + name + "-" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -24,12 +26,12 @@ const Navigation = ({ data, name }) => {
                                         </h4>
                                         <FaAngleDown className="fs-5 mb-1 ms-1" />
                                     </div>
-                                    <div className="collapse" id={"collapseSubcategory-" + name + "-" + subcategory.id}>
+                                    <div className={"collapse " + (isCollapsed || "show")} id={"collapseSubcategory-" + name + "-" + subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <div className="d-flex aling-items-center">
                                                     <TbArrowRampRight3 className="fs-4" />
-                                                    <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id + "/" + content.id}>{content.name}</Link></h5>
+                                                    <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id + '/' + content.id}>{content.name}</Link></h5>
                                                 </div>
                                             </div>
                                         ))}
