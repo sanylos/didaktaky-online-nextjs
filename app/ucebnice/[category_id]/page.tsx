@@ -57,7 +57,7 @@ const CategoryPage = async ({ params }) => {
                 <h4 className='fw-normal'>{data?.description}</h4>
             </div>
             <div className='row bg-secondary-subtle mx-1 rounded'>
-                <h2 className='fw-semibold mb-0'>Obsah učebnice</h2>
+                <h2 className='fw-semibold mb-0 pt-1'>Obsah učebnice</h2>
                 <div>
                     <NavigationSearch data={new Array(data)} />
                     <Navigation data={new Array(data)} isCollapsed={false} />
