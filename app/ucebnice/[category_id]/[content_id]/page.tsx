@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
     const { data: categoryData } = await supabase
         .from('ucebnice_category_content')
         .select('ucebnice_subcategories(ucebnice_categories(name))')
-        .eq('id', params.id)
+        .eq('id', params.content_id)
         .single();
 
     const categoryName = categoryData?.ucebnice_subcategories.ucebnice_categories.name;
