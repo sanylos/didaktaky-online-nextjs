@@ -15,7 +15,7 @@ export async function getContent(params) {
     const { data, error } = await supabase
         .from('ucebnice_category_content')
         .select('*, ucebnice_content_articles(*)')
-        .eq('id', params.id)
+        .eq('id', params.content_id)
         .order('order_number', { referencedTable: 'ucebnice_content_articles', ascending: true })
         .single();
     if (error) {
