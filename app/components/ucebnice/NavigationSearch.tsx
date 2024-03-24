@@ -12,10 +12,13 @@ const NavigationSearch = ({ data }) => {
         let contentArray = [];
         data.map((category) => (
             category.ucebnice_subcategories.map((subcategory) => (
-                subcategory.ucebnice_category_content.map((content) => (
-                    content.name.toLowerCase().includes(filter.toLocaleLowerCase()) ?
-                        contentArray.push(content) : console.log("neobsahuje " + filter)
-                ))
+                subcategory.ucebnice_category_content.map((content) => {
+                    if (content.name.toLowerCase().includes(filter.toLowerCase())) {
+                        contentArray.push(content);
+                    } else if (subcategory.name.toLowerCase().includes(filter.toLowerCase())) {
+                        contentArray.push(content)
+                    }
+                })
             ))
         ))
         return contentArray;
@@ -34,7 +37,7 @@ const NavigationSearch = ({ data }) => {
                     {filteredData.map(content => (
                         <div key={content.id}>
                             <div className="d-flex aling-items-center">
-                                <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + data.id + '/' + content.id}>{content.name}</Link></h5>
+                                <h5><Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + 'search' + '/' + content.id}>{content.name}</Link></h5>
                             </div>
                         </div>
                     ))}
