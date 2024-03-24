@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FaAngleDown } from "react-icons/fa6";
 import { TbArrowRampRight3 } from "react-icons/tb";
 
-const Navigation = ({ data, name }) => {
+const Navigation = ({ data, name, isCollapsed = true }) => {
     return (
         <>
             {
@@ -15,7 +15,7 @@ const Navigation = ({ data, name }) => {
                             </h3>
                             <FaAngleDown className="fs-3" />
                         </div>
-                        <div className="collapse" id={"collapseCategories-" + name + "-" + category.id}>
+                        <div className={"collapse " + (isCollapsed || "show")} id={"collapseCategories-" + name + "-" + category.id}>
                             {category.ucebnice_subcategories.map(subcategory => (
                                 <div key={subcategory.id}>
                                     <div className="link rounded p-1 d-flex align-items-center" data-bs-toggle="collapse" href={"#collapseSubcategory-" + name + "-" + subcategory.id} role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -24,7 +24,7 @@ const Navigation = ({ data, name }) => {
                                         </h4>
                                         <FaAngleDown className="fs-5 mb-1 ms-1" />
                                     </div>
-                                    <div className="collapse" id={"collapseSubcategory-" + name + "-" + subcategory.id}>
+                                    <div className={"collapse " + (isCollapsed || "show")} id={"collapseSubcategory-" + name + "-" + subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <div className="d-flex aling-items-center">
