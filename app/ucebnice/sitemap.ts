@@ -8,11 +8,14 @@ export default async function sitemap() {
         .select('*, ucebnice_subcategories(*, ucebnice_category_content(*))')
 
     const urls = [];
+    let url;
     data.map(category => {
+        url = process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + category.id;
+        urls.push({ url }); // PUSH category URL
         category.ucebnice_subcategories.map(subcategory => {
             subcategory.ucebnice_category_content.map(content => {
-                const url = process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + category.id + '/' + content.id;
-                urls.push({ url });
+                url = process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/' + category.id + '/' + content.id;
+                urls.push({ url }); // PUSH content URL
             });
         });
     });
