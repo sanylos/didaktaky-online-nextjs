@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { supabase } from '@/api'
 import { redirect } from 'next/navigation'
-
+import Article from '@/app/components/ucebnice/Article';
 
 export async function generateStaticParams() {
     const { data } = await supabase
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 export async function getContent(params) {
     const { data, error } = await supabase
         .from('ucebnice_category_content')
-        .select('*, ucebnice_content_articles(*)')
+        .select('*, ucebnice_content_articles(*), ucebnice_questions(*)')
         .eq('id', params.content_id)
         .order('order_number', { referencedTable: 'ucebnice_content_articles', ascending: true })
         .single();
@@ -56,14 +56,7 @@ const ContentPage = async ({ params }) => {
                     <h1 className='fw-semibold mb-0' style={{ fontFamily: 'Roboto' }}>{data?.name}</h1>
                     <h2 style={{ fontFamily: 'Roboto', fontSize: '1.125rem' }} dangerouslySetInnerHTML={{ __html: data?.subtitle }}></h2>
                     {data?.ucebnice_content_articles?.map(article => (
-                        <div key={article.id} id={article.id} style={{ fontFamily: 'Roboto', fontSize: '1.125rem' }}>
-                            <div className='d-flex flex-row align-items-center'>
-                                <a className='fs-1 text-secondary me-2 fw-bold' style={{ textDecoration: 'none' }} href={'#' + article.id}>#</a>
-                                <h2 className='fw-semibold' dangerouslySetInnerHTML={{ __html: article.title }}></h2>
-                            </div>
-                            <h5 className="fst-italic" dangerouslySetInnerHTML={{ __html: article.subtitle }}></h5>
-                            <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
-                        </div>
+                        <Article key={article.id} article={article}></Article>
                     ))}
                 </div>
                 {data?.description &&
