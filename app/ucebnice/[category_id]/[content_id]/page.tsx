@@ -2,6 +2,7 @@
 import { supabase } from '@/api'
 import { redirect } from 'next/navigation'
 import Article from '@/app/components/ucebnice/Article';
+import ArticleTitle from '@/app/components/ucebnice/ArticleTitle';
 
 export async function generateStaticParams() {
     const { data } = await supabase
@@ -58,11 +59,33 @@ const ContentPage = async ({ params }) => {
                     {data?.ucebnice_content_articles?.map(article => (
                         <Article key={article.id} article={article}></Article>
                     ))}
+                    {data.ucebnice_questions &&
+                        <div id="flashcards">
+                            <ArticleTitle title="Flashcards" id="flashcards" />
+                            <div className='accordion' id="accordionQuestions">
+                                {data?.ucebnice_questions.map(question => (
+                                    <div key={question.id} className="accordion-item">
+                                        <h2 className="accordion-header">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={'#collapse' + question.id} aria-expanded="true" aria-controls={'collapse' + question.id}>
+                                                <span dangerouslySetInnerHTML={{ __html: question.title }}></span>
+                                            </button>
+                                        </h2>
+                                        <div id={'collapse' + question.id} className="accordion-collapse collapse" data-bs-parent="#accordionQuestions">
+                                            <div className="accordion-body">
+                                                <p dangerouslySetInnerHTML={{ __html: question.answer }}></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    }
                 </div>
                 {data?.description &&
                     <div className='my-2 col-sm-0 col-lg-2 alert alert-light h-100'>
                         <p>{data?.description}</p>
                     </div>}
+
 
             </div>
         </div>
