@@ -63,20 +63,32 @@ const ContentPage = async ({ params }) => {
                         <div id="flashcards">
                             <ArticleTitle title="Flashcards" id="flashcards" />
                             <div className='accordion' id="accordionQuestions">
-                                {data?.ucebnice_questions.map(question => (
-                                    <div key={question.id} className="accordion-item">
-                                        <h2 className="accordion-header">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={'#collapse' + question.id} aria-expanded="true" aria-controls={'collapse' + question.id}>
-                                                <span dangerouslySetInnerHTML={{ __html: question.title }}></span>
-                                            </button>
-                                        </h2>
-                                        <div id={'collapse' + question.id} className="accordion-collapse collapse" data-bs-parent="#accordionQuestions">
-                                            <div className="accordion-body">
-                                                <p dangerouslySetInnerHTML={{ __html: question.answer }}></p>
+                                <div className='carousel slide' id="flashcardsCarousel">
+                                    <div className='carousel-inner'>
+                                        {data?.ucebnice_questions.map((question, index) => (
+                                            <div key={question.id} className={'carousel-item ' + (index == 0 && 'active')}>
+                                                <div className="accordion-item">
+                                                    <h2 className="accordion-header">
+                                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={'#collapse' + question.id} aria-expanded="true" aria-controls={'collapse' + question.id}>
+                                                            <span dangerouslySetInnerHTML={{ __html: question.title }}></span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id={'collapse' + question.id} className="accordion-collapse collapse" data-bs-parent="#accordionQuestions">
+                                                        <div className="accordion-body">
+                                                            <p dangerouslySetInnerHTML={{ __html: question.answer }}></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                ))}
+                                        ))}</div></div>
+                                <div>
+                                    <button class="" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="prev">
+                                        Předchozí
+                                    </button>
+                                    <button class="" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="next">
+                                        Další
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     }
