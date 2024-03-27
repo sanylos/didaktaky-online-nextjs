@@ -81,11 +81,11 @@ const ContentPage = async ({ params }) => {
                                                 </div>
                                             </div>
                                         ))}</div></div>
-                                <div>
-                                    <button class="" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="prev">
+                                <div className='d-flex flex-row justify-content-between mt-1'>
+                                    <button class="btn btn-success" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="prev">
                                         Předchozí
                                     </button>
-                                    <button class="" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="next">
+                                    <button class="btn btn-success" type="button" data-bs-target="#flashcardsCarousel" data-bs-slide="next">
                                         Další
                                     </button>
                                 </div>
