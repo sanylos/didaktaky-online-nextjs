@@ -10,7 +10,8 @@ const ProcvicovaniPage = () => {
     return (
         <div>
             <div className="container-fluid">
-                <h1>Získejte náskok na přijímací zkoušky a maturity s naší platformou.</h1>
+                <h1 className="m-0">Získejte náskok na přijímací zkoušky a maturity s naší platformou.</h1>
+                <hr className="m-0 text-danger bg-danger" style={{ height: '2px' }} />
                 <h3 className='fw-normal fs-4'>Přijímací zkoušky a maturity představují důležité milníky v životě studenta. Úspěšné zvládnutí těchto testů otevírá dveře k vysněným oborům a kariérám. Naše webová aplikace vám pomůže dosáhnout vašich cílů a snů s maximální efektivitou a pohodlím.</h3>
             </div>
             <div className="container-fluid">
