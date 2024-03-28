@@ -1,4 +1,5 @@
 import { FaCheck } from "react-icons/fa";
+import './RoundedCard.scss'
 const RoundedCard = ({ title, text }: { title: string, text: string }) => {
     return (
         <div className="box text-white mb-1 mx-1">
