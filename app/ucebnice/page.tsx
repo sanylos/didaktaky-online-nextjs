@@ -1,9 +1,8 @@
 //@ts-nocheck
 import './page.scss'
-import { FaCheck } from "react-icons/fa";
 import { supabase } from '@/api';
 import Navigation from '../components/ucebnice/Navigation';
-import { FaSearch } from "react-icons/fa";
+import RoundedCard from '../components/UI/RoundedCard';
 import NavigationSearch from '../components/ucebnice/NavigationSearch';
 
 export async function getContent() {
@@ -29,16 +28,7 @@ export const UcebnicePage = async () => {
             </div>
             <div className='p-1'>
                 {pros.map((item, index) => (
-                    <div key={index} className="box text-white mb-1 mx-1">
-                        <div className="ms-1 box__icon">
-                            <FaCheck className='text-success fs-4' />
-                        </div>
-                        <div className='d-flex flex-column'>
-                            <h5 className="box__title ms-1 mb-0">{item.title}</h5>
-                            <p className="ms-1 mb-0">{item.text}</p>
-                        </div>
-                    </div>
-
+                    <RoundedCard key={index} title={item.title} text={item.text} />
                 ))}
             </div>
             <div className='mt-3 p-1'>
