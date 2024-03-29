@@ -1,6 +1,7 @@
+"use client"
 import RoundedCard from "../components/UI/RoundedCard"
 import { FaCircleArrowRight } from "react-icons/fa6";
-
+import SelectionCard from "../components/procvicovani/SelectionCard";
 
 const ProcvicovaniPage = () => {
     const pros = [
@@ -12,6 +13,10 @@ const ProcvicovaniPage = () => {
     const options = {
         PZ: ['Český jazyk a literatura', 'Matematika'],
         MZ: ['Český jazyk a literatura', 'Matematika', 'Anglický jazyk']
+    }
+
+    const handleFilter = () => {
+
     }
 
     return (
@@ -28,34 +33,10 @@ const ProcvicovaniPage = () => {
             </div>
             <div className="d-flex justify-content-around flex-wrap flex-lg-nowrap mt-5">
                 <div className="container mb-1">
-                    <div className="card bg-secondary-subtle border-0 w-auto" style={{ width: '18rem' }}>
-                        <div className="card-body">
-                            <h5 className="card-title">PŘIJÍMACÍ ZKOUŠKY</h5>
-                            <h6 className="card-subtitle mb-2 text-body-secondary">PŘEDMĚTY</h6>
-                            <div>
-                                {options['PZ'].map((option, index) => (
-                                    <div key={index} className="bg-light mb-1 rounded p-1 d-flex justify-content-between align-items-center">
-                                        <span className="fs-3">{option}</span><FaCircleArrowRight className="fs-4 me-2" />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <SelectionCard title="PŘIJÍMACÍ ZKOUŠKA" options={options['PZ']} handleFilter={handleFilter} />
                 </div>
                 <div className="container mb-1">
-                    <div className="card bg-secondary-subtle border-0 w-auto" style={{ width: '18rem' }}>
-                        <div className="card-body">
-                            <h5 className="card-title">PŘIJÍMACÍ ZKOUŠKY</h5>
-                            <h6 className="card-subtitle mb-2 text-body-secondary">PŘEDMĚTY</h6>
-                            <div>
-                                {options['MZ'].map((option, index) => (
-                                    <div key={index} className="bg-light mb-1 rounded p-1">
-                                        {option}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <SelectionCard title="MATURITNÍ ZKOUŠKA" options={options['MZ']} handleFilter={handleFilter} />
                 </div>
             </div>
         </div>
