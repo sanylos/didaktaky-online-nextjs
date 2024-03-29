@@ -1,130 +1,59 @@
-// @ts-nocheck
-"use client";
-import { useEffect, useState } from "react";
-import { supabase } from "@/api";
-import Exercise from "../components/Exercise";
-import { upsertExercise } from "../utils/exerciseInsertion";
-import { useUser } from "../UserContext";
+"use client"
+import RoundedCard from "../components/UI/RoundedCard"
+import { FaCircleArrowRight } from "react-icons/fa6";
+import SelectionCard from "../components/procvicovani/SelectionCard";
+import { useState } from "react";
+import PracticeWindow from "../components/procvicovani/PracticeWindow";
 
-const Procvicovani = () => {
-    const { userData } = useUser();
-    const [exercise, setExercise] = useState(null);
-    const [answer, setAnswer] = useState(null);
-    const [isAnswered, setIsAnswered] = useState(false);
-    const [userAnswerId, setUserAnswerId] = useState(null);
-    const [exerciseHistory, setExerciseHistory] = useState([]);
-    const [answerHistory, setAnswerHistory] = useState([]);
-    const [exerciseHistoryIndex, setExerciseHistoryIndex] = useState(0);
-
-    const handleExerciseSubmit = async () => { //
-        if (exercise && !answer.includes("")) {
-            setIsAnswered(true);
-            setAnswerHistory([answer, ...answerHistory]);
-            setExerciseHistory([exercise, ...exerciseHistory]);
-            if (userData) {
-                const { data, error } = await upsertExercise(exercise, answer, userAnswerId);
-                if (error) {
-                    console.log(error);
-                }
-            }
-        }
-        else alert("Cvičení nebylo zodpovězeno");
-    }
-
-    const fetchNextQuestion = async () => {
-        let filledArray; // Array filled with empty strings waiting to be answered
-        try {
-            const { data, error } = await supabase.rpc('getrandomexercise', {
-                in_years: ["2022"],
-                in_subjects: ["CJL"],
-                in_variants: ["1"],
-                in_types: ["PZ"]
-            });
-
-            if (error) {
-                console.log(error);
-            }
-            else {
-                console.log(data);
-                setExercise(data);
-                setIsAnswered(false);
-                filledArray = Array(data.correct_answer.length).fill("");
-                setAnswer(filledArray);
-            }
-            if (userData) {
-                const { data: upsertData, error: upsertError } = await upsertExercise(data, filledArray);
-                if (upsertError) {
-                    console.log(error);
-                }
-                if (upsertData) {
-                    console.log(upsertData)
-                    setUserAnswerId(upsertData.id);
-                }
-            }
-        } catch (error) {
-            console.log(error);
-        }
-
-
-    }
-
-    const handleAnswer = (index, exerciseAnswer) => { //exercise answer is the passed answer from Exercise component
-        if (!isAnswered) {
-            let answerArray = [...answer];
-            answerArray[index] = exerciseAnswer;
-            //console.log("answer handled: " + answerArray);
-            setAnswer(answerArray);
-            //console.log(answer);
-        }
-    }
-
-    const handlePreviousExercise = () => {
-        if (exerciseHistoryIndex + 1 < exerciseHistory.length) {
-            setExerciseHistoryIndex(exerciseHistoryIndex + 1);
-            setExercise(exerciseHistory[exerciseHistoryIndex + 1]);
-            setAnswer(answerHistory[exerciseHistoryIndex + 1]);
-        }
-    }
-
-    const handleNextExercise = () => {
-        if (exerciseHistoryIndex >= 1) {
-            setExerciseHistoryIndex(exerciseHistoryIndex - 1);
-            setExercise(exerciseHistory[exerciseHistoryIndex - 1]);
-            setAnswer(answerHistory[exerciseHistoryIndex - 1]);
-        } else {
-            fetchNextQuestion();
-        }
-    }
-
-    useEffect(() => {
-        console.log("log z useEffectu z cviceni");
-        fetchNextQuestion();
-    }, [])
-
-    return <div className="d-flex justify-content-center">
-        <div>
-            <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
-                {exercise ?
-                    <div>
-                        <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
-                        <div className="d-flex justify-content-between">
-                            <button disabled={!isAnswered} className="btn btn-light" onClick={handlePreviousExercise}>Předchozí</button>
-                            {
-
-                                isAnswered ?
-                                    <button className="btn btn-light" onClick={handleNextExercise}>Další</button>
-                                    :
-                                    <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
-
-                            }
-                        </div>
-                    </div>
-                    :
-                    <span>Načítání...</span>
-                }
-            </div>
-        </div>
-    </div>
+type Filter = {
+    examType: string,
+    examSubject: string
 }
 
-export default Procvicovani;
+const ProcvicovaniPage = () => {
+    const [filter, setFilter] = useState<Filter | null>(null);
+    const pros = [
+        { title: 'Zvýšení šancí na úspěch', text: 'Naše platforma vám pomůže dosáhnout vynikajících výsledků v přijímacích zkouškách a maturitách.' },
+        { title: 'Získání sebejistoty', text: 'Trénink s reálnými otázkami a pod tlakem časového limitu vám dodá potřebnou jistotu pro zvládnutí zkoušky.' },
+        { title: 'Efektivní příprava', text: 'Přizpůsobitelné testy a filtry vám umožní optimalizovat trénink a využít čas co nejefektivněji.' },
+        { title: 'Lepší zvládnutí stresu', text: 'Simulace reálných podmínek zkoušky vám pomůže zvládat stres a lépe se soustředit v kritické situaci.' },
+    ]
+    const options = {
+        PZ: ['CJL', 'MAT'],
+        MZ: ['CJL', 'MAT', 'ANJ']
+    }
+
+    const handleFilter = (examType: string, examSubject: string) => {
+        setFilter({ examType, examSubject })
+    }
+
+    return (
+        <div>
+            {!filter ? <div>
+                <div className="container-fluid">
+                    <h1 className="m-0">Získejte náskok na přijímací zkoušky a maturitu</h1>
+                    <hr className="m-0 text-danger bg-danger" style={{ height: '2px' }} />
+                    <h3 className='fw-normal fs-4 mt-1'>Přijímací zkoušky a maturity představují důležité milníky v životě studenta. Úspěšné zvládnutí těchto testů otevírá dveře k vysněným oborům a kariérám. Naše webová aplikace vám pomůže dosáhnout vašich cílů a snů s maximální efektivitou a pohodlím.</h3>
+                </div>
+                <div className="container-fluid">
+                    {pros.map((item, index) => (
+                        <RoundedCard key={index} title={item.title} text={item.text} />
+                    ))}
+                </div>
+                <div className="d-flex justify-content-around flex-wrap flex-lg-nowrap mt-5">
+                    <div className="container mb-1">
+                        <SelectionCard title="PŘIJÍMACÍ ZKOUŠKA" examType="PZ" options={options['PZ']} handleFilter={handleFilter} />
+                    </div>
+                    <div className="container mb-1">
+                        <SelectionCard title="MATURITNÍ ZKOUŠKA" examType="MZ" options={options['MZ']} handleFilter={handleFilter} />
+                    </div>
+                </div>
+            </div>
+                :
+                <PracticeWindow examType={filter.examType} examSubject={filter.examSubject} />
+            }
+        </div >
+    )
+}
+
+export default ProcvicovaniPage
