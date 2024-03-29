@@ -104,7 +104,7 @@ const PracticeWindow = ({ examType, examSubject }) => {
     return <div className="d-flex justify-content-center">
         <div>
             <div className="container-fluid rounded p-3 bg-secondary-subtle shadow m-1 w-auto">
-                {exercise ?
+                {exercise?.exercise_id ?
                     <div>
                         <Exercise exercise={exercise} answer={answer} handleAnswer={handleAnswer} isAnswered={isAnswered} />
                         <div className="d-flex justify-content-between">
@@ -120,7 +120,10 @@ const PracticeWindow = ({ examType, examSubject }) => {
                         </div>
                     </div>
                     :
-                    <span>Načítání...</span>
+                    <div className="d-flex flex-column align-items-center">
+                        <span>Načítání...</span>
+                        <span className="mt-5">Pokud načítání trvá příliš dlouho, pravděpodobně nebylo nalezeno žádné vyhovující cvičení.</span>
+                    </div>
                 }
             </div>
         </div>
