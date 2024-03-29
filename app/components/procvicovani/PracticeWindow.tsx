@@ -35,7 +35,7 @@ const PracticeWindow = ({ examType, examSubject }) => {
         let filledArray; // Array filled with empty strings waiting to be answered
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
-                in_years: ["2023"],
+                in_years: ["2021", "2022", "2023", "2024"],
                 in_subjects: [examSubject],
                 in_variants: ["1", "2", "3", "4", "5"],
                 in_types: [examType]
