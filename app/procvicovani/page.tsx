@@ -3,6 +3,7 @@ import RoundedCard from "../components/UI/RoundedCard"
 import { FaCircleArrowRight } from "react-icons/fa6";
 import SelectionCard from "../components/procvicovani/SelectionCard";
 import { useState } from "react";
+import PracticeWindow from "../components/procvicovani/PracticeWindow";
 
 type Filter = {
     examType: string,
@@ -22,8 +23,8 @@ const ProcvicovaniPage = () => {
         MZ: ['CJL', 'MAT', 'ANJ']
     }
 
-    const handleFilter = (key: string, option: string) => {
-        setFilter({ examType: key, examSubject: option })
+    const handleFilter = (examType: string, examSubject: string) => {
+        setFilter({ examType, examSubject })
     }
 
     return (
@@ -41,15 +42,16 @@ const ProcvicovaniPage = () => {
                 </div>
                 <div className="d-flex justify-content-around flex-wrap flex-lg-nowrap mt-5">
                     <div className="container mb-1">
-                        <SelectionCard title="PŘIJÍMACÍ ZKOUŠKA" key="PZ" options={options['PZ']} handleFilter={handleFilter} />
+                        <SelectionCard title="PŘIJÍMACÍ ZKOUŠKA" examType="PZ" options={options['PZ']} handleFilter={handleFilter} />
                     </div>
                     <div className="container mb-1">
-                        <SelectionCard title="MATURITNÍ ZKOUŠKA" key="MZ" options={options['MZ']} handleFilter={handleFilter} />
+                        <SelectionCard title="MATURITNÍ ZKOUŠKA" examType="MZ" options={options['MZ']} handleFilter={handleFilter} />
                     </div>
                 </div>
             </div>
                 :
-                ''}
+                <PracticeWindow examType={filter.examType} examSubject={filter.examSubject} />
+            }
         </div >
     )
 }
