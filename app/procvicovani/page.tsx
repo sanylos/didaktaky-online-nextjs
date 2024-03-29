@@ -1,5 +1,5 @@
 import RoundedCard from "../components/UI/RoundedCard"
-
+import { FaCircleArrowRight } from "react-icons/fa6";
 
 
 const ProcvicovaniPage = () => {
@@ -34,8 +34,8 @@ const ProcvicovaniPage = () => {
                             <h6 className="card-subtitle mb-2 text-body-secondary">PŘEDMĚTY</h6>
                             <div>
                                 {options['PZ'].map((option, index) => (
-                                    <div key={index} className="bg-light mb-1 rounded p-1">
-                                        {option}
+                                    <div key={index} className="bg-light mb-1 rounded p-1 d-flex justify-content-between align-items-center">
+                                        <span className="fs-3">{option}</span><FaCircleArrowRight className="fs-4 me-2" />
                                     </div>
                                 ))}
                             </div>
