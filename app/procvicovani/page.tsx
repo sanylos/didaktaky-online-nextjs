@@ -4,8 +4,13 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import SelectionCard from "../components/procvicovani/SelectionCard";
 import { useState } from "react";
 
+type Filter = {
+    examType: string,
+    examSubject: string
+}
+
 const ProcvicovaniPage = () => {
-    const [filter, setFilter] = useState(null);
+    const [filter, setFilter] = useState<Filter | null>(null);
     const pros = [
         { title: 'Zvýšení šancí na úspěch', text: 'Naše platforma vám pomůže dosáhnout vynikajících výsledků v přijímacích zkouškách a maturitách.' },
         { title: 'Získání sebejistoty', text: 'Trénink s reálnými otázkami a pod tlakem časového limitu vám dodá potřebnou jistotu pro zvládnutí zkoušky.' },
@@ -17,8 +22,8 @@ const ProcvicovaniPage = () => {
         MZ: ['CJL', 'MAT', 'ANJ']
     }
 
-    const handleFilter = () => {
-
+    const handleFilter = (key: string, option: string) => {
+        setFilter({ examType: key, examSubject: option })
     }
 
     return (
