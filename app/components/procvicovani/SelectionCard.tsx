@@ -1,7 +1,7 @@
 "use client"
 import { FaCircleArrowRight } from "react-icons/fa6"
 
-const SelectionCard = ({ key, options, title, handleFilter }: { key: string, options: Array<string>, title: string, handleFilter: (key: string, option: string) => void }) => {
+const SelectionCard = ({ examType, options, title, handleFilter }: { examType: string, options: Array<string>, title: string, handleFilter: (examType: string, option: string) => void }) => {
     return (
         <div className="card bg-secondary-subtle border-0 w-auto" style={{ width: '18rem' }}>
             <div className="card-body">
@@ -10,7 +10,7 @@ const SelectionCard = ({ key, options, title, handleFilter }: { key: string, opt
                 <div>
                     {options.map((option, index) => (
                         <div key={index} className="bg-light mb-1 rounded p-1 d-flex justify-content-between align-items-center">
-                            <span className="fs-3">{option}</span><button className="btn p-1 btn-outline-light m-1 text-dark" onClick={() => handleFilter(key, option)}><FaCircleArrowRight className="fs-3" /></button>
+                            <span className="fs-3">{option}</span><button className="btn p-1 btn-outline-light m-1 text-dark" onClick={() => handleFilter(examType, option)}><FaCircleArrowRight className="fs-3" /></button>
                         </div>
                     ))}
                 </div>
