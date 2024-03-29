@@ -6,7 +6,7 @@ import Exercise from "../../components/Exercise";
 import { upsertExercise } from "../../utils/exerciseInsertion";
 import { useUser } from "../../UserContext";
 
-const PracticeWindow = () => {
+const PracticeWindow = ({ examType, examSubject }) => {
     const { userData } = useUser();
     const [exercise, setExercise] = useState(null);
     const [answer, setAnswer] = useState(null);
@@ -35,10 +35,10 @@ const PracticeWindow = () => {
         let filledArray; // Array filled with empty strings waiting to be answered
         try {
             const { data, error } = await supabase.rpc('getrandomexercise', {
-                in_years: ["2022"],
-                in_subjects: ["CJL"],
-                in_variants: ["1"],
-                in_types: ["PZ"]
+                in_years: ["2023"],
+                in_subjects: [examSubject],
+                in_variants: ["1", "2", "3", "4", "5"],
+                in_types: [examType]
             });
 
             if (error) {
@@ -95,7 +95,7 @@ const PracticeWindow = () => {
             fetchNextQuestion();
         }
     }
-
+    console.log(examType)
     useEffect(() => {
         console.log("log z useEffectu z cviceni");
         fetchNextQuestion();
