@@ -36,6 +36,10 @@ const ExerciseAddPage = () => {
                             ))}
                         </select>
                     </div>
+                    <div>
+                        Číslo cvičení
+                        <input onChange={(e) => saveExercise("number", e.target.value)} type="number" min="1" max="30" />
+                    </div>
                 </div>
                 <div>
                     <h2>Náhled</h2>
