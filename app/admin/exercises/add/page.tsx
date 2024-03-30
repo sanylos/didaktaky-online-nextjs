@@ -2,10 +2,12 @@
 "use client"
 import { supabase } from "@/api"
 import Exercise from "@/app/components/Exercise"
+import { ImageResponse } from "next/server"
 import { useEffect, useState } from "react"
 const ExerciseAddPage = () => {
     const [exercise, setExercise] = useState({})
     const [tests, setTests] = useState([])
+    const [images, setImages] = useState(null)
     const fetchTests = async () => {
         const { data, error } = await supabase
             .from('tests')
@@ -13,8 +15,24 @@ const ExerciseAddPage = () => {
         if (error) console.log(error)
         setTests(data);
     }
+    const fetchImages = async () => {
+
+
+        const { data, error } = await supabase
+            .storage
+            .from('exercise-texts')
+            .list('folder', {
+                limit: 30,
+                offset: 0,
+                sortBy: { column: 'name', order: 'asc' },
+            })
+        console.log(error)
+        console.log(data)
+        setImages(data)
+    }
     useEffect(() => {
         fetchTests();
+        fetchImages();
     }, [])
 
     const saveExercise = (key, value) => {
@@ -28,6 +46,22 @@ const ExerciseAddPage = () => {
             <h1>Přidat cvičení</h1>
             <div>
                 <div>
+                    <div>
+                        Vložit nový soubor
+                        <input type="file" />
+                    </div>
+                    <div className="d-flex" style={{ overflow: 'auto' }}>
+                        {images?.map(image => (
+                            <div key={image.name} className="bg-dark text-white m-1 p-1">
+                                <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/folder/' + image.name} alt="img" />
+                                {image.name}
+                            </div>
+                        ))}
+                        Nazev souboru TEXT 1
+                        <input type="text" onChange={(e) => saveExercise("text1img", e.target.value)} />
+                        Nazev souboru TEXT 2
+                        <input type="text" onChange={(e) => saveExercise("text2img", e.target.value)} />
+                    </div>
                     <div>
                         ID Testu
                         <select onChange={(e) => saveExercise("test_id", e.target.value)}>
