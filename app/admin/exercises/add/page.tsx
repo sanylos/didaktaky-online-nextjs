@@ -44,6 +44,10 @@ const ExerciseAddPage = () => {
                         Hlavní nadpis
                         <input type="text" onChange={(e) => saveExercise("title", e.target.value)} />
                     </div>
+                    <div>
+                        Popisek
+                        <input type="text" onChange={(e) => saveExercise("description", e.target.value)} />
+                    </div>
                 </div>
                 <div>
                     <h2>Náhled</h2>
