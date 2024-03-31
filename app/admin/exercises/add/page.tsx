@@ -2,7 +2,6 @@
 "use client"
 import { supabase } from "@/api"
 import Exercise from "@/app/components/Exercise"
-import { ImageResponse } from "next/server"
 import { useEffect, useState } from "react"
 const ExerciseAddPage = () => {
     const [exercise, setExercise] = useState({})
@@ -46,9 +45,18 @@ const ExerciseAddPage = () => {
         fetchExerciseTypes();
     }, [])
 
-    const saveExercise = (key, value) => {
-        const exerciseCopy = exercise;
-        setExercise({ ...exercise, [key]: value })
+    const saveExercise = (key, value, index = undefined) => {
+        if (!index) {
+            setExercise({ ...exercise, [key]: value })
+        }
+        if (index || index == 0) {
+            let valuesArrayCopy = exercise[key] || [];
+            let valuesArray = [...valuesArrayCopy];
+            valuesArray[index] = value;
+            console.log(valuesArray)
+
+            setExercise({ ...exercise, [key]: valuesArray })
+        }
     }
 
     const handleImageUpload = async () => {
@@ -120,6 +128,12 @@ const ExerciseAddPage = () => {
                             ))}
                         </select>
                     </div>
+                </div>
+                <div>
+                    Možnosti <br />
+                    {Array.from({ length: 6 }, (_, index) => index + 1).map((number) => (
+                        <span key={number}>{number}<input type="text" onChange={e => saveExercise("answers", e.target.value, number - 1)} /><br /></span>
+                    ))}
                 </div>
                 <div>
                     <h2>Náhled</h2>
