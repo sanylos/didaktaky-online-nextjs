@@ -48,7 +48,7 @@ const ExerciseAddPage = () => {
                 <div>
                     <div className="d-flex" style={{ overflow: 'auto' }}>
                         <div className="bg-dark text-white m-1 p-1">
-                            <button className="btn text-white d-flex align-items-center justify-content-center fs-1" style={{ height: '100%', width: '100px', objectFit: 'contain' }}>
+                            <button data-bs-toggle="modal" data-bs-target="#uploadModal" className="btn text-white d-flex align-items-center justify-content-center fs-1" style={{ height: '100%', width: '100px', objectFit: 'contain' }}>
                                 +
                             </button>
                         </div>
@@ -89,7 +89,24 @@ const ExerciseAddPage = () => {
                     <Exercise exercise={exercise} isAnswered={true} showExerciseNumber={true} />
                 </div>
             </div>
-
+            {/* MODALS */}
+            <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="uploadModalLabel">Nahrát nový soubor</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
