@@ -25,7 +25,7 @@ const ExerciseAddPage = () => {
             .list('', {
                 limit: 30,
                 offset: 0,
-                sortBy: { column: 'name', order: 'asc' },
+                sortBy: { column: 'created_at', order: 'desc' },
             })
         console.log(error)
         console.log(data)
