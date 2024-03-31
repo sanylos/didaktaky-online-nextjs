@@ -8,6 +8,7 @@ const ExerciseAddPage = () => {
     const [exercise, setExercise] = useState({})
     const [tests, setTests] = useState([])
     const [images, setImages] = useState(null)
+    const [imageToUpload, setImageToUpload] = useState(null)
     const fetchTests = async () => {
         const { data, error } = await supabase
             .from('tests')
@@ -89,6 +90,7 @@ const ExerciseAddPage = () => {
                     <Exercise exercise={exercise} isAnswered={true} showExerciseNumber={true} />
                 </div>
             </div>
+
             {/* MODALS */}
             <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -98,7 +100,8 @@ const ExerciseAddPage = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <input type="file" onChange={e => setImageToUpload(e.target.files[0])} accept="image/*" />
+                            <img src={imageToUpload && URL.createObjectURL(imageToUpload)} />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -107,6 +110,7 @@ const ExerciseAddPage = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
