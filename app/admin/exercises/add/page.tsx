@@ -9,6 +9,7 @@ const ExerciseAddPage = () => {
     const [tests, setTests] = useState([])
     const [images, setImages] = useState(null)
     const [imageToUpload, setImageToUpload] = useState(null)
+    const [exerciseTypes, setExerciseTypes] = useState([])
     const fetchTests = async () => {
         const { data, error } = await supabase
             .from('tests')
@@ -16,9 +17,17 @@ const ExerciseAddPage = () => {
         if (error) console.log(error)
         setTests(data);
     }
+
+    const fetchExerciseTypes = async () => {
+        const { data, error } = await supabase
+            .from('distinct_exercise_types')
+            .select('*')
+        if (error) console.log(error)
+        console.log(data);
+        setExerciseTypes(data);
+    }
+
     const fetchImages = async () => {
-
-
         const { data, error } = await supabase
             .storage
             .from('exercise-texts')
@@ -34,6 +43,7 @@ const ExerciseAddPage = () => {
     useEffect(() => {
         fetchTests();
         fetchImages();
+        fetchExerciseTypes();
     }, [])
 
     const saveExercise = (key, value) => {
@@ -101,6 +111,14 @@ const ExerciseAddPage = () => {
                     <div>
                         Popisek
                         <input type="text" onChange={(e) => saveExercise("description", e.target.value)} />
+                    </div>
+                    <div>
+                        Typ cvičení
+                        <select onChange={e => saveExercise("type", e.target.value)}>
+                            {exerciseTypes?.map(exercise => (
+                                <option key={exercise.type} value={exercise.type}>{exercise.type}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
                 <div>
