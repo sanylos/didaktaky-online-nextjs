@@ -22,7 +22,7 @@ const ExerciseAddPage = () => {
         const { data, error } = await supabase
             .storage
             .from('exercise-texts')
-            .list('folder', {
+            .list('', {
                 limit: 30,
                 offset: 0,
                 sortBy: { column: 'name', order: 'asc' },
@@ -40,6 +40,19 @@ const ExerciseAddPage = () => {
         const exerciseCopy = exercise;
         setExercise({ ...exercise, [key]: value })
     }
+
+    const handleImageUpload = async () => {
+        const { data, error } = await supabase.storage
+            .from('exercise-texts')
+            .upload(imageToUpload.name, imageToUpload, {
+                contentType: imageToUpload.type,
+            });
+        if (error) console.log(error)
+        if (data) {
+            fetchImages();
+        }
+
+    }
     console.log(exercise)
     return (
         <div>
@@ -55,7 +68,7 @@ const ExerciseAddPage = () => {
                         </div>
                         {images?.map(image => (
                             <div key={image.name} className="bg-dark text-white m-1 p-1">
-                                <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/folder/' + image.name} alt="img" />
+                                <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/' + image.name} alt="img" />
                                 {image.name}
                             </div>
                         ))}
@@ -104,8 +117,8 @@ const ExerciseAddPage = () => {
                             <img src={imageToUpload && URL.createObjectURL(imageToUpload)} />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-success" onClick={handleImageUpload} disabled={!imageToUpload} data-bs-dismiss="modal">Nahrát</button>
+                            <button type="button" class="btn btn-danger">Zavřít</button>
                         </div>
                     </div>
                 </div>
