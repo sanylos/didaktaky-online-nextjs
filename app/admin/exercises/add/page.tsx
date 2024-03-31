@@ -46,11 +46,12 @@ const ExerciseAddPage = () => {
             <h1>Přidat cvičení</h1>
             <div>
                 <div>
-                    <div>
-                        Vložit nový soubor
-                        <input type="file" />
-                    </div>
                     <div className="d-flex" style={{ overflow: 'auto' }}>
+                        <div className="bg-dark text-white m-1 p-1">
+                            <button className="btn text-white d-flex align-items-center justify-content-center fs-1" style={{ height: '100%', width: '100px', objectFit: 'contain' }}>
+                                +
+                            </button>
+                        </div>
                         {images?.map(image => (
                             <div key={image.name} className="bg-dark text-white m-1 p-1">
                                 <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/folder/' + image.name} alt="img" />
