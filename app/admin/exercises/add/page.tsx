@@ -60,23 +60,6 @@ const ExerciseAddPage = () => {
             <h1>Přidat cvičení</h1>
             <div>
                 <div>
-                    <div className="d-flex" style={{ overflow: 'auto' }}>
-                        <div className="bg-dark text-white m-1 p-1">
-                            <button data-bs-toggle="modal" data-bs-target="#uploadModal" className="btn text-white d-flex align-items-center justify-content-center fs-1" style={{ height: '100%', width: '100px', objectFit: 'contain' }}>
-                                +
-                            </button>
-                        </div>
-                        {images?.map(image => (
-                            <div key={image.name} className="bg-dark text-white m-1 p-1">
-                                <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/' + image.name} alt="img" />
-                                {image.name}
-                            </div>
-                        ))}
-                        Nazev souboru TEXT 1
-                        <input type="text" onChange={(e) => saveExercise("text1img", e.target.value)} />
-                        Nazev souboru TEXT 2
-                        <input type="text" onChange={(e) => saveExercise("text2img", e.target.value)} />
-                    </div>
                     <div>
                         ID Testu
                         <select onChange={(e) => saveExercise("test_id", e.target.value)}>
@@ -84,6 +67,28 @@ const ExerciseAddPage = () => {
                                 <option key={test.id} value={test.id}>{test.id} - {test.type} - {test.subject}</option>
                             ))}
                         </select>
+                    </div>
+                    <div className="d-flex flex-column">
+                        <div className="d-flex" style={{ overflow: 'auto' }}>
+                            <div className="bg-dark text-white m-1 p-1">
+                                <button data-bs-toggle="modal" data-bs-target="#uploadModal" className="btn text-white d-flex align-items-center justify-content-center fs-1" style={{ height: '100%', width: '100px', objectFit: 'contain' }}>
+                                    +
+                                </button>
+                            </div>
+                            {images?.map(image => (
+                                <div key={image.name} className="bg-dark text-white m-1 p-1">
+                                    <img style={{ height: '200px', minWidth: '300px', objectFit: 'contain' }} src={'https://oggvmfflkusznxpohazs.supabase.co/storage/v1/object/public/exercise-texts/' + image.name} alt="img" />
+                                    {image.name}
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            Nazev souboru TEXT 1
+                            <input type="text" onChange={(e) => saveExercise("text1img", e.target.value)} />
+                            <br />
+                            Nazev souboru TEXT 2
+                            <input type="text" onChange={(e) => saveExercise("text2img", e.target.value)} />
+                        </div>
                     </div>
                     <div>
                         Číslo cvičení
