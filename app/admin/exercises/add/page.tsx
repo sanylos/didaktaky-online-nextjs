@@ -64,7 +64,7 @@ const ExerciseAddPage = () => {
                         ID Testu
                         <select onChange={(e) => saveExercise("test_id", e.target.value)}>
                             {tests?.map(test => (
-                                <option key={test.id} value={test.id}>{test.id} - {test.type} - {test.subject}</option>
+                                <option key={test.id} value={test.id}>{test.id} - {test.type} - {test.year} - {test.variant} - {test.subject}</option>
                             ))}
                         </select>
                     </div>
