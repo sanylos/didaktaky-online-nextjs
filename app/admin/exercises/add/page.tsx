@@ -2,6 +2,7 @@
 "use client"
 import { supabase } from "@/api"
 import Exercise from "@/app/components/Exercise"
+import ErrorBoundary from "./ErrorBoundary"
 import { useEffect, useState } from "react"
 const ExerciseAddPage = () => {
     const [exercise, setExercise] = useState({})
@@ -137,7 +138,9 @@ const ExerciseAddPage = () => {
                 </div>
                 <div>
                     <h2>Náhled</h2>
-                    <Exercise exercise={exercise} isAnswered={true} showExerciseNumber={true} />
+                    <ErrorBoundary key={JSON.stringify(exercise)}>
+                        <Exercise exercise={exercise} isAnswered={true} showExerciseNumber={true} />
+                    </ErrorBoundary>
                 </div>
             </div>
 
