@@ -158,7 +158,7 @@ const ExerciseAddPage = () => {
                 <div>
                     <h2>Náhled</h2>
                     <ErrorBoundary key={JSON.stringify(exercise)}>
-                        <Exercise exercise={exercise} isAnswered={true} showExerciseNumber={true} answer={exercise?.correct_answer} />
+                        <Exercise exercise={exercise} isAnswered={false} showExerciseNumber={true} answer={exercise?.correct_answer} />
                     </ErrorBoundary>
                 </div>
             </div>
