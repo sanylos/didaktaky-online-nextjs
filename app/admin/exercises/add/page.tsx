@@ -166,7 +166,11 @@ const ExerciseAddPage = () => {
                 </div>
                 <div>
                     Skupina cvičení
-
+                    <select onChange={e => saveExercise("group", e.target.value)}>
+                        {exerciseGroups?.map(item => (
+                            <option key={item.group}>{item.group}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <h2>Náhled</h2>
