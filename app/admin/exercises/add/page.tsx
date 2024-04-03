@@ -103,10 +103,10 @@ const ExerciseAddPage = () => {
                         </div>
                         <div>
                             Nazev souboru TEXT 1
-                            <input type="text" onChange={(e) => saveExercise("text1img", e.target.value)} />
+                            <input type="text" onChange={(e) => saveExercise("text1imgPath", e.target.value)} />
                             <br />
                             Nazev souboru TEXT 2
-                            <input type="text" onChange={(e) => saveExercise("text2img", e.target.value)} />
+                            <input type="text" onChange={(e) => saveExercise("text2imgPath", e.target.value)} />
                         </div>
                     </div>
                     <div>
