@@ -114,6 +114,9 @@ const ExerciseAddPage = () => {
                         <input onChange={(e) => saveExercise("number", e.target.value)} type="number" min="1" max="30" />
                     </div>
                     <div>
+                        Body <input type="number" onChange={e => saveExercise("points", e.target.value)} />
+                    </div>
+                    <div>
                         Hlavní nadpis
                         <input type="text" onChange={(e) => saveExercise("title", e.target.value)} />
                     </div>
