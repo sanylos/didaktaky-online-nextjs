@@ -10,6 +10,7 @@ const ExerciseAddPage = () => {
     const [images, setImages] = useState(null)
     const [imageToUpload, setImageToUpload] = useState(null)
     const [exerciseTypes, setExerciseTypes] = useState([])
+    const [exerciseGroups, setExerciseGroups] = useState([])
     const fetchTests = async () => {
         const { data, error } = await supabase
             .from('tests')
@@ -23,8 +24,15 @@ const ExerciseAddPage = () => {
             .from('distinct_exercise_types')
             .select('*')
         if (error) console.log(error)
-        console.log(data);
         setExerciseTypes(data);
+    }
+
+    const fetchExerciseGroups = async () => {
+        const { data, error } = await supabase
+            .from('distinct_exercise_groups')
+            .select('*')
+        if (error) console.log(error);
+        setExerciseGroups(data);
     }
 
     const fetchImages = async () => {
@@ -44,6 +52,7 @@ const ExerciseAddPage = () => {
         fetchTests();
         fetchImages();
         fetchExerciseTypes();
+        fetchExerciseGroups();
     }, [])
 
     const saveExercise = (key, value, index = undefined) => {
@@ -154,6 +163,10 @@ const ExerciseAddPage = () => {
                     {Array.from({ length: 6 }, (_, index) => index + 1).map((number) => (
                         <span key={number}>{number}<input type="text" onChange={e => saveExercise("correct_answer", e.target.value, number - 1)} /><br /></span>
                     ))}
+                </div>
+                <div>
+                    Skupina cvičení
+
                 </div>
                 <div>
                     <h2>Náhled</h2>
