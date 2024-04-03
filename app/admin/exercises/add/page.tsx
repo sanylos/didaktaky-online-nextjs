@@ -122,6 +122,10 @@ const ExerciseAddPage = () => {
                         <input type="text" onChange={(e) => saveExercise("description", e.target.value)} />
                     </div>
                     <div>
+                        <b>Tvrzení č. 1</b><input type="text" onChange={e => saveExercise("claims", e.target.value, 0)} /><br />
+                        <b>Tvrzení č. 2</b><input type="text" onChange={e => saveExercise("claims", e.target.value, 1)} />
+                    </div>
+                    <div>
                         Typ cvičení
                         <select onChange={e => saveExercise("type", e.target.value)}>
                             {exerciseTypes?.map(exercise => (
