@@ -141,6 +141,12 @@ const ExerciseAddPage = () => {
                     ))}
                 </div>
                 <div>
+                    Věty / Texty <br />
+                    {Array.from({ length: 6 }, (_, index) => index + 1).map((number) => (
+                        <span key={number}><input type="text" onChange={e => saveExercise("sentences", e.target.value, number - 1)} /><br /></span>
+                    ))}
+                </div>
+                <div>
                     Správná odpověď | A 0 | B 1 | C 2 | D 3 <br />
                     {Array.from({ length: 6 }, (_, index) => index + 1).map((number) => (
                         <span key={number}>{number}<input type="text" onChange={e => saveExercise("correct_answer", e.target.value, number - 1)} /><br /></span>
