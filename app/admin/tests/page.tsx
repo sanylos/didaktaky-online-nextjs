@@ -9,6 +9,7 @@ const TestsPage = () => {
         const { data, error } = await supabase
             .from('tests')
             .select('*')
+            .order('id', { ascending: false })
         if (error) console.log(error)
         setTests(data);
     }
