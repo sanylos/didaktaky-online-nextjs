@@ -1,9 +1,11 @@
 import React from 'react'
 
 const AdminPage = () => {
-  return (
-    <div>AdminPage</div>
-  )
+    return (
+        <div>
+            <h1>Přehled</h1>
+        </div>
+    )
 }
 
 export default AdminPage
