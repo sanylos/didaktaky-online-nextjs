@@ -28,6 +28,7 @@ const TestsPage = () => {
                         <th scope="col">VARIANTA</th>
                         <th scope="col">ČAS</th>
                         <th scope="col">CVIČENÍ</th>
+                        <th scope="col">DOSTUPNOST</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ const TestsPage = () => {
                             <td>{test.variant}</td>
                             <td>{test.duration}</td>
                             <td>{test.exerciseCount}</td>
+                            <td>{test.isPublic ? "DOSTUPNÝ" : "NEDOSTUPNÝ"}</td>
                         </tr>
                     ))}
                 </tbody>
