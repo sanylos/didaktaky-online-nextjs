@@ -16,7 +16,7 @@ const AddTestPage = () => {
                 Typ testu
                 <select onChange={e => saveTest("type", e.target.value)}>
                     <option value="PZ">PZ</option>
-                    <option value="PZ">MZ</option>
+                    <option value="MZ">MZ</option>
                 </select>
             </div>
             <div>
