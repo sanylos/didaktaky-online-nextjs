@@ -41,6 +41,10 @@ const AddTestPage = () => {
                 Čas testu
                 <input type="number" onChange={e => saveTest("duration", e.target.value)} />
             </div>
+            <div>
+                Počet cvičení
+                <input type="number" onChange={e => saveTest("exerciseCount", e.target.value)} />
+            </div>
         </div>
     )
 }
