@@ -19,6 +19,14 @@ const AddTestPage = () => {
                     <option value="PZ">MZ</option>
                 </select>
             </div>
+            <div>
+                Předmět
+                <select onChange={e => saveTest("subject", e.target.value)}>
+                    <option value="CJL">Čeština</option>
+                    <option value="MAT">Matika</option>
+                    <option value="ANJ">Angličtina</option>
+                </select>
+            </div>
             
         </div>
     )
