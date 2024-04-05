@@ -13,6 +13,10 @@ const AddTestPage = () => {
             <h1>Přidat test</h1>
             {JSON.stringify(test)}
             <div>
+                Rok
+                <input type="number" />
+            </div>
+            <div>
                 Typ testu
                 <select onChange={e => saveTest("type", e.target.value)}>
                     <option value="PZ">PZ</option>
