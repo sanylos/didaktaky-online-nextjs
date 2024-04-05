@@ -37,6 +37,10 @@ const AddTestPage = () => {
                     <option value="5">Ilustrační</option>
                 </select>
             </div>
+            <div>
+                Čas testu
+                <input type="number" onChange={e => saveTest("duration", e.target.value)} />
+            </div>
         </div>
     )
 }
