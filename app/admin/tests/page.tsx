@@ -16,6 +16,16 @@ const TestsPage = () => {
     useEffect(() => {
         fetchTests();
     }, [])
+    const changeTestState = async (id, isPublic) => {
+        const { error } = await supabase
+            .from('tests')
+            .update({
+                isPublic: !isPublic
+            })
+            .eq('id', id)
+        if (error) console.log(error);
+        fetchTests();
+    }
     return (
         <div>
             <h1>Testy</h1>
@@ -41,6 +51,7 @@ const TestsPage = () => {
                             <td>{test.duration}</td>
                             <td>{test.exerciseCount}</td>
                             <td>{test.isPublic ? "DOSTUPNÝ" : "NEDOSTUPNÝ"}</td>
+                            <td><button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-danger'>Změnit stav</button></td>
                         </tr>
                     ))}
                 </tbody>
