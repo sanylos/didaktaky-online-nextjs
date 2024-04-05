@@ -27,7 +27,16 @@ const AddTestPage = () => {
                     <option value="ANJ">Angličtina</option>
                 </select>
             </div>
-            
+            <div>
+                Varianta testu / Termín
+                <select onChange={e => saveTest("type", e.target.value)}>
+                    <option value="1">První řádný</option>
+                    <option value="2">Druhý řádný</option>
+                    <option value="3">První náhradní</option>
+                    <option value="4">Druhý náhradní</option>
+                    <option value="5">Ilustrační</option>
+                </select>
+            </div>
         </div>
     )
 }
