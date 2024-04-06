@@ -2,6 +2,7 @@
 "use client"
 import { supabase } from '@/api';
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link';
 
 const TestsPage = () => {
     const [tests, setTests] = useState<any>([]);
@@ -51,7 +52,12 @@ const TestsPage = () => {
                             <td>{test.duration}</td>
                             <td>{test.exerciseCount}</td>
                             <td>{test.isPublic ? "DOSTUPNÝ" : "NEDOSTUPNÝ"}</td>
-                            <td><button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-danger'>Změnit stav</button></td>
+                            <td>
+                                <button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-danger'>Změnit stav</button>
+                                <Link href={"/admin/tests/" + test.id}>
+                                    <button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-success ms-1'>Náhled</button>
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
