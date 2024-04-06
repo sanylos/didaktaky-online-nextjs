@@ -29,7 +29,12 @@ const TestsPage = () => {
     }
     return (
         <div>
-            <h1>Testy</h1>
+            <div className='d-flex justify-content-between align-items-center'>
+                <h1>Testy</h1>
+                <Link href="/admin/tests/add">
+                    <button className='btn btn-info p-3 m-1'>Přidat nový test</button>
+                </Link>
+            </div>
             <table className="table table-striped">
                 <thead>
                     <tr>
