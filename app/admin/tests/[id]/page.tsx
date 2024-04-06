@@ -21,7 +21,8 @@ const TestPreviewPage = ({ params }) => {
         fetchExercises();
     }, [])
     return (
-        <div>TestPreviewPage
+        <div>
+            <h1>Náhled testu #{params.id}</h1>
             {exercises && exercises.map((exercise, index) => (
                 <div key={index}>
                     <hr />
