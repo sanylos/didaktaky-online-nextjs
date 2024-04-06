@@ -11,6 +11,7 @@ const TestPreviewPage = ({ params }) => {
             .from('exercises')
             .select('*')
             .eq('test_id', params.id)
+            .order('number', { ascending: true })
         if (error) console.log(error);
         console.log(data)
         setExercises(data);
