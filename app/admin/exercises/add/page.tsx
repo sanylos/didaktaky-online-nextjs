@@ -4,6 +4,7 @@ import { supabase } from "@/api"
 import Exercise from "@/app/components/Exercise"
 import ErrorBoundary from "./ErrorBoundary"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 const ExerciseAddPage = () => {
     const [exercise, setExercise] = useState({})
     const [tests, setTests] = useState([])
@@ -81,7 +82,14 @@ const ExerciseAddPage = () => {
         }
 
     }
-    console.log(exercise)
+    const router = useRouter();
+    const submitExercise = async () => {
+        const { error } = await supabase
+            .from('exercises')
+            .insert({ ...exercise })
+        if (error) console.log(error);
+        else router.replace('/admin/exercises');
+    }
     return (
         <div>
             <h1>Přidat cvičení</h1>
