@@ -181,6 +181,7 @@ const ExerciseAddPage = () => {
                         <Exercise exercise={exercise} isAnswered={false} showExerciseNumber={true} answer={exercise?.correct_answer} />
                     </ErrorBoundary>
                 </div>
+                <button className="btn btn-success" onClick={submitExercise}>Přidat</button>
             </div>
 
             {/* MODALS */}
