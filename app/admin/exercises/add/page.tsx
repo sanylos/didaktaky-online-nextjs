@@ -113,9 +113,10 @@ const ExerciseAddPage = () => {
                         <div>
                             Nazev souboru TEXT 1
                             <input type="text" onChange={(e) => saveExercise("text1imgPath", e.target.value)} />
-                            <br />
+                            <p className="text-danger">NÁZVY SOUBORŮ MUSÍ MÍT KONCOVKU .PNG (velké P, N, G!)!</p>
                             Nazev souboru TEXT 2
                             <input type="text" onChange={(e) => saveExercise("text2imgPath", e.target.value)} />
+                            <p className="text-danger">NÁZVY SOUBORŮ MUSÍ MÍT KONCOVKU .PNG (velké P, N, G!)!</p>
                         </div>
                     </div>
                     <div>
