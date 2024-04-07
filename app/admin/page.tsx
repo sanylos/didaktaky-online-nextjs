@@ -1,4 +1,7 @@
-import React from 'react'
+"use client"
+
+import { supabase } from "@/api"
+import { useEffect } from "react"
 
 const AdminPage = () => {
     return (
