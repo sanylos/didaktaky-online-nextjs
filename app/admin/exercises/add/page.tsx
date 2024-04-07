@@ -90,7 +90,8 @@ const ExerciseAddPage = () => {
                 <div>
                     <div>
                         ID Testu
-                        <select onChange={(e) => saveExercise("test_id", e.target.value)}>
+                        <select onChange={(e) => saveExercise("test_id", e.target.value)} defaultChecked={null}>
+                            <option value="null">vyber možnost</option>
                             {tests?.map(test => (
                                 <option key={test.id} value={test.id}>{test.id} - {test.type} - {test.year} - {test.variant} - {test.subject}</option>
                             ))}
@@ -140,7 +141,8 @@ const ExerciseAddPage = () => {
                     </div>
                     <div>
                         Typ cvičení
-                        <select onChange={e => saveExercise("type", e.target.value)}>
+                        <select onChange={e => saveExercise("type", e.target.value)} defaultChecked={null}>
+                            <option value="null">vyber možnost</option>
                             {exerciseTypes?.map(exercise => (
                                 <option key={exercise.type} value={exercise.type}>{exercise.type}</option>
                             ))}
@@ -167,7 +169,8 @@ const ExerciseAddPage = () => {
                 </div>
                 <div>
                     Skupina cvičení
-                    <select onChange={e => saveExercise("group", e.target.value)}>
+                    <select onChange={e => saveExercise("group", e.target.value)} defaultChecked={null}>
+                        <option value="null">vyber možnost</option>
                         {exerciseGroups?.map(item => (
                             <option key={item.group}>{item.group}</option>
                         ))}
