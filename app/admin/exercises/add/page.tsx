@@ -84,7 +84,6 @@ const ExerciseAddPage = () => {
     console.log(exercise)
     return (
         <div>
-            {JSON.stringify(exercise)}
             <h1>Přidat cvičení</h1>
             <div>
                 <div>
