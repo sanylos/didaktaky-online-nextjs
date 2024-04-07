@@ -28,12 +28,14 @@ const TestsPage = () => {
         fetchTests();
     }
     const deleteTest = async (id) => {
-        const { error } = await supabase
-            .from('tests')
-            .delete()
-            .eq('id', id);
-        if (error) alert(error.message);
-        else fetchTests();
+        if (confirm("Opravdu chceš smazat test číslo " + id + "?") == true) {
+            const { error } = await supabase
+                .from('tests')
+                .delete()
+                .eq('id', id);
+            if (error) alert(error.message);
+            else fetchTests();
+        }
     }
     return (
         <div>
