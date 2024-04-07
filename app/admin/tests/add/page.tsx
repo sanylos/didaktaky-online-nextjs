@@ -27,14 +27,16 @@ const AddTestPage = () => {
             </div>
             <div>
                 Typ testu
-                <select onChange={e => saveTest("type", e.target.value)}>
+                <select onChange={e => saveTest("type", e.target.value)} defaultValue={"null"}>
+                    <option value="null">vyber možnost</option>
                     <option value="PZ">PZ</option>
                     <option value="MZ">MZ</option>
                 </select>
             </div>
             <div>
                 Předmět
-                <select onChange={e => saveTest("subject", e.target.value)}>
+                <select onChange={e => saveTest("subject", e.target.value)} defaultValue={"null"}>
+                    <option value="null">vyber možnost</option>
                     <option value="CJL">Čeština</option>
                     <option value="MAT">Matika</option>
                     <option value="ANJ">Angličtina</option>
@@ -42,7 +44,8 @@ const AddTestPage = () => {
             </div>
             <div>
                 Varianta testu / Termín
-                <select onChange={e => saveTest("type", e.target.value)}>
+                <select onChange={e => saveTest("type", e.target.value)} defaultValue={"null"}>
+                    <option value="null">vyber možnost</option>
                     <option value="1">První řádný</option>
                     <option value="2">Druhý řádný</option>
                     <option value="3">První náhradní</option>
