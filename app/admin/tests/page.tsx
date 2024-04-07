@@ -48,6 +48,7 @@ const TestsPage = () => {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">TYP</th>
+                        <th score="col">ROK</th>
                         <th scope="col">PŘEDMĚT</th>
                         <th scope="col">VARIANTA</th>
                         <th scope="col">ČAS</th>
@@ -60,6 +61,7 @@ const TestsPage = () => {
                         <tr key={test.id}>
                             <td>{test.id}</td>
                             <td>{test.type}</td>
+                            <td>{test.year}</td>
                             <td>{test.subject}</td>
                             <td>{test.variant}</td>
                             <td>{test.duration}</td>
