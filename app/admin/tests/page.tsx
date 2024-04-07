@@ -27,6 +27,14 @@ const TestsPage = () => {
         if (error) console.log(error);
         fetchTests();
     }
+    const deleteTest = async (id) => {
+        const { error } = await supabase
+            .from('tests')
+            .delete()
+            .eq('id', id);
+        if (error) alert(error.message);
+        else fetchTests();
+    }
     return (
         <div>
             <div className='d-flex justify-content-between align-items-center'>
@@ -58,10 +66,11 @@ const TestsPage = () => {
                             <td>{test.exerciseCount}</td>
                             <td>{test.isPublic ? "DOSTUPNÝ" : "NEDOSTUPNÝ"}</td>
                             <td>
-                                <button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-danger'>Změnit stav</button>
+                                <button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-warning'>Změnit stav</button>
                                 <Link href={"/admin/tests/" + test.id}>
                                     <button onClick={() => changeTestState(test.id, test.isPublic)} className='btn btn-success ms-1'>Náhled</button>
                                 </Link>
+                                <button onClick={() => deleteTest(test.id)} className='btn btn-danger ms-1'>Smazat</button>
                             </td>
                         </tr>
                     ))}
