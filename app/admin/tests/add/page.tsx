@@ -1,12 +1,22 @@
 //@ts-nocheck
 "use client"
 
+import { supabase } from "@/api";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 const AddTestPage = () => {
     const [test, setTest] = useState({});
+    const router = useRouter();
     const saveTest = (key, value) => {
         setTest({ ...test, [key]: value })
+    }
+    const insertTest = async () => {
+        const { error } = await supabase
+            .from('tests')
+            .insert({ test })
+        if (error) alert(error.message);
+        else router.replace('/admin/tests');
     }
     return (
         <div>
@@ -48,7 +58,7 @@ const AddTestPage = () => {
                 Počet cvičení
                 <input type="number" onChange={e => saveTest("exerciseCount", e.target.value)} />
             </div>
-            <button className="btn btn-success">Přidat</button>
+            <button className="btn btn-success" onClick={insertTest}>Přidat</button>
         </div>
     )
 }
