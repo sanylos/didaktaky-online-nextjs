@@ -14,7 +14,7 @@ const AddTestPage = () => {
     const insertTest = async () => {
         const { error } = await supabase
             .from('tests')
-            .insert({ test })
+            .insert({ ...test })
         if (error) alert(error.message);
         else router.replace('/admin/tests');
     }
@@ -44,7 +44,7 @@ const AddTestPage = () => {
             </div>
             <div>
                 Varianta testu / Termín
-                <select onChange={e => saveTest("type", e.target.value)} defaultValue={"null"}>
+                <select onChange={e => saveTest("variant", e.target.value)} defaultValue={"null"}>
                     <option value="null">vyber možnost</option>
                     <option value="1">První řádný</option>
                     <option value="2">Druhý řádný</option>
