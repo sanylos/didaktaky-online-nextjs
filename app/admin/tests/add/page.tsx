@@ -11,7 +11,6 @@ const AddTestPage = () => {
     return (
         <div>
             <h1>Přidat test</h1>
-            {JSON.stringify(test)}
             <div>
                 Rok
                 <input type="number" />
@@ -49,6 +48,7 @@ const AddTestPage = () => {
                 Počet cvičení
                 <input type="number" onChange={e => saveTest("exerciseCount", e.target.value)} />
             </div>
+            <button className="btn btn-success">Přidat</button>
         </div>
     )
 }
