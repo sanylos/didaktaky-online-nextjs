@@ -2,6 +2,7 @@
 "use client"
 
 import { supabase } from "@/api";
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 const TextbookPage = () => {
@@ -18,7 +19,12 @@ const TextbookPage = () => {
     }, [])
     return (
         <div>
-            <h1>Subkategorie</h1>
+            <div className='d-flex justify-content-between align-items-center'>
+                <h1>Subkategorie</h1>
+                <Link href="/admin/textbook/add-category">
+                    <button className='btn btn-info p-3 m-1'>Přidat novou subkategorii</button>
+                </Link>
+            </div>
             <table className="table">
                 <thead>
                     <tr>
