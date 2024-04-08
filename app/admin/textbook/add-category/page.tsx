@@ -8,7 +8,7 @@ const CategoryAddPage = () => {
     const [subcategory, setSubcategory] = useState({});
     const [categories, setCategories] = useState([]);
     const saveSubcategory = (key, value) => {
-        setSubcategory({ ...test, [key]: value })
+        setSubcategory({ ...subcategory, [key]: value })
     }
     const fetchCategories = async () => {
         const { data, error } = await supabase
