@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client"
 
 import { supabase } from "@/api";
@@ -17,8 +18,26 @@ const TextbookPage = () => {
     }, [])
     return (
         <div>
-            <h1>Kategorie</h1>
-            {JSON.stringify(categories)}
+            <h1>Subkategorie</h1>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Název</th>
+                        <th scope="col">ID Kategorie</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {categories.map(category => (
+                        <tr key={category.id}>
+                            <td>{category.id}</td>
+                            <td>{category.name}</td>
+                            <td>{category.category_id}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
