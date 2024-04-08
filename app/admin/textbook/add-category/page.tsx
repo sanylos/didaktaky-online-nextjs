@@ -2,7 +2,10 @@
 
 const CategoryAddPage = () => {
     return (
-        <div>CategoryAddPage</div>
+        <div>
+            <h1>Přidat subkategorii</h1>
+            
+        </div>
     )
 }
 
