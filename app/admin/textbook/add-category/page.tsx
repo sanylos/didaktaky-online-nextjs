@@ -31,6 +31,7 @@ const CategoryAddPage = () => {
                     <option key={category.id} value={category.id}>{category.name}</option>
                 ))}
             </select> <br />
+            Meta title <input type="text" onChange={e => saveSubcategory("meta_title", e.target.value)} /> ({subcategory["meta_title"]?.length}/60 znaků) <br />
             Meta description<input type="text" onChange={e => saveSubcategory("meta_description", e.target.value)} /> ({subcategory["meta_description"]?.length}/150 znaků)
         </div>
     )
