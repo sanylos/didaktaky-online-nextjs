@@ -1,9 +1,12 @@
 //@ts-nocheck
 "use client"
 
+import { useState } from "react"
+
 const CategoryAddPage = () => {
+    const [subcategory, setSubcategory] = useState();
     const saveSubcategory = (key, value) => {
-        setTest({ ...test, [key]: value })
+        setSubcategory({ ...test, [key]: value })
     }
     return (
         <div>
