@@ -29,6 +29,7 @@ export default function AdminLayout({
                 <Link href="/admin">Přehled</Link>
                 <Link href="/admin/tests">Testy</Link>
                 <Link href="/admin/exercises">Cvičení</Link>
+                <Link href="/admin/textbook">Učebnice</Link>
             </div>
             <div className="col-10 children" style={{ maxWidth: '100vw' }}>
                 {children}
