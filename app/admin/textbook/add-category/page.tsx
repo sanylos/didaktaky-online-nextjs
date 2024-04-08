@@ -23,9 +23,9 @@ const CategoryAddPage = () => {
     return (
         <div>
             <h1>Přidat subkategorii</h1>
-            ID<input type="text" onChange={e => saveSubcategory("id", e.target.value)} />(zobrazí se jako URL - sanyl.cz/nová-kategorie/)
-            Název <input type="text" onChange={e => saveSubcategory("name", e.target.value)} />
-            
+            ID<input type="text" onChange={e => saveSubcategory("id", e.target.value)} />(zobrazí se jako URL - sanyl.cz/nová-kategorie/) <br />
+            Název <input type="text" onChange={e => saveSubcategory("name", e.target.value)} /> <br />
+
         </div>
     )
 }
