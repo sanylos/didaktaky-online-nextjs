@@ -2,13 +2,22 @@
 "use client"
 
 import { supabase } from "@/api";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
 
 const CategoryAddPage = () => {
     const [subcategory, setSubcategory] = useState({});
     const [categories, setCategories] = useState([]);
+    const router = useRouter();
     const saveSubcategory = (key, value) => {
         setSubcategory({ ...subcategory, [key]: value })
+    }
+    const insertSubcategory = async () => {
+        const { data, error } = await supabase
+            .from('ucebnice_category_content')
+            .insert({ ...subcategory })
+        if (error) alert(error.message + JSON.stringify(subcategory));
+        else router.replace('/admin/textbook');
     }
     const fetchCategories = async () => {
         const { data, error } = await supabase
@@ -33,7 +42,7 @@ const CategoryAddPage = () => {
             </select> <br />
             Meta title <textarea type="text" onChange={e => saveSubcategory("meta_title", e.target.value)} /> ({subcategory["meta_title"]?.length}/60 znaků) <br />
             Meta description<textarea type="text" onChange={e => saveSubcategory("meta_description", e.target.value)} /> ({subcategory["meta_description"]?.length}/150 znaků) <br />
-            <button className="btn btn-success">Přidat</button>
+            <button onClick={insertSubcategory} className="btn btn-success">Přidat</button>
         </div>
     )
 }
