@@ -31,13 +31,16 @@ const SubcategoryAddPage = () => {
         const { data, error } = await supabase
             .from('ucebnice_subcategories')
             .select('name, order_priority')
+            .eq('category_id', subcategory?.category_id)
         if (error) alert(error.message);
         else setPriorities(data);
     }
     useEffect(() => {
         fetchCategories();
-        fetchPriorities();
     }, [])
+    useEffect(() => {
+        fetchPriorities();
+    }, [subcategory?.category_id])
     return (
         <div>
             <h1>Přidat subkategorii</h1>
