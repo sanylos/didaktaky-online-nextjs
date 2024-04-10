@@ -32,7 +32,8 @@ const CategoryAddPage = () => {
                 ))}
             </select> <br />
             Meta title <textarea type="text" onChange={e => saveSubcategory("meta_title", e.target.value)} /> ({subcategory["meta_title"]?.length}/60 znaků) <br />
-            Meta description<textarea type="text" onChange={e => saveSubcategory("meta_description", e.target.value)} /> ({subcategory["meta_description"]?.length}/150 znaků)
+            Meta description<textarea type="text" onChange={e => saveSubcategory("meta_description", e.target.value)} /> ({subcategory["meta_description"]?.length}/150 znaků) <br />
+            <button className="btn btn-success">Přidat</button>
         </div>
     )
 }
