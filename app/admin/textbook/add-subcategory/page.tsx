@@ -15,7 +15,7 @@ const SubcategoryAddPage = () => {
     }
     const insertSubcategory = async () => {
         const { data, error } = await supabase
-            .from('ucebnice_category_content')
+            .from('ucebnice_subcategories')
             .insert({ ...subcategory })
         if (error) alert(error.message + JSON.stringify(subcategory));
         else router.replace('/admin/textbook');
