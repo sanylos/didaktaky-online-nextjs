@@ -59,7 +59,7 @@ const ContentPage = async ({ params }) => {
                     {data?.ucebnice_content_articles?.map(article => (
                         <Article key={article.id} article={article}></Article>
                     ))}
-                    {data.ucebnice_questions &&
+                    {data.ucebnice_questions && data?.ucebnice_questions.length > 0 &&
                         <div id="flashcards">
                             <ArticleTitle title="Flashcards" id="flashcards" />
                             <div className='accordion' id="accordionQuestions">
