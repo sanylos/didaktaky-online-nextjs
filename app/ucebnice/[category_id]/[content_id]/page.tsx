@@ -28,19 +28,12 @@ export async function getContent(params) {
 
 export async function generateMetadata({ params }) {
     const data = await getContent(params)
-    const { data: categoryData } = await supabase
-        .from('ucebnice_category_content')
-        .select('ucebnice_subcategories(ucebnice_categories(name))')
-        .eq('id', params.content_id)
-        .single();
-
-    const categoryName = categoryData?.ucebnice_subcategories.ucebnice_categories.name;
 
     return {
-        title: categoryName + ' - ' + data?.name,
+        title: data?.meta_title,
         description: data?.meta_description,
         openGraph: {
-            title: categoryName + ' - ' + data?.name,
+            title: data?.meta_title,
             description: data?.meta_description
         }
     }
