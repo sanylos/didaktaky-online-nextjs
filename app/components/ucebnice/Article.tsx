@@ -5,7 +5,7 @@ const Article = ({ article }) => {
     return (
         <div id={article.id} style={{ fontFamily: 'Roboto', fontSize: '1.125rem' }}>
             <ArticleTitle id={article.id} title={article.title} subtitle={article.subtitle} />
-            <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
+            <p className="text-learn-4" dangerouslySetInnerHTML={{ __html: article.content }}></p>
         </div>
     )
 }
