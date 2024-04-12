@@ -8,10 +8,10 @@ const Navigation = ({ data, name, isCollapsed = true }) => {
         <>
             {
                 data && data.map(category => (
-                    <div key={category.id} className="rounded bg-light p-1 mb-2">
+                    <div key={category.id} className="rounded bg-light p-1 mb-2 text-learn-4">
                         <div className="link rounded p-1 d-flex justify-content-between align-items-center">
                             <h3 className='fw-semibold'>
-                                <Link style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id}>{category.name}</Link>
+                                <Link className='text-learn-1' style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id}>{category.name}</Link>
                             </h3>
                             <div className='btn btn-light rounded-5 p-1'>
                                 <FaAngleDown className="fs-3" data-bs-toggle="collapse" href={"#collapseCategories-" + name + "-" + category.id} role="button" aria-expanded="false" aria-controls="collapseExample" />
