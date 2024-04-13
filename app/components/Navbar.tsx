@@ -25,7 +25,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-secondary-subtle">
+            <nav className="navbar navbar-expand-lg bg-blue-5">
                 <div className="container-fluid">
                     <Link className="navbar-brand" href="/">DIDAKTAKY - ONLINE</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@ const Navbar = () => {
                             ))}
                         </ul>
                         <div className="d-flex flex-row">
-                            <a className="bg-dark rounded rounded-pill btn btn-secondary btn-outline-secondary text-white px-3 mx-1"
+                            <a className="bg-blue-3 rounded rounded-pill btn btn-secondary btn-outline-blue-5 px-3 mx-1"
                                 href="https://www.buymeacoffee.com/sanyl"><i className="bi bi-cup-hot-fill"></i> PODPORA PROJEKTU</a>
 
                             {!userData &&
@@ -50,11 +50,11 @@ const Navbar = () => {
                             }
                             {userData &&
                                 <div v-if="userStore.isLoggedIn" className="dropdown mx-1">
-                                    <button className="text-white bg-dark rounded rounded-pill btn-secondary btn btn-outline-secondary px-3"
+                                    <button className="bg-blue-3 rounded rounded-pill btn-secondary btn btn-outline-blue-5 px-3"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span><i className="bi bi-person-check"></i> {userData?.user?.email}</span>
                                     </button>
-                                    <ul className="dropdown-menu">
+                                    <ul className="dropdown-menu bg-blue-5">
                                         <li><a onClick={handleLogout} className="dropdown-item text-danger" href="#">Odhlásit se</a></li>
                                     </ul>
                                 </div>
