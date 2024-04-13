@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { UserProvider } from "./UserContext";
 import "./layout.scss"
+import "@/app/scss/main.scss"
 
 const inter = Inter({ subsets: ["latin"] });
 

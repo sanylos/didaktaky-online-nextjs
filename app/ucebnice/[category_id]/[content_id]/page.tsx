@@ -47,8 +47,8 @@ const ContentPage = async ({ params }) => {
         <div className='container'>
             <div className='row'>
                 <div className='col-sm-12 col-lg-10'>
-                    <h1 className='fw-semibold mb-0' style={{ fontFamily: 'Roboto' }}>{data?.name}</h1>
-                    <h2 style={{ fontFamily: 'Roboto', fontSize: '1.125rem' }} dangerouslySetInnerHTML={{ __html: data?.subtitle }}></h2>
+                    <h1 className='fw-semibold mb-0 text-learn-1' style={{ fontFamily: 'Roboto' }}>{data?.name}</h1>
+                    <h2 className='text-learn-3' style={{ fontFamily: 'Roboto', fontSize: '1.125rem' }} dangerouslySetInnerHTML={{ __html: data?.subtitle }}></h2>
                     {data?.ucebnice_content_articles?.map(article => (
                         <Article key={article.id} article={article}></Article>
                     ))}

@@ -21,7 +21,7 @@ export default async function UcebniceLayout({
     const data = await getContent();
     return (
         <div className="d-flex flex-row">
-            <div className="bg-secondary-subtle col-2 sidebar p-2 min-vh-100">
+            <div className="bg-blue-5 col-2 sidebar p-2 min-vh-100">
                 <Navigation data={data} name="UcebniceLayout"></Navigation>
             </div>
             <div className="col-10 children" style={{ maxWidth: '100vw' }}>

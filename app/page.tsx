@@ -109,7 +109,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
+      <section className="bg-blue-3">
         <div className="mt-5 mb-5" id="about">
           <div className="text-center mx-2">
             <h2 className="text-dark fw-normal mb-5">Připravte se na zkoušky a dosáhněte úspěchu!</h2>
@@ -152,8 +152,7 @@ export default async function Home() {
           </div >
         </div >
       </section >
-      <hr className="text-dark w-100" />
-      <section style={{ height: '100vh' }}>
+      <section className="bg-blue-3" style={{ height: '100vh' }}>
         <div className="mt-5 mb-5" id="reviews">
           <div className="text-center mx-2">
             <div className="text-dark fs-2 fw-normal mb-5">Recenze</div>

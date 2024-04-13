@@ -1,3 +1,5 @@
+@import "../scss/main.scss";
+
 .navbar {
     z-index: 999;
 }
@@ -5,13 +7,13 @@
 .nav-link {
     &:hover {
         &:not(.active) {
-            background-color: gray;
+            background-color: map-get($custom-theme-colors, "blue-3");
             color: lightgray;
         }
     }
 
     &.active {
-        background-color: rgb(37, 35, 35);
+        background-color: map-get($custom-theme-colors, "blue-3");
         color: white;
 
         * {
