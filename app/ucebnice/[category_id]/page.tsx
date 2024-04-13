@@ -53,8 +53,8 @@ const CategoryPage = async ({ params }) => {
     return (
         <div className='container' style={{ fontFamily: 'Roboto' }}>
             <div className='row'>
-                <h1 className='fw-semibold text-learn-1 mb-0'>{data?.name}</h1>
-                <h4 className='fw-normal text-learn-4'>{data?.description}</h4>
+                <h1 className='fw-semibold text-blue-1 mb-0'>{data?.name}</h1>
+                <h4 className='fw-normal text-blue-4'>{data?.description}</h4>
             </div>
             <div className='row bg-secondary-subtle mx-1 rounded'>
                 <h2 className='fw-semibold mb-0 pt-1 text-learn-5'>Obsah učebnice</h2>
