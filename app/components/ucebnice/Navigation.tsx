@@ -1,7 +1,7 @@
 // @ts-nocheck
 import Link from 'next/link';
 import { FaAngleDown } from "react-icons/fa6";
-import { TbArrowRampRight3 } from "react-icons/tb";
+import { LuArrowUpRight } from "react-icons/lu";
 
 const Navigation = ({ data, name, isCollapsed = true }) => {
     return (
@@ -24,14 +24,14 @@ const Navigation = ({ data, name, isCollapsed = true }) => {
                                         <h2 className="fs-6 fw-bold">
                                             {subcategory.name}
                                         </h2>
-                                        <FaAngleDown className="fs-5 mb-1 ms-1" />
+                                        <FaAngleDown className="fs-5 mb-1 ms-1 text-blue-3" />
                                     </div>
                                     <div className={"collapse " + (isCollapsed || "show")} id={"collapseSubcategory-" + name + "-" + subcategory.id}>
                                         {subcategory.ucebnice_category_content.map(content => (
                                             <div key={content.id}>
                                                 <div className="d-flex align-items-center">
-                                                    >
-                                                    <h2><Link className='fs-4 text-blue-1' style={{ textDecoration: 'none' }} href={'/ucebnice/' + category.id + '/' + content.id}>{content.name}</Link></h2>
+                                                    <LuArrowUpRight className='fs-4 text-blue-3' />
+                                                    <h2><Link className='fs-4 text-blue-2 text-nowrap' style={{}} href={'/ucebnice/' + category.id + '/' + content.id}>{content.name}</Link></h2>
                                                 </div>
                                             </div>
                                         ))}
