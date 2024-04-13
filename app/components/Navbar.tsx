@@ -25,7 +25,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-blue-5">
+            <nav className="navbar navbar-expand-lg bg-blue-5 shadow-lg">
                 <div className="container-fluid">
                     <Link className="navbar-brand fw-semibold text-blue-1 p-1" href="/">DIDAKTAKY <sub>ONLINE</sub></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
