@@ -32,14 +32,23 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-                        <ul className="navbar-nav">
-                            {links.map(({ href, label }) => (
-                                <li className="nav-item m-1" key={href}>
-                                    <Link className={`nav-link p-1 rounded ${isLinkActive(href) ? 'active' : ''}`} href={"/" + href}>
-                                        <span>{label}</span>
+                        <ul className="navbar-nav align-items-center">
+                            {links.map(link => (
+                                <li key={link.href} className={"nav-item m-1" + (link.dropdown?.length > 0 && ' dropdown')}>
+                                    <Link data-bs-toggle={link.dropdown?.length > 0 && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${link.dropdown?.length > 0 && ' dropdown-toggle'}`} href={"/" + link.href}>
+                                        <span>{link.label}</span>
                                     </Link>
+                                    {link.dropdown?.length > 0 &&
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="#">Action</a></li>
+                                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                                            <li><hr className="dropdown-divider" /></li>
+                                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    }
                                 </li>
                             ))}
+
                         </ul>
                         <div className="d-flex flex-row">
                             <a className="bg-blue-3 rounded rounded-pill btn btn-secondary btn-outline-blue-5 px-3 mx-1"
