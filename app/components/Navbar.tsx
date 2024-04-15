@@ -39,7 +39,7 @@ const Navbar = () => {
                                         <span>{link.label}</span>
                                     </Link>
                                     {link.dropdown?.length > 0 &&
-                                        <ul className="dropdown-menu">
+                                        <ul className="dropdown-menu bg-blue-5">
                                             {link.dropdown?.map(dropdownLink => (
                                                 <li key={dropdownLink.href}>
                                                     <Link className='dropdown-item' href={link.href + "/" + dropdownLink.href}>
