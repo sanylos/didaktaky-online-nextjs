@@ -40,10 +40,13 @@ const Navbar = () => {
                                     </Link>
                                     {link.dropdown?.length > 0 &&
                                         <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#">Action</a></li>
-                                            <li><a className="dropdown-item" href="#">Another action</a></li>
-                                            <li><hr className="dropdown-divider" /></li>
-                                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                            {link.dropdown?.map(dropdownLink => (
+                                                <li key={dropdownLink.href}>
+                                                    <Link className='dropdown-item' href={link.href + "/" + dropdownLink.href}>
+                                                        <span>{dropdownLink.label}</span>
+                                                    </Link>
+                                                </li>
+                                            ))}
                                         </ul>
                                     }
                                 </li>
