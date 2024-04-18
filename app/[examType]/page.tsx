@@ -26,7 +26,7 @@ const ExamPage = async ({ params }: { params: { examType: string } }) => {
           {page.articles?.map((article: Article) => (
             <div key={article.title} className="">
               <h2 className="fw-bold text-blue-2">{article.title}</h2>
-              <hr className="text-blue-1 w-auto" />
+              <hr className="text-blue-1 w-auto mt-0" />
               <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
             </div>
           ))}
