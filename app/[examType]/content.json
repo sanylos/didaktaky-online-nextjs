@@ -5,6 +5,12 @@
   },
   "maturitni-zkouska": {
     "title": "Maturitní zkouška",
-    "description": "Vše, co potřebujete vědět o maturitní zkoušce - od povinných a volitelných předmětů po strukturu zkoušky a užitečné tipy k přípravě. Připravte se na úspěšné absolvování maturitní zkoušky a získejte klíč k dalšímu akademickému i profesnímu rozvoji."
+    "description": "Vše, co potřebujete vědět o maturitní zkoušce - od povinných a volitelných předmětů po strukturu zkoušky a užitečné tipy k přípravě. Připravte se na úspěšné absolvování maturitní zkoušky a získejte klíč k dalšímu akademickému i profesnímu rozvoji.",
+    "articles": [
+      {
+        "title": "Společná část",
+        "content": "<ul><li>Ve <b>společné části</b> maturitní zkoušky se žáci přihlašují ke <b>dvěma povinným zkouškám</b>.</li><li><b>Všichni</b> absolvují zkoušku z <b>českého jazyka a literatury</b>.</li><li>Druhou povinnou zkoušku mohou <b>volit</b> mezi zkouškou z <b>cizího jazyka</b> nebo <b>matematiky</b>.</li>Žák se <b>může</b> dále <b>přihlásit</b> ke dvěma <b>nepovinným</b> zkouškám ze zbývajících zkušebních předmětů, nebo z matematiky rozšiřující.<ul/>"
+      }
+    ]
   }
 }
