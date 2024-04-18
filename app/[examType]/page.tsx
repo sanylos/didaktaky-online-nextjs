@@ -1,11 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
 
-export const getContent = async () => {
-
+export const getContent = async (examType: string) => {
+  const res = require('./content.json')
+  return res[examType];
 }
 
-const ExamPage = async () => {
+const ExamPage = async ({ params }: { params: { examType: string } }) => {
+  const page = await getContent(params.examType);
+  console.log(page);
   return (
     <div className="d-flex flex-column main align-items-center">
 
@@ -14,8 +17,8 @@ const ExamPage = async () => {
           style={{ height: "100vh", position: "relative" }}>
           <div className="main-title" style={{ position: "absolute" }}>
             <div>
-              <h1 className="fw-bold">Moderní a efektivní příprava</h1>
-              <h2>na přijímací zkoušky a maturitu</h2>
+              <h1 className="fw-bold">{page.title}</h1>
+              <h2>{page.description}</h2>
             </div>
             <div className="d-flex flex-row justify-content-start">
               <Link href="/procvicovani" className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2">Začít procvičovat</Link>
