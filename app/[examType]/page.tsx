@@ -11,6 +11,10 @@ const ExamPage = async ({ params }: { params: { examType: string } }) => {
     title: string,
     content: string
   }
+  interface Question {
+    question: string,
+    answer: string
+  }
   const page = await getContent(params.examType);
   console.log(page);
   return (
@@ -33,7 +37,7 @@ const ExamPage = async ({ params }: { params: { examType: string } }) => {
         </div>
 
 
-        {page.faq?.map((question, index) => (
+        {page.faq?.map((question: Question, index: number) => (
           <div key={index} className="accordion mb-1" id={'accordion' + index}>
             <div className="accordion-item">
               <h2 className="accordion-header">
