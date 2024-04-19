@@ -6,10 +6,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...links.map(link => ({
             url: process.env.NEXT_PUBLIC_PRODUCTION_URL + '/' + link.href,
             lastModified: new Date()
-        })),
-        {
-            url: process.env.NEXT_PUBLIC_PRODUCTION_URL + '/ucebnice/sitemap.xml',
-            lastModified: new Date()
-        }
+        }))
     ]
 }
