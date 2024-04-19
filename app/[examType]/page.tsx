@@ -31,8 +31,26 @@ const ExamPage = async ({ params }: { params: { examType: string } }) => {
             </div>
           ))}
         </div>
-      </div>
-    </div>
+
+
+        {page.faq?.map((question, index) => (
+          <div key={index} className="accordion mb-1" id={'accordion' + index}>
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={'#collapse' + index} aria-expanded="true" aria-controls={'collapse' + question.id}>
+                  <span dangerouslySetInnerHTML={{ __html: question.question }}></span>
+                </button>
+              </h2>
+              <div id={'collapse' + index} className="accordion-collapse collapse" data-bs-parent="#accordionQuestions">
+                <div className="accordion-body">
+                  <p dangerouslySetInnerHTML={{ __html: question.answer }}></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div >
+    </div >
   )
 }
 
