@@ -1,7 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
+import { notFound } from "next/navigation";
 
-export const getContent = async (exam: string) => {
+export const getContent = async (exam: string[]) => {
   const res = require('./content.json')
   //console.log("res" + res[exam[0]][exam[1]])
   if (exam.length == 2) {
@@ -10,9 +11,10 @@ export const getContent = async (exam: string) => {
   if (exam.length == 1) {
     return res[exam[0]]
   }
+  notFound();
 }
 
-const ExamPage = async ({ params }: { params: { examType: string } }) => {
+const ExamPage = async ({ params }: { params: { exam: string[] } }) => {
   //console.log(params.exam)
   interface Article {
     title: string,
