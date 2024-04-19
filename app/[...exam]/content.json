@@ -1,0 +1,50 @@
+{
+  "prijimaci-zkouska": {
+    "title": "Přijímací zkoušky na střední školy",
+    "description": "Přehled přijímacích zkoušek na střední školy včetně informací o přihlášení, termínech a předmětech zkoušek. Získejte ucelený pohled na proces přijímacích zkoušek pro vaše vzdělání."
+  },
+  "maturitni-zkouska": {
+    "title": "Maturitní zkouška",
+    "description": "Vše, co potřebujete vědět o maturitní zkoušce - od povinných a volitelných předmětů po strukturu zkoušky a užitečné tipy k přípravě. Připravte se na úspěšné absolvování maturitní zkoušky a získejte klíč k dalšímu akademickému i profesnímu rozvoji.",
+    "articles": [
+      {
+        "title": "Společná část",
+        "content": "<ul><li>Ve <b>společné části</b> maturitní zkoušky se žáci přihlašují ke <b>dvěma povinným zkouškám</b>.</li><li><b>Všichni</b> absolvují zkoušku z <b>českého jazyka a literatury</b>.</li><li>Druhou povinnou zkoušku mohou <b>volit</b> mezi zkouškou z <b>cizího jazyka</b> nebo <b>matematiky</b>.</li>Žák se <b>může</b> dále <b>přihlásit</b> ke dvěma <b>nepovinným</b> zkouškám ze zbývajících zkušebních předmětů, nebo z matematiky rozšiřující.<ul/>"
+      },
+      {
+        "title": "Hodnocení",
+        "content": "<ul><li>K získání <b>maturitního vysvědčení</b> stačí úspěšné absolvování všech <b>povinných</b> zkoušek ve společné a profilové části, které žák uvedl na přihlášce.</li><li>Výsledky z <b>nepovinných</b> zkoušek <b>nemají</b> vliv na celkový <b>výsledek</b> žáka.</li><li>Didaktické testy ve společné části jsou <b>hodnoceny slovně</b> - <b>uspěl</b>/<b>neuspěl</b> s uvedením procentuální úspěšnosti.</li>Žák se <b>může</b> dále <b>přihlásit</b> ke dvěma <b>nepovinným</b> zkouškám ze zbývajících zkušebních předmětů, nebo z matematiky rozšiřující.<ul/>"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>českého jazyka</b>?",
+        "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>českého jazyka a literatury</b> je <b>85 minut</b>."
+      },
+      {
+        "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky</b>?",
+        "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky</b> je <b>135 minut</b>."
+      },
+      {
+        "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>anglického jazyka<b>/?",
+        "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>anglického jazyka</b> je <b>110 minut</b>."
+      },
+      {
+        "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky rozšiřující<b>/?",
+        "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky rozšiřující</b> je <b>150 minut</b>."
+      },
+      {
+        "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>českého jazyka</b>?",
+        "answer": "U didaktického testu z <b>českého jazyka a literatury</b> jsou povoleny <b>pouze psací potřeby</b>."
+      },
+      {
+        "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>matematiky</b>?",
+        "answer": "U didaktického testu z <b>matematiky</b> jsou povoleny <b>psací potřeby</b>, <b>matematické, fyzikální a chemické tabulky</b> pro střední školy a <b>rýsovací potřeby</b>.</b>."
+      }
+    ],
+    "cesky-jazyk-a-literatura": {
+      "title": "cs",
+      "description": "cs"
+    }
+  }
+}
