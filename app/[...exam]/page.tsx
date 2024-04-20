@@ -19,6 +19,19 @@ export async function generateStaticParams() {
   return staticParams;
 }
 
+export async function generateMetadata({ params }: { params: { exam: string[] } }) {
+  const data = await getContent(params.exam)
+
+  return {
+    title: data?.title,
+    description: data?.description,
+    openGraph: {
+      title: data?.title,
+      description: data?.description
+    }
+  }
+}
+
 export const getContent = async (exam: string[]) => {
   const res = require('./content.json')
   //console.log("res" + res[exam[0]][exam[1]])
