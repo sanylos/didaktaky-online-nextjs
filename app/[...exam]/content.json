@@ -56,6 +56,10 @@
             "content": "<ul><li>Časový <b>limit</b> je <b>85 minut</b>.</li><li><b>Povolené</b> jsou pouze <b>psací potřeby</b></li><li><b>Úlohy</b> v testu mohou být různého typu, včetně výběru ze 4 alternativ, svazku dichotomických úloh, přiřazovacích, uspořádacích a otevřených úloh.</li><li>U každé úlohy je uveden <b>maximální</b> možný <b>počet bodů</b>, který lze <b>získat</b> za správné řešení.</li><li>U všech <b>uzavřených</b> úloh je pouze <b>jedna</b> správná <b>odpověď</b>.</li><li>Za nesprávnou, nejednoznačnou nebo neuvedenou odpověď se <b>nezískávají</b> žádné body.</li><ul/>"
           },
           {
+            "title": "Slohová práce",
+            "content": ""
+          },
+          {
             "title": "Tipy k maturitě",
             "content": "<ul><li><b>Seznamte</b> se předem s <b>podobou</b> didaktického testu. (můžete k tomu využít naši <a href='/test'>interaktivní aplikaci</a>)</li><li><b>Čtěte</b> pečlivě <b>zadání</b> úloh - dejte si <b>pozor</b> na zadání, kde se pracuje se <b>záporem</b> (např. <b>není</b>, <b>neobsahuje</b>).</li><li>Dělejte si <b>poznámky</b> do testového sešitu - <b>hodnotí</b> se pouze <b>záznamový arch</b></li><li><b>Rozlišujte</b> velká a malá <b>písmena</b>.</li><li><b>Rozvrhněte</b> si správně <b>čas</b>, nechte si ho dostatek na <b>finální kontrolu</b> a <b>zápis</b>.</li><ul/>"
           }
