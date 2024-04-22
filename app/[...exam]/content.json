@@ -48,8 +48,8 @@
             "content": "<ul><li>Časový <b>limit</b> je <b>85 minut</b>.</li><li><b>Povolené</b> jsou pouze <b>psací potřeby</b></li><li><b>Úlohy</b> v testu mohou být různého typu, včetně výběru ze 4 alternativ, svazku dichotomických úloh, přiřazovacích, uspořádacích a otevřených úloh.</li><li>U každé úlohy je uveden <b>maximální</b> možný <b>počet bodů</b>, který lze <b>získat</b> za správné řešení.</li><li>U všech <b>uzavřených</b> úloh je pouze <b>jedna</b> správná <b>odpověď</b>.</li><li>Za nesprávnou, nejednoznačnou nebo neuvedenou odpověď se <b>nezískávají</b> žádné body.</li><ul/>"
           },
           {
-            "title": "Slohová práce",
-            "content": ""
+            "title": "Písemná práce",
+            "content": "<ul><li>Minimum <b>250 slov</b></li><li>Časový limit je <b>110 minut</b></li><li>Možnost výběru mezi útvary, nejčastěji <b>vypravování</b>, <b>líčení</b>, <b>charakteristika</b>, <b>článek</b>, <b>zpráva</b>, <b>recenze</b>, <b>úřední dopis</b>, <b>úvaha</b>, <b>stížnost</b> či <b>referát</b></li><li>Nutnost <b>dodržení formální struktury </b>vybraného typu textu</li><li>Každé zadání obsahuje <b>téma</b>, které je dáno <b>nadpisem</b> nebo <b>úryvkem</b> textu</li></ul>"
           },
           {
             "title": "Tipy k maturitě",
