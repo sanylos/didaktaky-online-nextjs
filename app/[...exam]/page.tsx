@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { exam: string[] } }) {
   const data = await getContent(params.exam)
-
+  if (!data) return null;
   return {
     title: data.content.title,
     description: data.content.description,
