@@ -21,10 +21,6 @@
       ],
       "faq": [
         {
-          "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>českého jazyka</b>?",
-          "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>českého jazyka a literatury</b> je <b>85 minut</b>."
-        },
-        {
           "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky</b>?",
           "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky</b> je <b>135 minut</b>."
         },
@@ -35,10 +31,6 @@
         {
           "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky rozšiřující<b>/?",
           "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky rozšiřující</b> je <b>150 minut</b>."
-        },
-        {
-          "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>českého jazyka</b>?",
-          "answer": "U didaktického testu z <b>českého jazyka a literatury</b> jsou povoleny <b>pouze psací potřeby</b>."
         },
         {
           "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>matematiky</b>?",
@@ -58,6 +50,16 @@
           {
             "title": "Tipy k maturitě",
             "content": "<ul><li><b>Seznamte</b> se předem s <b>podobou</b> didaktického testu. (můžete k tomu využít naši <a href='/test'>interaktivní aplikaci</a>)</li><li><b>Čtěte</b> pečlivě <b>zadání</b> úloh - dejte si <b>pozor</b> na zadání, kde se pracuje se <b>záporem</b> (např. <b>není</b>, <b>neobsahuje</b>).</li><li>Dělejte si <b>poznámky</b> do testového sešitu - <b>hodnotí</b> se pouze <b>záznamový arch</b></li><li><b>Rozlišujte</b> velká a malá <b>písmena</b>.</li><li><b>Rozvrhněte</b> si správně <b>čas</b>, nechte si ho dostatek na <b>finální kontrolu</b> a <b>zápis</b>.</li><ul/>"
+          }
+        ],
+        "faq": [
+          {
+            "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>českého jazyka</b>?",
+            "answer": "U didaktického testu z <b>českého jazyka a literatury</b> jsou povoleny <b>pouze psací potřeby</b>."
+          },
+          {
+            "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>českého jazyka</b>?",
+            "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>českého jazyka a literatury</b> je <b>85 minut</b>."
           }
         ]
       }
