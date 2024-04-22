@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: { params: { exam: string[] } 
   const data = await getContent(params.exam)
 
   return {
-    title: data?.title,
-    description: data?.description,
+    title: data.content.title,
+    description: data.content.description,
     openGraph: {
-      title: data?.title,
-      description: data?.description
+      title: data.content.title,
+      description: data.content.description
     }
   }
 }
