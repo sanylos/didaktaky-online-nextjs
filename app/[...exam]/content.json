@@ -21,6 +21,10 @@
       ],
       "faq": [
         {
+          "question": "Kolik <b>pokusů</b> je na maturitu?",
+          "answer": "Opravnou maturitní zkoušku lze konat <b>maximálně dvakrát</b> z každé zkoušky."
+        },
+        {
           "question": "Jaká je <b>úspěšnost</b> u maturit?",
           "answer": "Maturitní didaktické testy <b>nezvládlo</b> v roce 2023 <b>9,2%</b> maturantů. V roce 2022 dosáhla čistá neúspěšnost 13,7% a v roce 2021 neuspělo 11,2% maturantů."
         },
@@ -68,6 +72,18 @@
           {
             "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>českého jazyka</b>?",
             "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>českého jazyka a literatury</b> je <b>85 minut</b>."
+          },
+          {
+            "question": "Jak dlouho se <b>mluví</b> u maturity?",
+            "answer": "Ústní zkouška trvá <b>15 minut</b>, příprava <b>20 minut</b>."
+          },
+          {
+            "question": "Kolik <b>bodů</b> musím mít u maturity z češtiny?",
+            "answer": "Pros úspěšné vykonání didaktického testu je nutné získat minimálně <b>22 bodů</b>(<b>44 %</b>)."
+          },
+          {
+            "question": "Kdo <b>opravuje</b> maturity?",
+            "answer": "Slohové práce <b>opravují účitelé</b> přímo na školách, didaktické testy jsou opravovány centrálně <b>CERMAT</b>em."
           }
         ]
       }
