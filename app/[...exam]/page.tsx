@@ -94,7 +94,7 @@ const ExamPage = async ({ params }: { params: { exam: string[] } }) => {
             </div>
           ))}
         </div >
-        : "error"}
+        : "Omouváme se, ale tato část je teprve ve vývoji."}
     </div >
   )
 }
