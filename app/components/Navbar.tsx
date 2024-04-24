@@ -45,7 +45,7 @@ const Navbar = () => {
                                                     <span>{link.label}</span>
                                                 </Link>
                                             </li>
-                                            <li><hr class="dropdown-divider" /></li>
+                                            <li><hr className="dropdown-divider" /></li>
                                             {link.dropdown?.map(dropdownLink => (
                                                 <li key={dropdownLink.href}>
                                                     <Link className='dropdown-item' href={"/" + link.href + "/" + dropdownLink.href}>
