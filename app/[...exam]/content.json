@@ -8,7 +8,7 @@
   "maturitni-zkouska": {
     "content": {
       "title": "Maturitní zkouška",
-      "description": "Vše, co potřebujete vědět o maturitní zkoušce - od povinných a volitelných předmětů po strukturu zkoušky a užitečné tipy k přípravě. Připravte se na úspěšné absolvování maturitní zkoušky a získejte klíč k dalšímu akademickému i profesnímu rozvoji.",
+      "description": "Vše, co potřebujete vědět o maturitní zkoušce - od povinných a volitelných předmětů po strukturu zkoušky a užitečné tipy k přípravě k maturitě. Připravte se na úspěšné absolvování maturitní zkoušky a získejte přehled k maturitní zkoušce.",
       "articles": [
         {
           "title": "Společná část",
@@ -21,15 +21,19 @@
       ],
       "faq": [
         {
+          "question": "Jaká je <b>úspěšnost</b> u maturit?",
+          "answer": "Maturitní didaktické testy <b>nezvládlo</b> v roce 2023 <b>9,2%</b> maturantů. V roce 2022 dosáhla čistá neúspěšnost 13,7% a v roce 2021 neuspělo 11,2% maturantů."
+        },
+        {
           "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky</b>?",
           "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky</b> je <b>135 minut</b>."
         },
         {
-          "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>anglického jazyka<b>/?",
+          "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>anglického jazyka<b>?",
           "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>anglického jazyka</b> je <b>110 minut</b>."
         },
         {
-          "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky rozšiřující<b>/?",
+          "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>matematiky rozšiřující<b>?",
           "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>matematiky rozšiřující</b> je <b>150 minut</b>."
         },
         {
