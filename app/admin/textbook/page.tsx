@@ -40,6 +40,7 @@ const TextbookPage = () => {
                             <td>{category.id}</td>
                             <td>{category.name}</td>
                             <td>{category.category_id}</td>
+                            <td><Link href={"/admin/textbook/subcathegory/" + category.id}><button className="btn btn-outline-secondary">-></button></Link></td>
                         </tr>
                     ))}
                 </tbody>
