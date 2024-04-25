@@ -32,9 +32,9 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-                        <ul className="navbar-nav align-items-center">
+                        <ul className="navbar-nav align-items-start justify-content-center">
                             {links.map(link => (
-                                <li key={link.href} className={"nav-item m-1" + (link.dropdown?.length > 0 && ' dropdown')}>
+                                <li key={link.href} className={"nav-item" + (link.dropdown?.length > 0 && ' dropdown')}>
                                     <Link data-bs-toggle={link.dropdown?.length > 0 && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${link.dropdown?.length > 0 && ' dropdown-toggle'}`} href={"/" + link.href}>
                                         <span>{link.label}</span>
                                     </Link>
