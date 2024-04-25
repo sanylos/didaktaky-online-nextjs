@@ -20,9 +20,15 @@ const SubcathegoryPage = ({ params }: { params: { id: number } }) => {
     return (
         <div>
             <h1>Editace subkategorie <i>{params.id}</i></h1>
+            <hr />
             {articles?.map(article => (
-                <Article key={article} article={article}></Article>
+                <div key={article}>
+                    <Article article={article}></Article>
+                    <button className="btn w-100 btn-outline-secondary fs-2">Upravit</button>
+                    <hr />
+                </div>
             ))}
+            <button className="btn w-100 btn-outline-secondary fs-2">Přidat</button>
         </div>
     )
 }
