@@ -2,6 +2,7 @@
 
 import { supabase } from "@/api";
 import { useEffect, useState } from "react"
+import Article from "@/app/components/ucebnice/Article";
 
 const SubcathegoryPage = ({ params }: { params: { id: number } }) => {
     const [articles, setArticles] = useState<Array<string>>([]);
@@ -18,8 +19,10 @@ const SubcathegoryPage = ({ params }: { params: { id: number } }) => {
     }, [])
     return (
         <div>
-            <h1>SubcathegoryPage</h1>
-            {JSON.stringify(articles)}
+            <h1>Editace subkategorie <i>{params.id}</i></h1>
+            {articles?.map(article => (
+                <Article key={article} article={article}></Article>
+            ))}
         </div>
     )
 }
