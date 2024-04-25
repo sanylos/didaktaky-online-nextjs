@@ -3,6 +3,7 @@
 import { supabase } from "@/api";
 import { useEffect, useState } from "react"
 import Article from "@/app/components/ucebnice/Article";
+import Link from "next/link";
 
 const SubcathegoryPage = ({ params }: { params: { id: number } }) => {
     const [articles, setArticles] = useState<Array<string>>([]);
@@ -28,7 +29,7 @@ const SubcathegoryPage = ({ params }: { params: { id: number } }) => {
                     <hr />
                 </div>
             ))}
-            <button className="btn w-100 btn-outline-secondary fs-2">Přidat</button>
+            <Link href={"/admin/textbook/subcathegory/" + params.id + "/add"}><button className="btn w-100 btn-outline-secondary fs-2">Přidat</button></Link>
         </div>
     )
 }
