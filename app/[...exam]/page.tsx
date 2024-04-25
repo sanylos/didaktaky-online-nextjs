@@ -59,7 +59,7 @@ const ExamPage = async ({ params }: { params: { exam: string[] } }) => {
   return (
     <div className="">
       {page ?
-        <div className="main-title pb-5 ms-5 me-5 mt-3">
+        <div className="main-title pb-5 container mt-3">
           <div>
             <h1 className="fw-bold text-blue-2">{page.content.title}</h1>
             <hr className="text-blue-1 w-auto" />
