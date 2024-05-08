@@ -43,6 +43,10 @@
         {
           "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>matematiky</b>?",
           "answer": "U didaktického testu z <b>matematiky</b> jsou povoleny <b>psací potřeby</b>, <b>matematické, fyzikální a chemické tabulky</b> pro střední školy a <b>rýsovací potřeby</b>.</b>."
+        },
+        {
+          "question": "Kdy nejsem připuštěn k maturitě?",
+          "answer": "Žák je připuštěn k maturitní zkoušce, pokud prospěl ze všech povinných maturitních předmětů v 1. pololetí školního roku, vysvědčení z 2. pololetí nebude mít vliv na připuštění k maturitní zkoušce."
         }
       ]
     },
