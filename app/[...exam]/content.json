@@ -88,6 +88,10 @@
           {
             "question": "Kdo <b>opravuje</b> maturity?",
             "answer": "Slohové práce <b>opravují účitelé</b> přímo na školách, didaktické testy jsou opravovány centrálně <b>CERMAT</b>em."
+          },
+          {
+            "question": "Z čeho se skládá maturita z češtiny?",
+            "answer": "Státní maturita z českého jazyka a literatury se skládá z didaktického testu, písemné práce a ústní zkoušky."
           }
         ]
       }
