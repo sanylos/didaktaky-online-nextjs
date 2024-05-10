@@ -47,6 +47,10 @@
         {
           "question": "Kdy nejsem připuštěn k maturitě?",
           "answer": "Žák je připuštěn k maturitní zkoušce, pokud prospěl ze všech povinných maturitních předmětů v 1. pololetí školního roku, vysvědčení z 2. pololetí nebude mít vliv na připuštění k maturitní zkoušce."
+        },
+        {
+          "question": "Co když se nedostavím k maturitě?",
+          "answer": "Pokud se ke zkoušce nedostavíte, například z důvodu nemoci, můžete svou nepřítomnost do 3 pracovních dnů od termínu konání zkoušky oznámit řediteli školy. Pokud ředitel omluvu uzná, vznikne Vám právo konat náhradní zkoušku."
         }
       ]
     },
