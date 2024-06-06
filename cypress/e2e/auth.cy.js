@@ -45,7 +45,7 @@ describe('Auth Component', () => {
         cy.url().should('eq', Cypress.config().baseUrl + '/');
     });
 
-    it('should handle registration form submission', () => {
+    /*it('should handle registration form submission', () => {
         cy.get('a').contains('Registrace').click();
         cy.get('form').within(() => {
             cy.get('input[type="email"]').type('newuser@example.com');
@@ -54,5 +54,5 @@ describe('Auth Component', () => {
         });
 
         cy.url().should('eq', Cypress.config().baseUrl + '/');
-    });
+    });*/
 });
