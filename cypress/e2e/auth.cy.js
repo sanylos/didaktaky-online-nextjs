@@ -1,6 +1,5 @@
 describe('Auth Component', () => {
     beforeEach(() => {
-        // Visit the auth page
         cy.visit('/auth');
     });
 
@@ -43,7 +42,6 @@ describe('Auth Component', () => {
             cy.get('button').contains('Přihlásit').click();
         });
 
-        // Assuming login redirects to home page
         cy.url().should('eq', Cypress.config().baseUrl + '/');
     });
 
@@ -55,7 +53,6 @@ describe('Auth Component', () => {
             cy.get('button').contains('Registrovat').click();
         });
 
-        // Assuming registration redirects to home page
         cy.url().should('eq', Cypress.config().baseUrl + '/');
     });
 });
