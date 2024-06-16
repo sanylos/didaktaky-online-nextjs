@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation'
 
 const UserContext = createContext({
     user: null,
-    login: () => { },
+    login: (email: string, password: string) => { },
     logout: () => { },
-    register: () => { },
+    register: (email: string, password: string) => { },
 });
 
 export const useUser = () => useContext(UserContext);
@@ -51,7 +51,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const handleRegister = async (email, password) => {
-        console.log(email);console.log(password);
+        console.log(email); console.log(password);
         const { data, error } = await supabase.auth.signUp({
             email,
             password
