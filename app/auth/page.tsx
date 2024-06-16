@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 "use client";
 import { useEffect, useState, useContext } from "react";
 import "./page.scss"
@@ -7,6 +7,7 @@ import { useUser } from '../UserContext';
 import { useRouter } from "next/navigation";
 
 const Auth = () => {
+    //@ts-ignore
     const { userData, login, register } = useUser();
     const [authType, setAuthType] = useState("login");
     const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const Auth = () => {
         }
     })
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (authType == "register") {
             register(email, password);
