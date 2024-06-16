@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/api';
@@ -13,7 +13,7 @@ const UserContext = createContext({
 
 export const useUser = () => useContext(UserContext);
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const [userData, setUserData] = useState();
     const router = useRouter();
 
