@@ -1,4 +1,3 @@
-//@ts-nocheck
 import "./page.scss"
 import { FaArrowDown } from "react-icons/fa6";
 import { MdOutlineInsights, MdOutlineMemory } from "react-icons/md";
