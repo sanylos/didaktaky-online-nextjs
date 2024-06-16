@@ -1,5 +1,6 @@
-// @ts-nocheck
+
 'use client';
+import { NavLink } from '@/app/data/links';
 import { useContext, useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import Link from 'next/link'
@@ -9,6 +10,7 @@ import { useUser } from '../UserContext';
 import { links } from '@/app/data/links'
 
 const Navbar = () => {
+    //@ts-ignore
     const { userData, logout } = useUser();
     const path = usePathname();
     const isLinkActive = (href: string) => { // returns true if pathname is equal to passed href
@@ -33,12 +35,13 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul className="navbar-nav align-items-start justify-content-center">
-                            {links.map(link => (
-                                <li key={link.href} className={"nav-item" + (link.dropdown?.length > 0 && ' dropdown')}>
-                                    <Link data-bs-toggle={link.dropdown?.length > 0 && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${link.dropdown?.length > 0 && ' dropdown-toggle'}`} href={"/" + link.href}>
+                            {links.map((link: NavLink) => (
+                                <li key={link.href} className={"nav-item" + (link.dropdown?.length || 0 > 0 && ' dropdown')}>
+                                    <Link data-bs-toggle={link.dropdown?.length || 0 > 0 && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${link.dropdown?.length || 0 > 0 && ' dropdown-toggle'}`} href={"/" + link.href}>
                                         <span>{link.label}</span>
                                     </Link>
-                                    {link.dropdown?.length > 0 &&
+                                    {
+                                        link.dropdown?.length || 0 > 0 &&
                                         <ul className="dropdown-menu bg-blue-5">
                                             <li>
                                                 <Link className='dropdown-item' href={"/" + link.href}>
