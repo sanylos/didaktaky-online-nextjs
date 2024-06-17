@@ -95,7 +95,7 @@ export default async function Home() {
               <a className="btn btn-dark shadow-lg rounded-5 my-3 mx-1 p-2 w-auto px-3" href="#about"><FaArrowDown /></a>
             </div>
           </div>
-          <Image width={1000} height={1000} src="/prijimacky-online-phone-mockup.png" className="desktop" alt="didaktaky-online-phone-mockup" />
+          <Image width={1000} height={1000} style={{objectFit: 'contain'}} src="/prijimacky-online-phone-mockup.png" className="desktop" alt="didaktaky-online-phone-mockup" />
           <div style={{ position: "absolute", bottom: "10vh" }}
             className="container-fluid d-flex align-items-center justify-content-start">
             <div className="mx-5" v-if="answeredExerciseCount">
