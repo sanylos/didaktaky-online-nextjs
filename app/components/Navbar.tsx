@@ -36,12 +36,12 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul className="navbar-nav align-items-start justify-content-center">
                             {links.map((link: NavLink) => (
-                                <li key={link.href} className={"nav-item" + (link.dropdown?.length || 0 > 0 && ' dropdown')}>
-                                    <Link data-bs-toggle={link.dropdown?.length || 0 > 0 && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${link.dropdown?.length || 0 > 0 && ' dropdown-toggle'}`} href={"/" + link.href}>
+                                <li key={link.href} className={"nav-item" + ((link.dropdown?.length || 0 > 0) && ' dropdown')}>
+                                    <Link data-bs-toggle={(link.dropdown?.length || 0 > 0) && "dropdown"} className={`nav-link p-1 rounded ${isLinkActive(link.href) ? 'active' : ''} ${(link.dropdown?.length || 0 > 0) && ' dropdown-toggle'}`} href={"/" + link.href}>
                                         <span>{link.label}</span>
                                     </Link>
                                     {
-                                        link.dropdown?.length || 0 > 0 &&
+                                        (link.dropdown?.length || 0 > 0) &&
                                         <ul className="dropdown-menu bg-blue-5">
                                             <li>
                                                 <Link className='dropdown-item' href={"/" + link.href}>
