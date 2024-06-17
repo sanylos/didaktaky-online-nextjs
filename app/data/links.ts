@@ -1,3 +1,5 @@
+export type NavLink = { label: string, href: string, dropdown?: NavLink[] };
+
 export const links = [
     { label: 'Procvičování', href: 'procvicovani' },
     { label: 'Přehled', href: 'prehled' },
