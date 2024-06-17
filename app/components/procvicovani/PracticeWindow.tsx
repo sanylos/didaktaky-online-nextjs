@@ -110,12 +110,10 @@ const PracticeWindow = ({ examType, examSubject }) => {
                         <div className="d-flex justify-content-between">
                             <button disabled={!isAnswered} className="btn btn-light" onClick={handlePreviousExercise}>Předchozí</button>
                             {
-
                                 isAnswered ?
                                     <button className="btn btn-light" onClick={handleNextExercise}>Další</button>
                                     :
                                     <button className="btn btn-light" onClick={handleExerciseSubmit}>Zkontrolovat</button>
-
                             }
                         </div>
                     </div>
