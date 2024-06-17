@@ -68,7 +68,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
             {
                 exercise.type == "Výběr z možností" &&
                 <div>
-                    {exercise.answers.map((option, index) => (
+                    {exercise.answers?.map((option, index) => (
                         <div key={index}>
                             <input className="btn-check"
                                 id={"option" + index}
@@ -97,7 +97,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                         <div className="col-1">N</div>
                     </div>
                     <div>
-                        {exercise.answers.map((option, index) => (
+                        {exercise.answers?.map((option, index) => (
                             <div key={index}
                                 className={"row align-items-center mb-1 p-1 rounded "
                                     + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
@@ -128,7 +128,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
             }
             {
                 exercise.type == "Přiřazení" && <div>
-                    {exercise.answers.map((option, index) => (
+                    {exercise.answers?.map((option, index) => (
                         <div key={index}
                             className={"d-flex flex-row align-content-start justify-content-between rounded p-1 my-1 "
                                 + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
@@ -144,7 +144,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
                             />
                         </div>
                     ))}
-                    {exercise.sentences.map((sentence, index) => (
+                    {exercise.sentences?.map((sentence, index) => (
                         <div key={index}>
                             <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(sentence) }}></span>
                         </div>
@@ -153,7 +153,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
             }
             {
                 exercise.type == "Více textových odpovědí" && <div>
-                    {exercise.answers.map((option, index) => (
+                    {exercise.answers?.map((option, index) => (
                         <div key={index}
                             className={"d-flex flex-column justify-content-between align-items-cemter rounded m-1 p-1 "
                                 + (isAnswered && answer[index] == exercise.correct_answer[index] ? "bg-success" : "")
@@ -170,7 +170,7 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
             }
             {
                 exercise.type == "Textová odpověď" && <div className="d-flex flex-row flex-wrap">
-                    {exercise.correct_answer.map((correctAnswer, index) => (
+                    {exercise.correct_answer?.map((correctAnswer, index) => (
                         <div key={index} className={"m-1 p-1 rounded "
                             + (isAnswered && exercise.correct_answer.includes(answer[index]) ? "bg-success" : "")
                             + (isAnswered && !exercise.correct_answer.includes(answer[index]) ? "bg-danger" : "")
@@ -185,13 +185,13 @@ const Exercise = ({ exercise, answer, handleAnswer, isAnswered, showExerciseNumb
             }
             {
                 exercise.type == "Seřazení" && <div>
-                    {exercise.answers.map((option, index) => (
+                    {exercise.answers?.map((option, index) => (
                         <div key={index}>
                             <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option) }}></span>
                         </div>
                     ))}
                     <div className="d-flex">
-                        {exercise.correct_answer.map((correctAnswer, index) => (
+                        {exercise.correct_answer?.map((correctAnswer, index) => (
                             <div key={index} className={"mx-1 p-1 "
                                 + ((isAnswered && exercise.correct_answer[index] == answer[index]) ? "bg-success" : "")
                                 + ((isAnswered && exercise.correct_answer[index] != answer[index]) ? "bg-danger" : "")

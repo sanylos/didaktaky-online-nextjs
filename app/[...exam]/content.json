@@ -22,7 +22,7 @@
       "faq": [
         {
           "question": "Kolik <b>pokusů</b> je na maturitu?",
-          "answer": "Opravnou maturitní zkoušku lze konat <b>maximálně dvakrát</b> z každé zkoušky."
+          "answer": "Opravnou maturitní zkoušku lze konat <b>maximálně dvakrát</b> z každé zkoušky, celkově jsou na maturitu <b>3 pokusy</b>."
         },
         {
           "question": "Jaká je <b>úspěšnost</b> u maturit?",
@@ -43,6 +43,22 @@
         {
           "question": "Jaké jsou <b>povolené pomůcky</b> u didaktického testu z <b>matematiky</b>?",
           "answer": "U didaktického testu z <b>matematiky</b> jsou povoleny <b>psací potřeby</b>, <b>matematické, fyzikální a chemické tabulky</b> pro střední školy a <b>rýsovací potřeby</b>.</b>."
+        },
+        {
+          "question": "Kdy nejsem připuštěn k maturitě?",
+          "answer": "Žák je připuštěn k maturitní zkoušce, pokud prospěl ze všech povinných maturitních předmětů v 1. pololetí školního roku, vysvědčení z 2. pololetí nebude mít vliv na připuštění k maturitní zkoušce."
+        },
+        {
+          "question": "Co když se nedostavím k maturitě?",
+          "answer": "Pokud se ke zkoušce nedostavíte, například z důvodu nemoci, můžete svou nepřítomnost do 3 pracovních dnů od termínu konání zkoušky oznámit řediteli školy. Pokud ředitel omluvu uzná, vznikne Vám právo konat náhradní zkoušku."
+        },
+        {
+          "question": "Kolik bodů musím mít u maturity z angličtiny?",
+          "answer": "Pro úspěšné složení zkoušky z anglického jazyka je potřeba získat minimálně 44 bodů."
+        },
+        {
+          "question": "Co když neudělám maturitu?",
+          "answer": "Pokud neuděláte maturitu ani na třetí pokus (druhý opravný), je možné znovu si podat přihlášku na školu a domluvit se na absolvování posledního ročníku a maturitu konat od znova."
         }
       ]
     },
@@ -70,6 +86,10 @@
             "answer": "U didaktického testu z <b>českého jazyka a literatury</b> jsou povoleny <b>pouze psací potřeby</b>."
           },
           {
+            "question": "Jak probíhá maturita z <b>českého jazyka</b>?",
+            "answer": "Nejprve si vylosujete číslo otázky, ke které poté dostanete pracovní list s dvěma typy textů – uměleckým (úryvkem románu, povídky či básní) a neuměleckým, kde může být odborný text nebo například článek v novinách."
+          },
+          {
             "question": "Jaký je <b>časový limit</b> pro didaktický test z <b>českého jazyka</b>?",
             "answer": "<b>Časový limit</b> na řešení didaktického testu z <b>českého jazyka a literatury</b> je <b>85 minut</b>."
           },
@@ -84,6 +104,10 @@
           {
             "question": "Kdo <b>opravuje</b> maturity?",
             "answer": "Slohové práce <b>opravují účitelé</b> přímo na školách, didaktické testy jsou opravovány centrálně <b>CERMAT</b>em."
+          },
+          {
+            "question": "Z čeho se skládá maturita z češtiny?",
+            "answer": "Státní maturita z českého jazyka a literatury se skládá z didaktického testu, písemné práce a ústní zkoušky."
           }
         ]
       }

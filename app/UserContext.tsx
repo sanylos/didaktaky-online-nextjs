@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/api';
@@ -6,14 +6,14 @@ import { useRouter } from 'next/navigation'
 
 const UserContext = createContext({
     user: null,
-    login: () => { },
+    login: (email: string, password: string) => { },
     logout: () => { },
-    register: () => { },
+    register: (email: string, password: string) => { },
 });
 
 export const useUser = () => useContext(UserContext);
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const [userData, setUserData] = useState();
     const router = useRouter();
 
@@ -51,7 +51,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const handleRegister = async (email, password) => {
-        console.log(email);console.log(password);
+        console.log(email); console.log(password);
         const { data, error } = await supabase.auth.signUp({
             email,
             password
